@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="card">
+      <mat-tab-group>
+        <mat-tab label="Login">
+          <form>
+            <mat-error>
+              The username and password were not recognized
+            </mat-error>
+            <mat-form-field style="display: block;">
+              <input matInput placeholder="Email" name="username" required>
+              <mat-error>
+                Please provide a valid email address
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field style="display: block;">
+              <input matInput type="password" placeholder="Password" name="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Login</button>
+          </form>
+        </mat-tab>
+        <mat-tab label="Registrar">
+          <form>
+            <mat-error>
+              The username and password were not recognized
+            </mat-error>
+            <mat-form-field style="display: block;">
+              <input matInput placeholder="Nome" name="name" required>
+              <mat-error>
+                Please provide a valid name
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field style="display: block;">
+              <input matInput placeholder="Email" name="username" required>
+              <mat-error>
+                Please provide a valid email address
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field style="display: block;">
+              <input matInput placeholder="Telefone" name="phone" required>
+              <mat-error>
+                Please provide a valid phone
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field style="display: block;">
+              <input matInput type="password" placeholder="Password" name="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Login</button>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+</div>
+
+<app-footer></app-footer>
