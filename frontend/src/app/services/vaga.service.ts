@@ -1,22 +1,24 @@
-import { environment } from './../../../../environments/environment';
+import { Vaga } from './../models/vaga.model';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
+export class VagaService {
 
   baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient, private _snack: MatSnackBar) { }
 
-  // getListaPaginada() {
-  //   const url = `${this.baseUrl}/vagas?page=0&size=5&sort=expiracao,desc`;
-  //   return this.http.get<void>(url);
-  // }
+  getListaPaginada(): Observable<any> {
+    const url = `${this.baseUrl}/vagas?page=0&size=5&sort=id,desc`;
+    return this.http.get(url);
+  }
 
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;

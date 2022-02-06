@@ -1,5 +1,5 @@
 export interface Vaga{
-  id?: string,
+  id?: number,
   nome: string,
   tipo: string,
   quantidade: number,

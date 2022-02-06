@@ -3,22 +3,22 @@
 <div class="container">
   <h2>Últimas Vagas</h2>
 
-  <div class="card">
+  <div *ngFor="let vaga of vagas" class="card">
     <div class="card-header">
-      83121 - Auxiliar de almoxarifado - Global Goiânia
+      {{vaga.id}} - {{vaga.nome}}
     </div>
     <div class="card-body">
       <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <p class="card-text">Tipo de contratação: Temporário</p>
-      <p class="card-text">Quantidade de Vagas: 1</p>
-      <p class="card-text">Salário: 1.323,00</p>
+      <p class="card-text">Tipo de contratação: {{vaga.tipo}}</p>
+      <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
+      <p class="card-text">Salário: {{vaga.salario}}</p>
       <hr>
       <div class="row">
         <div class="col-md-3">
-          <p><i class="bi bi-geo-alt"></i> Aparecida de Goiânia, Goiás</p>
+          <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
         </div>
         <div class="col-md-3">
-          <p><i class="bi bi-calendar"></i> Expira em: 4 dias</p>
+          <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao}}</p>
         </div>
         <div class="col-md-3">
           <button class="btn btn-success">Candidatar-se</button>
