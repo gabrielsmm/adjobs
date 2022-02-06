@@ -1,0 +1,18 @@
+.navbar-background {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar-brand {
+  color: black;
+  font-size: 20px;
+}
+
+.nav-link {
+  color: black !important;
+  font-size: 17px;
+}
