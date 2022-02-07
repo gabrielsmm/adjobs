@@ -9,16 +9,16 @@
     </div>
     <div class="card-body">
       <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <p class="card-text">Tipo de contratação: {{vaga.tipo}}</p>
+      <p class="card-text">Tipo de contratação: {{vaga.tipo.nome}}</p>
       <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
-      <p class="card-text">Salário: {{vaga.salario}}</p>
+      <p class="card-text">Salário: {{vaga.salario | currency:'BRL':true}}</p>
       <hr>
       <div class="row">
         <div class="col-md-3">
           <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
         </div>
         <div class="col-md-3">
-          <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao}}</p>
+          <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
         </div>
         <div class="col-md-3">
           <button class="btn btn-success">Candidatar-se</button>

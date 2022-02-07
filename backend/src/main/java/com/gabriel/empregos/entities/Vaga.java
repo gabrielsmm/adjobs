@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,17 +18,20 @@ public class Vaga {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String tipo;
 	private Integer quantidade;
 	private Double salario;
 	private String localizacao;
 	private Date expiracao;
 	
+	@OneToOne
+	@JoinColumn(name = "tipocontratacao_id")
+	private TipoContratacao tipo;
+	
 	public Vaga() {
 		
 	}
 	
-	public Vaga(Long id, String nome, String tipo, Integer quantidade, Double salario, String localizacao,
+	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
 			Date expiracao) {
 		this.id = id;
 		this.nome = nome;
@@ -53,11 +58,11 @@ public class Vaga {
 		this.nome = nome;
 	}
 	
-	public String getTipo() {
+	public TipoContratacao getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(String tipo) {
+	public void setTipo(TipoContratacao tipo) {
 		this.tipo = tipo;
 	}
 	

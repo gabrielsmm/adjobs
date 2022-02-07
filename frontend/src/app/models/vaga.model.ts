@@ -1,7 +1,9 @@
+import { TipoContratacao } from './TipoContratacao.model';
+
 export interface Vaga{
   id?: number,
   nome: string,
-  tipo: string,
+  tipo: TipoContratacao,
   quantidade: number,
   salario: number,
   localizacao: string,

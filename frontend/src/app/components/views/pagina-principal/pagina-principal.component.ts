@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Vaga } from './../../../models/vaga.model';
+import { Vaga } from '../../../models/vaga.model';
 import { VagaService } from './../../../services/vaga.service';
 import { Component, OnInit } from '@angular/core';
 
