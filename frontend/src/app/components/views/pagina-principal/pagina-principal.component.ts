@@ -12,13 +12,22 @@ export class PaginaPrincipalComponent implements OnInit {
   @Input() empregos: boolean = false;
   @Input() estagios: boolean = false;
   @Input() concursos: boolean = false;
+  @Input() labelInfoVagas: string = "";
 
   public vagas: Vaga[] = [];
 
   constructor(private vagaService: VagaService) { }
 
   ngOnInit(): void {
-    this.getListaPaginada();
+    this.getVagas();
+  }
+
+  getVagas() {
+    if (this.estagios) {
+      this.getSomenteEstagios();
+    } else {
+      this.getListaPaginada();
+    }  
   }
 
   getListaPaginada() {
@@ -33,7 +42,22 @@ export class PaginaPrincipalComponent implements OnInit {
       complete() {
 
       }
-     });
+    });
+  }
+
+  getSomenteEstagios() {
+    const _this = this;
+    this.vagaService.getSomenteEstagios().subscribe({
+      next(data) {
+        _this.vagas = data;
+      },
+      error(msg) {
+        console.log('Error', msg);
+      },
+      complete() {
+
+      }
+    })
   }
 
   buscar() {

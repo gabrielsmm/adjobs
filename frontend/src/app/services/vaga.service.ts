@@ -20,6 +20,11 @@ export class VagaService {
     return this.http.get(url);
   }
 
+  getSomenteEstagios(): Observable<any> {
+    const url = `${this.baseUrl}/vagas/somente-vagas-estagio`;
+    return this.http.get(url);
+  }
+
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.get<Categoria>(url);

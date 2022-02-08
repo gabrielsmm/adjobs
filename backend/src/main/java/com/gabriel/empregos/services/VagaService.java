@@ -1,5 +1,7 @@
 package com.gabriel.empregos.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,11 @@ public class VagaService {
 		repository.findAll();
 		Page<Vaga> result = repository.findAll(pageable);
 		return result;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Vaga> somenteVagasEstagio() {
+		return repository.somenteVagasEstagio();
 	}
 	
 }

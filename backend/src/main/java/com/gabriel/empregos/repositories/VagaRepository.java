@@ -1,9 +1,16 @@
 package com.gabriel.empregos.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.gabriel.empregos.entities.Vaga;
 
 public interface VagaRepository extends JpaRepository<Vaga, Long> {
-
+	
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.TIPOCONTRATACAO_ID = 3",
+			nativeQuery = true)
+	List<Vaga> somenteVagasEstagio();
+	
 }

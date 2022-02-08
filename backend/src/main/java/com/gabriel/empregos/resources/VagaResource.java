@@ -1,5 +1,7 @@
 package com.gabriel.empregos.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +25,12 @@ public class VagaResource {
 	@GetMapping
 	public ResponseEntity<Page<Vaga>> findAll(Pageable pageable) {
 		Page<Vaga> list = service.findAll(pageable);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping(value = "/somente-vagas-estagio")
+	public ResponseEntity<List<Vaga>> somenteVagasEstagio() {
+		List<Vaga> list = service.somenteVagasEstagio();
 		return ResponseEntity.ok(list);
 	}
 	
