@@ -1,6 +1,6 @@
 import { Vaga } from '../../../models/vaga.model';
 import { VagaService } from './../../../services/vaga.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pagina-principal',
@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagina-principal.component.css']
 })
 export class PaginaPrincipalComponent implements OnInit {
+
+  @Input() empregos: boolean = false;
+  @Input() estagios: boolean = false;
+  @Input() concursos: boolean = false;
 
   public vagas: Vaga[] = [];
 
@@ -30,6 +34,10 @@ export class PaginaPrincipalComponent implements OnInit {
 
       }
      });
+  }
+
+  buscar() {
+    console.log('Buscando...');
   }
 
 }

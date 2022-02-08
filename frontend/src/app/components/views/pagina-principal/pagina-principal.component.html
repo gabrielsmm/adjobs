@@ -1,31 +1,46 @@
 <app-header></app-header>
 
 <div class="container">
-  <h2>Últimas Vagas</h2>
 
-  <div *ngFor="let vaga of vagas" class="card">
-    <div class="card-header">
-      {{vaga.id}} - {{vaga.nome}}
+  <div class="row">
+    <div class="col-md-9">
+      <h2>Últimas Vagas</h2>
+
+      <div *ngFor="let vaga of vagas" class="card">
+        <div class="card-header">
+          {{vaga.id}} - {{vaga.nome}}
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <p class="card-text">Tipo de contratação: {{vaga.tipo.nome}}</p>
+          <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
+          <p class="card-text">Salário: {{vaga.salario | currency:'BRL':true}}</p>
+          <hr>
+          <div class="row">
+            <div class="col-md-3">
+              <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
+            </div>
+            <div class="col-md-3">
+              <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-success" style="margin-right: 15px;">Candidatar-se</button>
+              <button class="btn btn-primary">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <p class="card-text">Tipo de contratação: {{vaga.tipo.nome}}</p>
-      <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
-      <p class="card-text">Salário: {{vaga.salario | currency:'BRL':true}}</p>
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-          <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
-        </div>
-        <div class="col-md-3">
-          <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
-        </div>
-        <div class="col-md-3">
-          <button class="btn btn-success">Candidatar-se</button>
-        </div>
-        <div class="col-md-3">
-          <button class="btn btn-primary">Ver detalhes</button>
-        </div>
+
+    <div class="col-md-3">
+      <p style="margin-top: 48px;">Procure uma oportunidade</p>
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" placeholder="Buscar"/>
+        <span class="input-group-btn">
+          <button (click)="buscar()" class="btn btn-primary btn-lg" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </span>
       </div>
     </div>
   </div>
