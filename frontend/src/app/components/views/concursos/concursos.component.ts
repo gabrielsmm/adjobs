@@ -1,3 +1,5 @@
+import { ConcursoService } from './../../../services/concurso.service';
+import { Concurso } from './../../../models/Concurso.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConcursosComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['cedente', 'prazo', 'vagas', 'salario', 'escolaridade', 'local', 'estado'];
+  public concursos: Concurso[] = [];
+
+  constructor(private concursoService: ConcursoService) { }
 
   ngOnInit(): void {
+    this.getLista();
+  }
+
+  getLista() {
+    const _this = this;
+    this.concursoService.getLista().subscribe({
+      next(data) {
+        _this.concursos = data;
+      },
+      error(msg) {
+        console.log('Error', msg);
+      },
+      complete() {
+
+      }
+    });
   }
 
 }
