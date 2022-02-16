@@ -6,8 +6,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gabriel.empregos.entities.Concurso;
 import com.gabriel.empregos.entities.TipoContratacao;
 import com.gabriel.empregos.entities.Vaga;
+import com.gabriel.empregos.repositories.ConcursoRepository;
 import com.gabriel.empregos.repositories.TipoContratacaoRepository;
 import com.gabriel.empregos.repositories.VagaRepository;
 
@@ -19,6 +21,9 @@ public class DBService {
 	
 	@Autowired 
 	private TipoContratacaoRepository tpContratacaoRepository;
+	
+	@Autowired
+	private ConcursoRepository concursoRepository;
 	
 	public void instanciaBaseDeDados() {
 		
@@ -40,5 +45,12 @@ public class DBService {
 		
 		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5));
 		
+		Concurso con1 = new Concurso(null, "Câmara de Jaboatão dos Guararapes (PE)", new Date(), 33, 3150d, "médio e superior", "Jaboatão dos Guararapes", "Pernambuco");
+		Concurso con2 = new Concurso(null, "Prefeitura de Cumaru do Norte (PA)", new Date(), 24, 1550d, "médio", "Cumaru do Norte", "Paraná");
+		Concurso con3 = new Concurso(null, "Prefeitura de Santa Fé (PR)", new Date(), 32, 6647.97d, "fundamental, médio e superior", "Santa Fé", "Paraná");
+		Concurso con4 = new Concurso(null, "Prefeitura de Bento de Abreu (SP)", new Date(), 30, 6800d, "superior", "Recife", "Pernambuco");
+		Concurso con5 = new Concurso(null, "Instituto Sagaz (RN)", new Date(), 129, 4000d, "fundamental, médio e superior", "Rio Grande do Norte", "Rio Grande do Norte");
+		
+		this.concursoRepository.saveAll(Arrays.asList(con1, con2, con3, con4, con5));
 	}
 }
