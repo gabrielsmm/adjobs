@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConcursosComponent implements OnInit {
 
-  displayedColumns: string[] = ['cedente', 'prazo', 'vagas', 'salario', 'escolaridade', 'local', 'estado'];
+  displayedColumns: string[] = ['cedente', 'prazo', 'vagas', 'salario', 'escolaridade', 'local', 'estado', 'action'];
   public concursos: Concurso[] = [];
 
   constructor(private concursoService: ConcursoService) { }

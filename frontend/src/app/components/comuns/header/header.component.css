@@ -16,3 +16,7 @@ a {
   color: black !important;
   font-size: 17px;
 }
+
+.link-ativo {
+  color: blue !important;
+}

@@ -7,13 +7,15 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { EstagiosComponent } from './estagios/estagios.component';
 import { ConcursosComponent } from './concursos/concursos.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     EmpregosComponent,
     EstagiosComponent,
-    ConcursosComponent
+    ConcursosComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

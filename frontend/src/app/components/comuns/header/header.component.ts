@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,28 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   show: boolean = false;
+  public isHome: boolean = false;
+  public isEmpregos: boolean = false;
+  public isEstagios: boolean = false;
+  public isConcursos: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    switch (this.router.url) {
+      case '/empregos':
+        this.isEmpregos = true;
+        break;
+      case '/estagios':
+        this.isEstagios = true;
+        break;
+      case '/concursos':
+        this.isConcursos = true;
+        break;
+      case '/inicio':
+        this.isHome = true;
+        break;
+    }
   }
 
   navegar(rota: string) {
