@@ -29,4 +29,9 @@ public class VagaService {
 		return repository.somenteVagasEstagio();
 	}
 	
+	@Transactional(readOnly = true)
+	public Vaga getDados(Long id) {
+		return repository.getById(id);
+	}
+	
 }

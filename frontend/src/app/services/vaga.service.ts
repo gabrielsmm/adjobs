@@ -25,6 +25,11 @@ export class VagaService {
     return this.http.get(url);
   }
 
+  getDados(idVaga: number) {
+    const url = `${this.baseUrl}/vagas/${idVaga}`;
+    return this.http.get<Vaga>(url);
+  }
+
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.get<Categoria>(url);

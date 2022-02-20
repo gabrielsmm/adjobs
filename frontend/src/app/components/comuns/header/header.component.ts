@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   public isEmpregos: boolean = false;
   public isEstagios: boolean = false;
   public isConcursos: boolean = false;
+  public isLogin: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -29,6 +30,9 @@ export class HeaderComponent implements OnInit {
         break;
       case '/inicio':
         this.isHome = true;
+        break;
+      case '/login':
+        this.isLogin = true;
         break;
     }
   }

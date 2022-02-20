@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Detalhes da vaga - {{data.nome}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>ID: {{data.id}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p>Tipo de Contratação: {{data.tipo.nome}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>Quantidade de Vagas: {{data.quantidade}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p>Salário: {{data.salario | currency:'BRL':true}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>Localização: <i class="bi bi-geo-alt"></i> {{data.localizacao}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p><i class="bi bi-calendar"></i> Expira em: {{data.expiracao | date: 'dd/MM/yyyy'}}</p>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-raised-button color="warn" mat-dialog-close>Voltar</button>
+  <button (click)="openCandidatar()" mat-button mat-raised-button color="primary" cdkFocusInitial>Candidatar-se</button>
+</mat-dialog-actions>

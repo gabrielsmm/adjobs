@@ -10,8 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity
 @Table(name = "tb_vagas")
+@Proxy(lazy = false)
 public class Vaga {
 	
 	@Id
