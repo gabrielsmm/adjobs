@@ -3,6 +3,7 @@ import { Vaga } from '../../../models/vaga.model';
 import { VagaService } from './../../../services/vaga.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-empregos',
@@ -16,6 +17,11 @@ export class EmpregosComponent implements OnInit {
 
   public vagas: Vaga[] = [];
   public vaga: Vaga;
+  public pesquisa: string = "";
+  public page = 0;
+  public size = 5;
+  public first: boolean;
+  public last: boolean;
 
   constructor(private vagaService: VagaService,
     public dialog: MatDialog) { }
@@ -34,9 +40,11 @@ export class EmpregosComponent implements OnInit {
 
   getListaPaginada() {
     const _this = this;
-    this.vagaService.getListaPaginada().subscribe({
+    this.vagaService.getListaPaginada(this.page, this.size, this.pesquisa).subscribe({
       next(data) {
         _this.vagas = data['content'];
+        _this.first = data['first'];
+        _this.last = data['last'];
       },
       error(msg) {
         console.log('Error', msg);
@@ -88,7 +96,17 @@ export class EmpregosComponent implements OnInit {
   }
 
   buscar() {
-    console.log('Buscando...');
+    this.getListaPaginada();
+  }
+
+  irPaginaAnterior() {
+    this.page = --this.page;
+    this.buscar();
+  }
+
+  irPaginaPosterior() {
+    this.page = ++this.page;
+    this.buscar();
   }
 
 }

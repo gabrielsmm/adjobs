@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { EmpregosComponent } from './empregos/empregos.component';
 import { MaterialModule } from './../../material.module';
 import { LoginRoutingModule } from './login/login-routing.module';
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     ComunsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [
     LoginRoutingModule

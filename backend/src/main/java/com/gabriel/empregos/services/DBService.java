@@ -42,8 +42,13 @@ public class DBService {
 		Vaga vaga3 = new Vaga(null, "Ajudante", tp2, 5, 1600d, "Goiânia", new Date());
 		Vaga vaga4 = new Vaga(null, "Estagiario", tp3, 5, 2000d, "Ap. de Goiânia", new Date());
 		Vaga vaga5 = new Vaga(null, "Auxiliar", tp5, 5, 1900d, "Goiânia", new Date());
+		Vaga vaga6 = new Vaga(null, "Ajudante", tp5, 5, 1900d, "Goiânia", new Date());
+		Vaga vaga7 = new Vaga(null, "Analista", tp5, 5, 1900d, "Goiânia", new Date());
+		Vaga vaga8 = new Vaga(null, "Gerente", tp5, 5, 1900d, "Goiânia", new Date());
+		Vaga vaga9 = new Vaga(null, "Estudante", tp5, 5, 1900d, "Goiânia", new Date());
+		Vaga vaga10 = new Vaga(null, "Brabeza", tp5, 5, 1900d, "Goiânia", new Date());
 		
-		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5));
+		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5, vaga6, vaga7, vaga8, vaga9, vaga10));
 		
 		Concurso con1 = new Concurso(null, "Câmara de Jaboatão dos Guararapes (PE)", new Date(), 33, 3150d, "médio e superior", "Jaboatão dos Guararapes", "Pernambuco");
 		Concurso con2 = new Concurso(null, "Prefeitura de Cumaru do Norte (PA)", new Date(), 24, 1550d, "médio", "Cumaru do Norte", "Paraná");

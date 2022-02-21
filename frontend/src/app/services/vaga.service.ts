@@ -15,8 +15,11 @@ export class VagaService {
 
   constructor(private http: HttpClient, private _snack: MatSnackBar) { }
 
-  getListaPaginada(): Observable<any> {
-    const url = `${this.baseUrl}/vagas?page=0&size=5&sort=id,desc`;
+  getListaPaginada(page: number = 0, size: number = 5, nome: string = ""): Observable<any> {
+    let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
+    if (nome !== "") {
+      url += `&nome=${nome}`;
+    }
     return this.http.get(url);
   }
 
@@ -50,11 +53,11 @@ export class VagaService {
   //   return this.http.delete<void>(url);
   // }
 
-  // mensagem(str: string){
-  //   this._snack.open(`${str}`, 'OK', {
-  //     horizontalPosition: 'end',
-  //     verticalPosition: 'top',
-  //     duration: 3000
-  //   })
-  // }
+  mensagem(str: string){
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 3000
+    })
+  }
 }

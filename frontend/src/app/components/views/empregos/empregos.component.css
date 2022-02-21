@@ -1,8 +1,12 @@
 .container {
   padding-top: 20px;
-  padding-bottom: 25px;
+  padding-bottom: 45px;
 }
 
 .card {
   margin-bottom: 30px;
+}
+
+.page-link {
+  cursor: pointer;
 }

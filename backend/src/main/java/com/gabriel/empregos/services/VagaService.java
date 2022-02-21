@@ -19,8 +19,13 @@ public class VagaService {
 	
 	@Transactional(readOnly = true)
 	public Page<Vaga> findAll(Pageable pageable) {
-		repository.findAll();
 		Page<Vaga> result = repository.findAll(pageable);
+		return result;
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Vaga> findAllByNome(String nome, Pageable pageable) {
+		Page<Vaga> result = repository.findAllByNomeIgnoreCaseContaining(nome, pageable);
 		return result;
 	}
 	
