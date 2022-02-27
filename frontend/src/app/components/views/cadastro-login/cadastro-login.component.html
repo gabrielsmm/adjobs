@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <p class="lead" style="text-align: center;">Anuncie a sua vaga ou concurso GRÁTIS!</p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="card">
+      <mat-tab-group>
+        <mat-tab label="Login">
+          <form>
+            <mat-form-field style="display: block; margin-top:5px;">
+              <input matInput placeholder="Seu email cadastrado" name="email" required>
+            </mat-form-field>
+            <mat-form-field style="display: block;">
+              <input matInput type="password" placeholder="Sua senha cadastrada" name="senha" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Entrar</button>
+            <span class="text-primary" style="display:block; margin-top: 15px;">Caso não possua cadastro, mude para a aba registrar</span>
+          </form>
+        </mat-tab>
+        <mat-tab label="Registrar">
+          <form style="overflow-x: hidden;">
+            <div class="row" style="margin-top:5px;">
+              <!-- <div class="col-md-6">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Cargo da vaga" name="cargo" required>
+                </mat-form-field>
+              </div> -->
+              <div class="col-md-12">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Nome da empresa" name="nomeEmpresa" required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="CNPJ da Empresa" name="cnpj" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="CEP" name="cep" required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Seu nome completo" name="nomePessoa" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Seu telefone fixo" name="telefone" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Seu celular" name="celular" required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Seu e-mail" name="email" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field style="display: block;">
+                  <input matInput placeholder="Sua senha para login" name="senha" required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary">Anunciar vaga grátis</button>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+</div>
+
+<app-footer></app-footer>
