@@ -30,7 +30,6 @@ public class EmpresaService {
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException("Nome de usuário ou e-mail já cadastrados!");
 		}
-		
 	}
 	
 }

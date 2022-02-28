@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_empresas")
@@ -17,13 +20,31 @@ public class Empresa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty(message = "Campo NOME é requerido")
+	@Size(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
+//	@NotEmpty(message = "Campo CNPJ é requerido")
+//	@Size(min = 14, max = 14, message = "O campo CNPJ deve ter 14 caracteres")
 	private String cnpj;
+	@NotNull(message = "Campo QUANTIDADE DE FUNCIONÁRIOS é requerido")
 	private Integer qtdFuncionarios;
+	@NotEmpty(message = "Campo CEP é requerido")
+	@Size(min = 8, max = 8, message = "O campo CEP deve ter 8 caracteres")
 	private String cep;
+	@NotEmpty(message = "Campo NOME DO RESPONSÁVEL é requerido")
+	@Size(min = 3, max = 100, message = "O campo NOME DO RESPONSÁVEL deve ter entre 3 e 100 caracteres")
 	private String nomeResponsavel;
+	@NotEmpty(message = "Campo TELEFONE é requerido")
+	@Size(max = 11, message = "O campo TELEFONE deve ter no máximo 11 caracteres")
 	private String telefone;
+	@NotEmpty(message = "Campo CELULAR é requerido")
+	@Size(max = 11, message = "O campo CELULAR deve ter no máximo 11 caracteres")
 	private String celular;
+	@NotEmpty(message = "Campo EMAIL é requerido")
+	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
+	private String email;
+	@NotEmpty(message = "Campo SENHA é requerido")
+	@Size(min = 3, max = 100, message = "O campo SENHA deve ter entre 3 e 100 caracteres")
 	private String senha;
 	
 	@OneToMany(mappedBy = "empresa")
@@ -37,7 +58,7 @@ public class Empresa {
 	}
 
 	public Empresa(Long id, String nome, String cnpj, Integer qtdFuncionarios, String cep, String nomeResponsavel,
-			String telefone, String celular, String senha) {
+			String telefone, String celular, String email, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -46,6 +67,7 @@ public class Empresa {
 		this.nomeResponsavel = nomeResponsavel;
 		this.telefone = telefone;
 		this.celular = celular;
+		this.email = email;
 		this.senha = senha;
 	}
 
@@ -111,6 +133,15 @@ public class Empresa {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {

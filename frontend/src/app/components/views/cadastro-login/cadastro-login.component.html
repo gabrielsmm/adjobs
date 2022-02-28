@@ -31,7 +31,7 @@
               </div> -->
               <div class="col-md-12">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Nome da empresa" name="nomeEmpresa" required>
+                  <input [(ngModel)]="empresa.nome" matInput placeholder="Nome da empresa" name="nomeEmpresa" required>
                 </mat-form-field>
               </div>
             </div>
@@ -39,17 +39,17 @@
             <div class="row">
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="CNPJ da Empresa" name="cnpj" required>
+                  <input [(ngModel)]="empresa.cnpj" matInput placeholder="CNPJ da Empresa" name="cnpj" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
+                  <input [(ngModel)]="empresa.qtdFuncionarios" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="CEP" name="cep" required>
+                  <input [(ngModel)]="empresa.cep" matInput placeholder="CEP" name="cep" required>
                 </mat-form-field>
               </div>
             </div>
@@ -57,17 +57,17 @@
             <div class="row">
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Seu nome completo" name="nomePessoa" required>
+                  <input [(ngModel)]="empresa.nomeResponsavel" matInput placeholder="Seu nome completo" name="nomePessoa" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Seu telefone fixo" name="telefone" required>
+                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Seu telefone fixo" name="telefone" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Seu celular" name="celular" required>
+                  <input [(ngModel)]="empresa.celular" matInput placeholder="Seu celular" name="celular" required>
                 </mat-form-field>
               </div>
             </div>
@@ -75,17 +75,17 @@
             <div class="row">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Seu e-mail" name="email" required>
+                  <input [(ngModel)]="empresa.email" matInput placeholder="Seu e-mail" name="email" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input matInput placeholder="Sua senha para login" name="senha" required>
+                  <input [(ngModel)]="empresa.senha" matInput type="password" placeholder="Sua senha para login" name="senha" required>
                 </mat-form-field>
               </div>
             </div>
 
-            <button mat-raised-button color="primary">Anunciar vaga grátis</button>
+            <button (click)="registrar()" mat-raised-button color="primary">Registrar e Anunciar vagas grátis</button>
           </form>
         </mat-tab>
       </mat-tab-group>
