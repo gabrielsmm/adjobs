@@ -1,14 +1,46 @@
 <app-header></app-header>
 
 <div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Bem vindo ao lugar dos empregos!</h1>
-    <p class="lead">Este portal foi desenvolvido com o intuito das pessoas encontrarem a vaga tão sonhada</p>
+  <div class="jumbotron" style="margin-top: 40px;">
+    <h1 class="display-4">Atualmente temos numvagas esperando por você!</h1>
     <hr class="my-4">
-    <p>Venha fazer parte dessa história</p>
+    <p class="lead">Pesquise por vagas de seu interesse</p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="cargo">O quê?</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Cargo ou palavra-chave" aria-label="cargo" aria-describedby="cargo">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="localizacao">Onde?</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Localização" aria-label="localizacao" aria-describedby="localizacao">
+        </div>
+      </div>
+    </div>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Ver vagas</a>
+      <a class="btn btn-blue btn-lg" role="button">Buscar vagas</a>
     </p>
+  </div>
+
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-6">
+      <div class="align-self-center">
+        <h1 class="display-4">Seu emprego está aqui!</h1>
+        <p>Venha fazer parte dessa história, temos certeza que aqui você
+          irá conquistar aquela vaga tão sonhada de emprego!
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-none d-md-block">
+      <img class="img-ilustracao" src="../../../../assets/img/ilustracao.png">
+    </div>
   </div>
 </div>
 

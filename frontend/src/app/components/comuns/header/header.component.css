@@ -1,6 +1,10 @@
 .navbar-background {
-  background-color: #ffffff;
+  background-color: #0e76a8;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  min-height: 60px;
 }
 
 a {
@@ -8,15 +12,31 @@ a {
 }
 
 .navbar-brand {
-  color: black;
+  color: #ffffff;
   font-size: 20px;
 }
 
 .nav-link {
-  color: black !important;
+  color: #ffffff !important;
   font-size: 17px;
 }
 
+/* .nav-link::after {
+  content: '';
+  background-color: white;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  transition: 0.5s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  transition: 0.5s;
+} */
+
 .link-ativo {
-  color: #0e76a8 !important;
+  color:  #a9a9a9 !important;
 }
