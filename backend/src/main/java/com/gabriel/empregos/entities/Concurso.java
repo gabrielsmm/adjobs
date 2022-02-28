@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,12 +25,16 @@ public class Concurso {
 	private String local;
 	private String estado;
 	
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
+	
 	public Concurso() {
 		
 	}
 
 	public Concurso(Long id, String cedente, Date prazo, Integer vagas, Double salario, String escolaridade,
-			String local, String estado) {
+			String local, String estado, Empresa empresa) {
 		this.id = id;
 		this.cedente = cedente;
 		this.prazo = prazo;
@@ -37,6 +43,7 @@ public class Concurso {
 		this.escolaridade = escolaridade;
 		this.local = local;
 		this.estado = estado;
+		this.empresa = empresa;
 	}
 
 	public Long getId() {
@@ -101,6 +108,14 @@ public class Concurso {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
 }

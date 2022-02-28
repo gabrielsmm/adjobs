@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,12 +33,16 @@ public class Vaga {
 	@JoinColumn(name = "tipocontratacao_id")
 	private TipoContratacao tipo;
 	
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
+	
 	public Vaga() {
 		
 	}
 	
 	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
-			Date expiracao) {
+			Date expiracao, Empresa empresa) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -45,6 +50,7 @@ public class Vaga {
 		this.salario = salario;
 		this.localizacao = localizacao;
 		this.expiracao = expiracao;
+		this.empresa = empresa;
 	}
 
 	public Long getId() {
@@ -101,6 +107,14 @@ public class Vaga {
 	
 	public void setExpiracao(Date expiracao) {
 		this.expiracao = expiracao;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
 }
