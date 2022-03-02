@@ -40,3 +40,7 @@ a {
 .link-ativo {
   color:  #a9a9a9 !important;
 }
+
+.img-fluid {
+  margin-left: 30px;
+}
