@@ -1,3 +1,4 @@
+import { VagaService } from './../../../services/vaga.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vagaService: VagaService) { }
+
+  public numeroVagas: number;
 
   ngOnInit(): void {
+    this.obterNumeroVagas();
+  }
+
+  private obterNumeroVagas() {
+    const _this = this;
+    this.vagaService.getNumeroVagas().subscribe({
+      next(data) {
+        _this.numeroVagas = data;
+      },
+      error(msg) {
+        console.log('Error', msg);
+      },
+      complete() {
+
+      }
+    });
   }
 
 }

@@ -8,7 +8,7 @@
 
 <div class="d-flex justify-content-center align-items-center mt-5">
   <div class="card">
-      <mat-tab-group>
+      <mat-tab-group #tabs>
         <mat-tab label="Login">
           <form>
             <mat-form-field style="display: block; margin-top:5px;">
@@ -18,7 +18,7 @@
               <input matInput type="password" placeholder="Sua senha cadastrada" name="senha" required>
             </mat-form-field>
             <button mat-raised-button class="btn-blue">Entrar</button>
-            <span class="text-primary" style="display:block; margin-top: 15px;">Caso não possua cadastro, mude para a aba registrar</span>
+            <span (click)="irParaTabRegistrar()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se registrar</span>
           </form>
         </mat-tab>
         <mat-tab label="Registrar">

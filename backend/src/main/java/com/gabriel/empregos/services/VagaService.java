@@ -30,13 +30,18 @@ public class VagaService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Vaga> somenteVagasEstagio() {
-		return repository.somenteVagasEstagio();
+	public List<Vaga> getSomenteVagasEstagio() {
+		return repository.getSomenteVagasEstagio();
 	}
 	
 	@Transactional(readOnly = true)
 	public Vaga getDados(Long id) {
 		return repository.getById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Long buscaNumeroVagas() {
+		return repository.buscaNumeroVagas();
 	}
 	
 }

@@ -40,8 +40,8 @@ public class VagaResource {
 	}
 	
 	@GetMapping(value = "/somente-vagas-estagio")
-	public ResponseEntity<List<Vaga>> somenteVagasEstagio() {
-		List<Vaga> list = service.somenteVagasEstagio();
+	public ResponseEntity<List<Vaga>> getSomenteVagasEstagio() {
+		List<Vaga> list = service.getSomenteVagasEstagio();
 		return ResponseEntity.ok(list);
 	}
 	
@@ -49,6 +49,11 @@ public class VagaResource {
 	public ResponseEntity<Vaga> getDados(@PathVariable("id") Long id) {
 		Vaga vaga = service.getDados(id);
 		return ResponseEntity.ok().body(vaga);
+	}
+	
+	@GetMapping(value = "/numero-vagas")
+	public ResponseEntity<?> buscaNumeroVagas() {
+		return ResponseEntity.ok().body(service.buscaNumeroVagas());
 	}
 	
 }

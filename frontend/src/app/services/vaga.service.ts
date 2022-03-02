@@ -1,10 +1,10 @@
-import { Vaga } from '../models/vaga.model';
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+
+import { Vaga } from '../models/vaga.model';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,11 @@ export class VagaService {
   getDados(idVaga: number) {
     const url = `${this.baseUrl}/vagas/${idVaga}`;
     return this.http.get<Vaga>(url);
+  }
+
+  getNumeroVagas(): Observable<any> {
+    const url = `${this.baseUrl}/vagas/numero-vagas`;
+    return this.http.get(url);
   }
 
   // findById(id: string): Observable<Categoria>{

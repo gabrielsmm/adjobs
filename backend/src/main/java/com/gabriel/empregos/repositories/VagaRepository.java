@@ -13,8 +13,11 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
 	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.TIPOCONTRATACAO_ID = 3",
 			nativeQuery = true)
-	List<Vaga> somenteVagasEstagio();
+	List<Vaga> getSomenteVagasEstagio();
 	
 	Page<Vaga> findAllByNomeIgnoreCaseContaining(String nome, Pageable pageable);
+	
+	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS", nativeQuery = true)
+	long buscaNumeroVagas();
 	
 }

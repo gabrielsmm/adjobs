@@ -58,8 +58,10 @@ public class DBService {
 		Vaga vaga8 = new Vaga(null, "Gerente", tp5, 5, 1900d, "Goiânia", new Date(), e2);
 		Vaga vaga9 = new Vaga(null, "Estudante", tp5, 5, 1900d, "Goiânia", new Date(), e3);
 		Vaga vaga10 = new Vaga(null, "Brabeza", tp5, 5, 1900d, "Goiânia", new Date(), e1);
+		Vaga vaga11 = new Vaga(null, "Programador", tp6, 5, 3000d, "Goiânia", new Date(), e1);
+		Vaga vaga12 = new Vaga(null, "Empacotador", tp5, 5, 1900d, "Goiânia", new Date(), e1);
 		
-		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5, vaga6, vaga7, vaga8, vaga9, vaga10));
+		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5, vaga6, vaga7, vaga8, vaga9, vaga10, vaga11, vaga12));
 		
 		Concurso con1 = new Concurso(null, "Câmara de Jaboatão dos Guararapes (PE)", new Date(), 33, 3150d, "médio e superior", "Jaboatão dos Guararapes", "Pernambuco", e1);
 		Concurso con2 = new Concurso(null, "Prefeitura de Cumaru do Norte (PA)", new Date(), 24, 1550d, "médio", "Cumaru do Norte", "Paraná", e2);

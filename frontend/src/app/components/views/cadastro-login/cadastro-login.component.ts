@@ -1,6 +1,7 @@
 import { EmpresaService } from './../../../services/empresa.service';
 import { Empresa } from './../../../models/Empresa.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro-login.component.css']
 })
 export class CadastroLoginComponent implements OnInit {
+
+  @ViewChild('tabs') tabGroup: MatTabGroup;
 
   empresa: Empresa = {
     nome: '',
@@ -56,5 +59,9 @@ export class CadastroLoginComponent implements OnInit {
     }
 
     return true;
+  }
+
+  irParaTabRegistrar() {
+    this.tabGroup.selectedIndex = 1;
   }
 }
