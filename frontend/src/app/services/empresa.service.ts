@@ -1,9 +1,9 @@
-import { Empresa } from './../models/Empresa.model';
-import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { environment } from './../../environments/environment';
+import { Empresa } from './../models/Empresa.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +12,22 @@ export class EmpresaService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient, private _snack: MatSnackBar) { }
+  constructor(private http: HttpClient) { }
 
   getLista(): Observable<any> {
     const url = `${this.baseUrl}/empresas`;
     return this.http.get(url);
   }
 
-  // findById(id: string): Observable<Categoria>{
-  //   const url = `${this.baseUrl}/categorias/${id}`;
-  //   return this.http.get<Categoria>(url);
-  // }
-
   create(empresa: Empresa): Observable<Empresa>{
     const url = `${this.baseUrl}/empresas`;
     return this.http.post<Empresa>(url, empresa);
   }
+
+  // findById(id: string): Observable<Categoria>{
+  //   const url = `${this.baseUrl}/categorias/${id}`;
+  //   return this.http.get<Categoria>(url);
+  // }
 
   // update(categoria: Categoria): Observable<void>{
   //   const url = `${this.baseUrl}/categorias/${categoria.id}`;
@@ -38,12 +38,4 @@ export class EmpresaService {
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.delete<void>(url);
   // }
-
-  mensagem(str: string){
-    this._snack.open(`${str}`, 'OK', {
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      duration: 3000
-    })
-  }
 }

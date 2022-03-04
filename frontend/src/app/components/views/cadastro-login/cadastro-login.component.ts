@@ -1,3 +1,4 @@
+import { AppService } from './../../../app.service';
 import { EmpresaService } from './../../../services/empresa.service';
 import { Empresa } from './../../../models/Empresa.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -12,19 +13,10 @@ export class CadastroLoginComponent implements OnInit {
 
   @ViewChild('tabs') tabGroup: MatTabGroup;
 
-  empresa: Empresa = {
-    nome: '',
-    cnpj: '',
-    qtdFuncionarios: 0,
-    cep: '',
-    nomeResponsavel: '',
-    telefone: '',
-    celular: '',
-    email: '',
-    senha: ''
-  };
+  public empresa: Empresa = new Empresa();
 
-  constructor(private empresaService: EmpresaService) { }
+  constructor(private empresaService: EmpresaService,
+    private appService: AppService) { }
 
   ngOnInit(): void {
   }
@@ -36,13 +28,13 @@ export class CadastroLoginComponent implements OnInit {
     let _this = this;
     this.empresaService.create(this.empresa).subscribe({
       next(data) {
-        _this.empresaService.mensagem("Registro realizado com sucesso!");
+        _this.appService.mensagem("Registro realizado com sucesso!");
         console.log(data);
       },
       error(err) {
         console.log(err);
         for(let i = 0; i < err.error.errors.length; i++){
-          _this.empresaService.mensagem(err.error.errors[i].message);
+          _this.appService.mensagem(err.error.errors[i].message);
         }
       },
       complete() {
@@ -53,8 +45,48 @@ export class CadastroLoginComponent implements OnInit {
 
   private validarRegistro(empresa: Empresa): boolean {
 
-    if (empresa.nome === null || empresa.nome === undefined || empresa.nome === '') {
-      this.empresaService.mensagem("Preencha o nome da empresa");
+    if (this.appService.isNullOrUndefined(empresa.nome)) {
+      this.appService.mensagem("Preencha o nome da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.cnpj)) {
+      this.appService.mensagem("Preencha o CNPJ da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.qtdFuncionarios)) {
+      this.appService.mensagem("Preencha a quantidade de funcionários que a empresa possui");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.cep)) {
+      this.appService.mensagem("Preencha o CEP da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
+      this.appService.mensagem("Preencha o nome do responsável da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.telefone)) {
+      this.appService.mensagem("Preencha o telefone de contato da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.celular)) {
+      this.appService.mensagem("Preencha o celular de contato da empresa");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.email)) {
+      this.appService.mensagem("Preencha o email");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(empresa.senha)) {
+      this.appService.mensagem("Preencha o campo senha");
       return false;
     }
 

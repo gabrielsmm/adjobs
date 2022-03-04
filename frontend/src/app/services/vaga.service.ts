@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 
 import { Vaga } from '../models/vaga.model';
@@ -13,7 +12,7 @@ export class VagaService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient, private _snack: MatSnackBar) { }
+  constructor(private http: HttpClient) { }
 
   getListaPaginada(page: number = 0, size: number = 5, nome: string = ""): Observable<any> {
     let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
@@ -57,12 +56,4 @@ export class VagaService {
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.delete<void>(url);
   // }
-
-  mensagem(str: string){
-    this._snack.open(`${str}`, 'OK', {
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      duration: 3000
-    })
-  }
 }

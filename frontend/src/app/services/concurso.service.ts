@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ConcursoService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient, private _snack: MatSnackBar) { }
+  constructor(private http: HttpClient) { }
 
   getLista(): Observable<any> {
     const url = `${this.baseUrl}/concursos`;
@@ -36,13 +36,5 @@ export class ConcursoService {
   // delete(id: string): Observable<void>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.delete<void>(url);
-  // }
-
-  // mensagem(str: string){
-  //   this._snack.open(`${str}`, 'OK', {
-  //     horizontalPosition: 'end',
-  //     verticalPosition: 'top',
-  //     duration: 3000
-  //   })
   // }
 }

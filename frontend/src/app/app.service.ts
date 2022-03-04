@@ -20,4 +20,8 @@ export class AppService {
   goBack(){
     this.location.back();
   }
+
+  isNullOrUndefined(obj: any) {
+    return obj === null || obj === undefined;
+  }
 }
