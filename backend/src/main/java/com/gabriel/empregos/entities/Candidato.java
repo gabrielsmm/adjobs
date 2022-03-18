@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -26,17 +29,21 @@ public class Candidato extends Usuario {
 	
 	private String nome;
 	private String cep;
-	//cargo
+	
+	@OneToOne
+	@JoinColumn(name = "cargo_id")
+	private Cargo cargo;
 	
 	public Candidato() {
 		
 	}
 	
-	public Candidato(Long id, String nome, String cep, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
+	public Candidato(Long id, String nome, String cep, Cargo cargo, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
 		super(email, senha, dataCadastro, tipoUsuario);
-		this.nome = nome;
 		this.id = id;
+		this.nome = nome;
 		this.cep = cep;
+		this.cargo = cargo;
 	}
 	
 	public Long getId() {
@@ -61,6 +68,14 @@ public class Candidato extends Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
 	
 }

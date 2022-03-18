@@ -17,6 +17,11 @@ export class CadastroComponent implements OnInit {
   public empresa: Empresa = new Empresa();
   public candidato: Candidato = new Candidato();
 
+  public categories = [
+    {id: 1, nome: "teste1"},
+    {id: 2, nome: "teste2"}
+  ]
+
   constructor(private empresaService: EmpresaService,
     private appService: AppService) { }
 

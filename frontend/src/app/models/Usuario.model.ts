@@ -3,5 +3,5 @@ export class Usuario {
   email: string
   senha: string
   dataCadastro?: Date
-  tipoUsuario?: string
+  tipoUsuario?: number
 }

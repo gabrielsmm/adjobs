@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gabriel.empregos.entities.Candidato;
+import com.gabriel.empregos.entities.Cargo;
 import com.gabriel.empregos.entities.Concurso;
 import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.CandidatoRepository;
+import com.gabriel.empregos.repositories.CargoRepository;
 import com.gabriel.empregos.repositories.ConcursoRepository;
 import com.gabriel.empregos.repositories.EmpresaRepository;
 import com.gabriel.empregos.repositories.VagaRepository;
@@ -36,15 +38,26 @@ public class DBService {
 	@Autowired
 	private CandidatoRepository candidatoRepository;
 	
+	@Autowired
+	private CargoRepository cargoRepository;
+	
 	public void instanciaBaseDeDados() {
 		
 		Empresa e1 = new Empresa(null, "Gsmmimports", "12345678987", 10, "74885230", "Gabriel Mendes", "6239548540", "62996418943", "gsmm@gmail.com", Util.criptografar("123"), new Date(), TipoUsuario.EMPRESA);
 		Empresa e2 = new Empresa(null, "Naza", "94321895431", 20, "74885230", "Nazaré Mendes", "6239548540", "62996418943", "naza@gmail.com", Util.criptografar("321"), new Date(), TipoUsuario.EMPRESA);
 		Empresa e3 = new Empresa(null, "Amor a vida", "123131233", 200, "74885230", "Amarildo", "6239548540", "62996418943", "amoravida@gmail.com", Util.criptografar("amor123"), new Date(), TipoUsuario.EMPRESA);
 		
-		Candidato c1 = new Candidato(null, "Gabriel", "74885230", "gabriel@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
-		Candidato c2 = new Candidato(null, "Jorge", "74885239", "jorge@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
-		Candidato c3 = new Candidato(null, "Lucas", "74885240", "lucas@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Cargo ca1 = new Cargo(null, "Auxiliar");
+		Cargo ca2 = new Cargo(null, "Gerente");
+		Cargo ca3 = new Cargo(null, "Engenheiro");
+		Cargo ca4 = new Cargo(null, "Eletricista");
+		Cargo ca5 = new Cargo(null, "Encanador");
+		
+		this.cargoRepository.saveAll(Arrays.asList(ca1, ca2, ca3, ca4, ca5));
+		
+		Candidato c1 = new Candidato(null, "Gabriel", "74885230", ca1, "gabriel@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c2 = new Candidato(null, "Jorge", "74885239", ca2, "jorge@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c3 = new Candidato(null, "Lucas", "74885240", ca3, "lucas@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
 		
 		this.candidatoRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
