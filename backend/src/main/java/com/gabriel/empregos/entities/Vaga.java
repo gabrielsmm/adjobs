@@ -4,15 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
+import com.gabriel.empregos.enums.TipoContratacao;
 
 @Entity
 @Table(name = "tb_vagas")
@@ -29,8 +32,9 @@ public class Vaga {
 	private String localizacao;
 	private Date expiracao;
 	
-	@OneToOne
-	@JoinColumn(name = "tipocontratacao_id")
+//	@OneToOne
+//	@JoinColumn(name = "tipocontratacao_id")
+	@Enumerated(value = EnumType.STRING)
 	private TipoContratacao tipo;
 	
 	@ManyToOne

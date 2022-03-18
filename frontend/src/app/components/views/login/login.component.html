@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <p class="lead" style="text-align: center;">Acesso para usuários cadastrados.</p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="card">
+    <form>
+      <mat-form-field style="display: block; margin-top:5px;">
+        <input matInput placeholder="Seu email" name="email" required>
+      </mat-form-field>
+      <mat-form-field style="display: block;">
+        <input matInput type="password" placeholder="Sua senha" name="senha" required>
+      </mat-form-field>
+      <button (click)="verificarLogin()" mat-raised-button class="btn-blue">Entrar</button>
+      <span (click)="irParaCadastro()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se registrar</span>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

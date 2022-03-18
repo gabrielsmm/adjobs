@@ -1,22 +1,24 @@
 import { FormsModule } from '@angular/forms';
 import { EmpregosComponent } from './empregos/empregos.component';
 import { MaterialModule } from './../../material.module';
-import { CadastroLoginRoutingModule } from './cadastro-login/cadastro-login-routing.module';
+import { CadastroRoutingModule } from './cadastro/cadastro-routing.module';
 import { ComunsModule } from './../comuns/comuns.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CadastroLoginComponent } from './cadastro-login/cadastro-login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { EstagiosComponent } from './estagios/estagios.component';
 import { ConcursosComponent } from './concursos/concursos.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    CadastroLoginComponent,
+    CadastroComponent,
     EmpregosComponent,
     EstagiosComponent,
     ConcursosComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule
   ],
   exports: [
-    CadastroLoginRoutingModule
+    CadastroRoutingModule
   ],
   providers: []
 })

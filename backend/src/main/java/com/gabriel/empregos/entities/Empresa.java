@@ -1,21 +1,30 @@
 package com.gabriel.empregos.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.gabriel.empregos.enums.TipoUsuario;
+
 @Entity
+@PrimaryKeyJoinColumn(name="idUsuario")
+@DiscriminatorValue("Empresa")
 @Table(name = "tb_empresas")
-public class Empresa {
+public class Empresa extends Usuario {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +49,6 @@ public class Empresa {
 	@NotEmpty(message = "Campo CELULAR é requerido")
 	@Size(max = 11, message = "O campo CELULAR deve ter no máximo 11 caracteres")
 	private String celular;
-	@NotEmpty(message = "Campo EMAIL é requerido")
-	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
-	private String email;
-	@NotEmpty(message = "Campo SENHA é requerido")
-	@Size(min = 3, max = 100, message = "O campo SENHA deve ter entre 3 e 100 caracteres")
-	private String senha;
 	
 	@OneToMany(mappedBy = "empresa")
 	private List<Concurso> concursos = new ArrayList<>();
@@ -58,7 +61,8 @@ public class Empresa {
 	}
 
 	public Empresa(Long id, String nome, String cnpj, Integer qtdFuncionarios, String cep, String nomeResponsavel,
-			String telefone, String celular, String email, String senha) {
+			String telefone, String celular, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
+		super(email, senha, dataCadastro, tipoUsuario);
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -67,8 +71,6 @@ public class Empresa {
 		this.nomeResponsavel = nomeResponsavel;
 		this.telefone = telefone;
 		this.celular = celular;
-		this.email = email;
-		this.senha = senha;
 	}
 
 	public Long getId() {
@@ -133,23 +135,6 @@ public class Empresa {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
-	}
-	
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 }

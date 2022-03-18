@@ -9,4 +9,6 @@ export class Empresa {
   celular: string
   email: string
   senha: string
+  dataCadastro: Date
+  tipoUsuario: string
 }

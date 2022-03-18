@@ -1,19 +1,21 @@
-import { AppService } from './../../../app.service';
-import { EmpresaService } from './../../../services/empresa.service';
-import { Empresa } from './../../../models/Empresa.model';
+import { Candidato } from './../../../models/Candidato.model';
+import { AppService } from '../../../app.service';
+import { EmpresaService } from '../../../services/empresa.service';
+import { Empresa } from '../../../models/Empresa.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './cadastro-login.component.html',
-  styleUrls: ['./cadastro-login.component.css']
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css']
 })
-export class CadastroLoginComponent implements OnInit {
+export class CadastroComponent implements OnInit {
 
   @ViewChild('tabs') tabGroup: MatTabGroup;
 
   public empresa: Empresa = new Empresa();
+  public candidato: Candidato = new Candidato();
 
   constructor(private empresaService: EmpresaService,
     private appService: AppService) { }
@@ -21,8 +23,8 @@ export class CadastroLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registrar() {
-    if (!this.validarRegistro(this.empresa)) {
+  registrarEmpresa() {
+    if (!this.validarRegistroEmpresa(this.empresa)) {
       return;
     }
     let _this = this;
@@ -43,7 +45,11 @@ export class CadastroLoginComponent implements OnInit {
     });
   }
 
-  private validarRegistro(empresa: Empresa): boolean {
+  registrarCandidato() {
+
+  }
+
+  private validarRegistroEmpresa(empresa: Empresa): boolean {
 
     if (this.appService.isNullOrUndefined(empresa.nome)) {
       this.appService.mensagem("Preencha o nome da empresa");

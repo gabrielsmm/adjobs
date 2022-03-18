@@ -8,4 +8,8 @@ public class Util {
 		return new BCryptPasswordEncoder().encode(campo);
 	}
 	
+	public static Boolean verificar(String campo, String campoCriptografado) {
+		return new BCryptPasswordEncoder().matches(campo, campoCriptografado);
+	}
+	
 }

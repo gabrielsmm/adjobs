@@ -11,9 +11,10 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
   public isHome: boolean = false;
   public isEmpregos: boolean = false;
-  public isEstagios: boolean = false;
-  public isConcursos: boolean = false;
-  public isCadastroLogin: boolean = false;
+  // public isEstagios: boolean = false;
+  // public isConcursos: boolean = false;
+  public isCadastro: boolean = false;
+  public isLogin: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -22,18 +23,17 @@ export class HeaderComponent implements OnInit {
       case '/empregos':
         this.isEmpregos = true;
         break;
-      case '/estagios':
-        this.isEstagios = true;
-        break;
-      case '/concursos':
-        this.isConcursos = true;
-        break;
       case '/inicio':
         this.isHome = true;
         break;
-      case '/cadastro-login':
-        this.isCadastroLogin = true;
+      case '/cadastro':
+        this.isCadastro = true;
         break;
+      case '/login':
+        this.isLogin = true;
+        break;
+      default:
+        this.isEmpregos = true;
     }
   }
 
