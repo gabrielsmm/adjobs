@@ -1,9 +1,11 @@
-import { Candidato } from './../../../models/Candidato.model';
-import { AppService } from '../../../app.service';
-import { EmpresaService } from '../../../services/empresa.service';
-import { Empresa } from '../../../models/Empresa.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
+
+import { AppService } from '../../../app.service';
+import { Empresa } from '../../../models/Empresa.model';
+import { EmpresaService } from '../../../services/empresa.service';
+import { Candidato } from './../../../models/Candidato.model';
+import { CandidatoService } from './../../../services/candidato.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -17,12 +19,8 @@ export class CadastroComponent implements OnInit {
   public empresa: Empresa = new Empresa();
   public candidato: Candidato = new Candidato();
 
-  public categories = [
-    {id: 1, nome: "teste1"},
-    {id: 2, nome: "teste2"}
-  ]
-
   constructor(private empresaService: EmpresaService,
+    private candidatoService: CandidatoService,
     private appService: AppService) { }
 
   ngOnInit(): void {
@@ -40,8 +38,12 @@ export class CadastroComponent implements OnInit {
       },
       error(err) {
         console.log(err);
-        for(let i = 0; i < err.error.errors.length; i++){
-          _this.appService.mensagem(err.error.errors[i].message);
+        if (!_this.appService.isNullOrUndefined(err.error.error)) {
+          _this.appService.mensagem(err.error.error);
+        } else {
+          for(let i = 0; i < err.error.errors.length; i++){
+            _this.appService.mensagem(err.error.errors[i].message);
+          }
         }
       },
       complete() {
@@ -51,7 +53,29 @@ export class CadastroComponent implements OnInit {
   }
 
   registrarCandidato() {
+    if (!this.validarRegistroCandidato(this.candidato)) {
+      return;
+    }
+    let _this = this;
+    this.candidatoService.create(this.candidato).subscribe({
+      next(data) {
+        _this.appService.mensagem("Registro realizado com sucesso!");
+        console.log(data);
+      },
+      error(err) {
+        console.log(err);
+        if (!_this.appService.isNullOrUndefined(err.error.error)) {
+          _this.appService.mensagem(err.error.error);
+        } else {
+          for(let i = 0; i < err.error.errors.length; i++){
+            _this.appService.mensagem(err.error.errors[i].message);
+          }
+        }
+      },
+      complete() {
 
+      }
+    });
   }
 
   private validarRegistroEmpresa(empresa: Empresa): boolean {
@@ -97,6 +121,36 @@ export class CadastroComponent implements OnInit {
     }
 
     if (this.appService.isNullOrUndefined(empresa.senha)) {
+      this.appService.mensagem("Preencha o campo senha");
+      return false;
+    }
+
+    return true;
+  }
+
+  private validarRegistroCandidato(candidato: Candidato): boolean {
+
+    if (this.appService.isNullOrUndefined(candidato.nome)) {
+      this.appService.mensagem("Preencha o nome");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(candidato.cep)) {
+      this.appService.mensagem("Preencha o CEP");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(candidato.cargo)) {
+      this.appService.mensagem("Selecione um cargo");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(candidato.email)) {
+      this.appService.mensagem("Preencha o email");
+      return false;
+    }
+
+    if (this.appService.isNullOrUndefined(candidato.senha)) {
       this.appService.mensagem("Preencha o campo senha");
       return false;
     }

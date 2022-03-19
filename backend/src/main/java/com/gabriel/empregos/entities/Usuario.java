@@ -3,6 +3,7 @@ package com.gabriel.empregos.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,7 +34,11 @@ public class Usuario implements Serializable {
 	
 	@NotEmpty(message = "Campo EMAIL é requerido")
 	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
+	@Column(unique=true)
 	private String email;
+	@NotEmpty(message = "Campo SENHA é requerido")
+	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
+//	@JsonIgnore
 	private String senha;
 	private Date dataCadastro;
 	
