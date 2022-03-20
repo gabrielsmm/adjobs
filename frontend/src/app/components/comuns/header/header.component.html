@@ -19,11 +19,20 @@
         <!-- <li class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isConcursos}" [routerLink]="['/concursos']">Concursos</a>
         </li> -->
-        <li class="nav-item">
+        <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isCadastro}" [routerLink]="['/cadastro']" style="font-weight: bold;">CADASTRE-SE</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;">ENTRE</a>
+        </li>
+        <li *ngIf="loginService.usuarioAutenticado" class="nav-item">
+          <button class="btn" [matMenuTriggerFor]="menu"><i class="bi bi-person"></i><i class="bi bi-caret-down-fill"></i></button>
+          <mat-menu #menu="matMenu">
+            <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 2" mat-menu-item>Candidaturas</button>
+            <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 1" mat-menu-item>Vagas cadastradas</button>
+            <button mat-menu-item>Meu cadastro</button>
+            <button (click)="deslogar()" mat-menu-item>Sair</button>
+          </mat-menu>
         </li>
       </ul>
     </div>

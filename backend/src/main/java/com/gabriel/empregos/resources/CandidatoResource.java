@@ -37,7 +37,8 @@ public class CandidatoResource {
 	public ResponseEntity<Candidato> create(@Valid @RequestBody Candidato obj) {
 		obj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(obj);
+//		return ResponseEntity.created(uri).build();
 	}
 
 }

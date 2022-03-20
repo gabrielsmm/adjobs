@@ -1,3 +1,4 @@
+import { LoginService } from './../../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
   public isCadastro: boolean = false;
   public isLogin: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    public loginService: LoginService) { }
 
   ngOnInit(): void {
     switch (this.router.url) {
@@ -43,6 +45,10 @@ export class HeaderComponent implements OnInit {
 
   showCollapse() {
     this.show = !this.show;
+  }
+
+  deslogar() {
+    this.loginService.deslogar();
   }
 
 }

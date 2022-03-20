@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.usuarioLogin).subscribe((resposta) => {
       this.loginService.usuarioAutenticado = true;
       this.loginService.objUsuarioAutenticado = resposta;
-      // this.router.navigate(['home']);
-      this.appService.mensagem("Logado com sucesso!");
+      if (this.loginService.objUsuarioAutenticado.tipoUsuario == 1) { //EMPRESA
+        console.log('Ação da empresa...');
+      } else if (this.loginService.objUsuarioAutenticado.tipoUsuario == 2) { //CANDIDATO
+        this.router.navigate(['empregos']);
+      }
+      // this.appService.mensagem("Logado com sucesso!");
     }, err => {
       if(err.error.errors !== undefined){
         for(let i = 0; i < err.error.errors.length; i++){

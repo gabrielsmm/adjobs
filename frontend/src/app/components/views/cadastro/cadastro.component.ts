@@ -1,3 +1,6 @@
+import { Usuario } from './../../../models/Usuario.model';
+import { LoginService } from './../../../services/login.service';
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 
@@ -21,7 +24,9 @@ export class CadastroComponent implements OnInit {
 
   constructor(private empresaService: EmpresaService,
     private candidatoService: CandidatoService,
-    private appService: AppService) { }
+    private appService: AppService,
+    private router: Router,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +39,11 @@ export class CadastroComponent implements OnInit {
     this.empresaService.create(this.empresa).subscribe({
       next(data) {
         _this.appService.mensagem("Registro realizado com sucesso!");
+        let usuario: Usuario = new Usuario();
+        usuario = Object.assign(usuario, data);
+        _this.loginService.usuarioAutenticado = true;
+        _this.loginService.objUsuarioAutenticado = usuario;
+        //Ação
         console.log(data);
       },
       error(err) {
@@ -60,7 +70,11 @@ export class CadastroComponent implements OnInit {
     this.candidatoService.create(this.candidato).subscribe({
       next(data) {
         _this.appService.mensagem("Registro realizado com sucesso!");
-        console.log(data);
+        let usuario: Usuario = new Usuario();
+        usuario = Object.assign(usuario, data);
+        _this.loginService.usuarioAutenticado = true;
+        _this.loginService.objUsuarioAutenticado = usuario;
+        _this.router.navigate(['empregos']);
       },
       error(err) {
         console.log(err);
@@ -161,4 +175,5 @@ export class CadastroComponent implements OnInit {
   irParaTabRegistrar() {
     this.tabGroup.selectedIndex = 1;
   }
+
 }
