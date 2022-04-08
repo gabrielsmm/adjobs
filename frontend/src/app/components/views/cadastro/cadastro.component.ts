@@ -1,14 +1,15 @@
-import { Usuario } from './../../../models/Usuario.model';
-import { LoginService } from './../../../services/login.service';
-import { Router } from '@angular/router';
+import { ValidaCepService } from './../../../services/validaCep.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 import { AppService } from '../../../app.service';
 import { Empresa } from '../../../models/Empresa.model';
 import { EmpresaService } from '../../../services/empresa.service';
 import { Candidato } from './../../../models/Candidato.model';
+import { Usuario } from './../../../models/Usuario.model';
 import { CandidatoService } from './../../../services/candidato.service';
+import { LoginService } from './../../../services/login.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -26,7 +27,8 @@ export class CadastroComponent implements OnInit {
     private candidatoService: CandidatoService,
     private appService: AppService,
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private validaCepService: ValidaCepService) { }
 
   ngOnInit(): void {
   }
@@ -174,6 +176,25 @@ export class CadastroComponent implements OnInit {
 
   irParaTabRegistrar() {
     this.tabGroup.selectedIndex = 1;
+  }
+
+  validarCEP(cep: string) {
+    if (cep.length === 8) {
+      let _this = this;
+      this.validaCepService.validarCep(cep).subscribe({
+        next(data) {
+          if (data.erro) {
+            _this.appService.mensagem("CEP inválido!");
+          }
+        },
+        error(err) {
+
+        },
+        complete() {
+
+        }
+      })
+    }
   }
 
 }

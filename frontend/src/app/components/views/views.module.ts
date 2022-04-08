@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EmpregosComponent } from './empregos/empregos.component';
 import { MaterialModule } from './../../material.module';
@@ -10,6 +11,7 @@ import { EstagiosComponent } from './estagios/estagios.component';
 import { ConcursosComponent } from './concursos/concursos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     ComunsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     CadastroRoutingModule
