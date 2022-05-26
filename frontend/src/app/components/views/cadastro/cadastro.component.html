@@ -1,29 +1,24 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <p class="lead" style="text-align: center;">Realize o seu cadastro para anunciar ou candidatar-se as VAGAS!</p>
+<div class="background">
+  <div class="jumbotron">
+    <!-- <a class="navbar-brand" href="#"><img class="img-fluid" src="assets/img/logo_alternativa.png" alt="Logo" width="90"></a> -->
+    <p class="lead">Crie sua conta. É GRÁTIS!</p>
   </div>
-</div>
 
-<div class="d-flex justify-content-center align-items-center mt-5">
-  <div class="card">
-      <mat-tab-group #tabs>
-        <!-- <mat-tab label="Login">
-          <form>
-            <mat-form-field style="display: block; margin-top:5px;">
-              <input matInput placeholder="Seu email cadastrado" name="email" required>
-            </mat-form-field>
-            <mat-form-field style="display: block;">
-              <input matInput type="password" placeholder="Sua senha cadastrada" name="senha" required>
-            </mat-form-field>
-            <button mat-raised-button class="btn-blue">Entrar</button>
-            <span (click)="irParaTabRegistrar()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se registrar</span>
-          </form>
-        </mat-tab> -->
-
-        <mat-tab label="Registrar-se como Candidato">
-          <form style="overflow-x: hidden;">
+  <div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 d-flex flex-column justify-content-around" style="text-align: center;">
+          <a class="navbar-brand" href="#"><img class="img-fluid" style="margin: 0 auto;" src="assets/img/logo_alternativa.png" alt="Logo" width="100"></a>
+          <p class="paragrafo">Como deseja realizar seu cadastro?</p>
+          <div>
+            <button (click)="candidatoClick()" mat-raised-button class="btn candidato">Candidato</button>
+            <button (click)="empresaClick()" mat-raised-button class="btn empresa">Empresa</button>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <form *ngIf="isCandidato" style="overflow-x: hidden;">
             <div class="row" style="margin-top:5px;">
               <div class="col-md-12">
                 <mat-form-field style="display: block;">
@@ -65,10 +60,8 @@
 
             <button (click)="registrarCandidato()" mat-raised-button class="btn-blue">Registrar e Candidatar-se a vagas grátis</button>
           </form>
-        </mat-tab>
 
-        <mat-tab label="Registrar-se como Empresa">
-          <form style="overflow-x: hidden;">
+          <form *ngIf="isEmpresa" style="overflow-x: hidden;">
             <div class="row" style="margin-top:5px;">
               <!-- <div class="col-md-6">
                 <mat-form-field style="display: block;">
@@ -133,10 +126,35 @@
 
             <button (click)="registrarEmpresa()" mat-raised-button class="btn-blue">Registrar e Anunciar vagas grátis</button>
           </form>
-        </mat-tab>
+        </div>
+      </div>
 
-      </mat-tab-group>
+        <!-- <mat-tab-group #tabs>
+          <!-- <mat-tab label="Login">
+            <form>
+              <mat-form-field style="display: block; margin-top:5px;">
+                <input matInput placeholder="Seu email cadastrado" name="email" required>
+              </mat-form-field>
+              <mat-form-field style="display: block;">
+                <input matInput type="password" placeholder="Sua senha cadastrada" name="senha" required>
+              </mat-form-field>
+              <button mat-raised-button class="btn-blue">Entrar</button>
+              <span (click)="irParaTabRegistrar()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se registrar</span>
+            </form>
+          </mat-tab>
+
+          <mat-tab label="Registrar-se como Candidato">
+
+          </mat-tab>
+
+          <mat-tab label="Registrar-se como Empresa">
+
+          </mat-tab>
+
+        </mat-tab-group> -->
+    </div>
   </div>
 </div>
 
-<app-footer></app-footer>
+
+<!-- <app-footer></app-footer> -->

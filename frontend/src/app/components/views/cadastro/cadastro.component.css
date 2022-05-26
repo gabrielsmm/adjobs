@@ -4,5 +4,36 @@
 }
 
 .jumbotron {
-  margin-top: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.lead {
+  margin-top: 10px;
+}
+
+.background {
+  overflow-y: auto;
+  height: 100%;
+  background-color: #dde8ee;
+}
+
+.btn {
+  color: white;
+  margin: 7px;
+  font-size: 18px;
+  border-radius: 18px;
+}
+
+.btn.candidato {
+  background-color: #e29c5e;
+}
+
+.btn.empresa {
+  background-color: #50a877;
+}
+
+.paragrafo {
+  font-size: 18px;
+  font-weight: bold;
 }

@@ -22,6 +22,8 @@ export class CadastroComponent implements OnInit {
 
   public empresa: Empresa = new Empresa();
   public candidato: Candidato = new Candidato();
+  public isCandidato: boolean = true;
+  public isEmpresa: boolean = false;
 
   constructor(private empresaService: EmpresaService,
     private candidatoService: CandidatoService,
@@ -31,6 +33,16 @@ export class CadastroComponent implements OnInit {
     private validaCepService: ValidaCepService) { }
 
   ngOnInit(): void {
+  }
+
+  candidatoClick() {
+    this.isCandidato = true;
+    this.isEmpresa = false;
+  }
+
+  empresaClick() {
+    this.isEmpresa = true;
+    this.isCandidato = false;
   }
 
   registrarEmpresa() {

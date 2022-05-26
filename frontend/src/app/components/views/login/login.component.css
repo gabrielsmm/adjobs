@@ -4,5 +4,16 @@
 }
 
 .jumbotron {
-  margin-top: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.lead {
+  margin-top: 5px;
+}
+
+.background {
+  overflow-y: auto;
+  height: 100%;
+  background-color: #dde8ee;
 }

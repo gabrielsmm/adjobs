@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse justify-content-end" [ngClass]="{'show':show}" id="navbarToggler">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'link-ativo': isHome}" [routerLink]="['/inicio']">INÍCIO</a>
+          <a class="nav-link" [ngClass]="{'link-ativo': isHome}" [routerLink]="['/inicio']"><i class="bi bi-house"></i> INÍCIO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'link-ativo': isEmpregos}" [routerLink]="['/empregos']">BUSCAR VAGAS</a>
+          <a class="nav-link" [ngClass]="{'link-ativo': isEmpregos}" [routerLink]="['/empregos']"><i class="bi bi-search"></i> BUSCAR VAGAS</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isEstagios}" [routerLink]="['/estagios']">Estágios</a>
@@ -20,11 +20,14 @@
           <a class="nav-link" [ngClass]="{'link-ativo': isConcursos}" [routerLink]="['/concursos']">Concursos</a>
         </li> -->
         <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
-          <a class="nav-link" [ngClass]="{'link-ativo': isCadastro}" [routerLink]="['/cadastro']" style="font-weight: bold;">CADASTRE-SE</a>
+          <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-arrow-bar-right"></i> ENTRAR</a>
         </li>
         <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
-          <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;">ENTRE</a>
+          <a class="nav-link anunciar-link" [routerLink]="['/login']" style="font-weight: bold;">ANUNCIAR</a>
         </li>
+        <!-- <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
+          <a class="nav-link" [ngClass]="{'link-ativo': isCadastro}" [routerLink]="['/cadastro']" style="font-weight: bold;">CADASTRAR</a>
+        </li> -->
         <li *ngIf="loginService.usuarioAutenticado" class="nav-item">
           <button class="btn" [matMenuTriggerFor]="menu"><i class="bi bi-person"></i><i class="bi bi-caret-down-fill"></i></button>
           <mat-menu #menu="matMenu">

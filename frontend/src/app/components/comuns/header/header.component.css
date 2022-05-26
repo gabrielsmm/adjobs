@@ -21,6 +21,10 @@ a {
   font-size: 17px;
 }
 
+.nav-item {
+  margin-right: 15px;
+}
+
 /* .nav-link::after {
   content: '';
   background-color: white;
@@ -50,4 +54,9 @@ a {
   background-color: transparent;
   border: none;
   font-size: 18px;
+}
+
+.anunciar-link {
+  background-color: #ff8b22;
+  border-radius: 18px;
 }
