@@ -19,11 +19,14 @@
         <!-- <li class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isConcursos}" [routerLink]="['/concursos']">Concursos</a>
         </li> -->
+        <li *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2" class="nav-item">
+          <a class="nav-link" [routerLink]="['/candidaturas']" style="font-weight: bold;">CANDIDATURAS</a>
+        </li>
         <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-arrow-bar-right"></i> ENTRAR</a>
         </li>
         <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
-          <a class="nav-link anunciar-link" [routerLink]="['/login']" style="font-weight: bold;">ANUNCIAR</a>
+          <a class="nav-link anunciar-link" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-check2"></i> ANUNCIAR</a>
         </li>
         <!-- <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isCadastro}" [routerLink]="['/cadastro']" style="font-weight: bold;">CADASTRAR</a>
@@ -31,8 +34,8 @@
         <li *ngIf="loginService.usuarioAutenticado" class="nav-item">
           <button class="btn" [matMenuTriggerFor]="menu"><i class="bi bi-person"></i><i class="bi bi-caret-down-fill"></i></button>
           <mat-menu #menu="matMenu">
-            <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 2" mat-menu-item>Candidaturas</button>
-            <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 1" mat-menu-item>Vagas cadastradas</button>
+            <!-- <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 2" mat-menu-item>Candidaturas</button>
+            <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 1" mat-menu-item>Vagas cadastradas</button> -->
             <button mat-menu-item>Meu cadastro</button>
             <button (click)="deslogar()" mat-menu-item>Sair</button>
           </mat-menu>

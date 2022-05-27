@@ -1,5 +1,12 @@
-<h2 mat-dialog-title>Detalhes da vaga - {{data.nome}}</h2>
+<h2 mat-dialog-title>Detalhes da vaga</h2>
+<hr>
 <mat-dialog-content class="mat-typography">
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <h2>{{data.nome}}</h2>
+    </div>
+  </div>
 
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-6">
@@ -33,6 +40,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-raised-button color="warn" mat-dialog-close>Voltar</button>
-  <button (click)="openCandidatar()" mat-button mat-raised-button color="primary" cdkFocusInitial>Candidatar-se</button>
+  <button color="primary" mat-button mat-raised-button mat-dialog-close>Voltar</button>
+  <button *ngIf="loginService.usuarioAutenticado" (click)="openCandidatar()" class="btn-blue" mat-button mat-raised-button cdkFocusInitial>Candidatar-se</button>
 </mat-dialog-actions>

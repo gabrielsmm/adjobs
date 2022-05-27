@@ -12,6 +12,7 @@ import { ConcursosComponent } from './concursos/concursos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { CandidaturasComponent } from './candidaturas/candidaturas.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxMaskModule } from 'ngx-mask';
     EstagiosComponent,
     ConcursosComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CandidaturasComponent
   ],
   imports: [
     CommonModule,

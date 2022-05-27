@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
         this.isLogin = true;
         break;
       default:
-        this.isEmpregos = true;
+        this.isHome = true;
     }
   }
 
