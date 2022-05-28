@@ -2,6 +2,7 @@ package com.gabriel.empregos.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.gabriel.empregos.entities.Candidato;
 import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.CandidatoRepository;
 import com.gabriel.empregos.services.exceptions.DataIntegrityViolationException;
+import com.gabriel.empregos.services.exceptions.ObjectNotFoundException;
 import com.gabriel.empregos.util.Util;
 
 @Service
@@ -18,6 +20,11 @@ public class CandidatoService {
 	
 	@Autowired
 	private CandidatoRepository repository;
+	
+	public Candidato findById(Long id) {
+		Optional<Candidato> obj = this.repository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName())); //caso nao encontre retorna null
+	}
 	
 	@Transactional(readOnly = true)
 	public List<Candidato> findAll() {

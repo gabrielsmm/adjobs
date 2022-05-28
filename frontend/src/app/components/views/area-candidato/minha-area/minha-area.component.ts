@@ -1,3 +1,6 @@
+import { Candidato } from './../../../../models/Candidato.model';
+import { CandidatoService } from './../../../../services/candidato.service';
+import { LoginService } from './../../../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinhaAreaComponent implements OnInit {
 
-  constructor() { }
+  candidato: Candidato = {} as Candidato;
+
+  constructor(public loginService: LoginService,
+  public candidatoService: CandidatoService) {
+    this.obterCandidato();
+  }
 
   ngOnInit(): void {
+
+  }
+
+  obterCandidato() {
+    let _this = this;
+    this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+      next(data) {
+        _this.candidato = data;
+      },
+      error(err) {
+        console.log(err);
+      },
+      complete() {
+
+      }
+    });
   }
 
 }
