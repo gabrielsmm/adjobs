@@ -41,7 +41,7 @@ public class CandidaturaResource {
 	
 	@GetMapping(value = "/numero-candidaturas/{idCandidato}")
 	public ResponseEntity<?> buscaNumeroCandidaturas(@PathVariable Integer idCandidato) {
-		return ResponseEntity.ok().body(service.buscaNumeroVagas(idCandidato));
+		return ResponseEntity.ok().body(service.buscaNumeroCandidaturas(idCandidato));
 	}
 	
 //	@PostMapping

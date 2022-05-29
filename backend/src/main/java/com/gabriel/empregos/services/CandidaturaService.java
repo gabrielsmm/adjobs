@@ -33,8 +33,8 @@ public class CandidaturaService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Long buscaNumeroVagas(Integer idCandidato) {
-		return repository.buscaNumeroVagas(idCandidato);
+	public Long buscaNumeroCandidaturas(Integer idCandidato) {
+		return repository.buscaNumeroCandidaturas(idCandidato);
 	}
 	
 //	public Candidato create(Candidato obj) {

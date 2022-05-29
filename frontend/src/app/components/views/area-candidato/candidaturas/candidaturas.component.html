@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row" style="padding: 20px 0px;">
       <div class="col-md-12">
-        <p class="texto-numvagas">Você se candidatou à {{numeroCandidaturas}} <span *ngIf="numeroCandidaturas === 1">vaga</span><span *ngIf="numeroCandidaturas > 1">vagas</span></p>
+        <p *ngIf="numeroCandidaturas > 0" class="texto-numvagas">Você se candidatou à {{numeroCandidaturas}} <span *ngIf="numeroCandidaturas === 1">vaga</span><span *ngIf="numeroCandidaturas > 1">vagas</span></p>
 
         <div *ngFor="let candidatura of candidaturas" class="card">
           <div class="card-header">
