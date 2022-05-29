@@ -1,7 +1,7 @@
 .footer {
   color: white;
   background-color: #0e76a8 !important;
-  height: 15%;
+  min-height: 15%;
   position: static;
   bottom: 0;
   z-index: 1000;
@@ -9,6 +9,7 @@
 
 .container-links {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-around;
   list-style: none;
 }

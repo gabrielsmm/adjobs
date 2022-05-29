@@ -33,6 +33,11 @@ public class Candidato extends Usuario {
 	@JoinColumn(name = "cargo_id")
 	private Cargo cargo;
 	
+	@OneToOne(mappedBy="candidato")
+	@JoinColumn(name = "candidato_id", unique=true)
+	private Curriculo curriculo;
+	
+	
 	public Candidato() {
 		
 	}

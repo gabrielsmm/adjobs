@@ -10,15 +10,19 @@ import com.gabriel.empregos.entities.Candidato;
 import com.gabriel.empregos.entities.Candidatura;
 import com.gabriel.empregos.entities.Cargo;
 import com.gabriel.empregos.entities.Concurso;
+import com.gabriel.empregos.entities.Curriculo;
 import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.enums.CandidaturaStatus;
+import com.gabriel.empregos.enums.EstadoCivil;
+import com.gabriel.empregos.enums.Sexo;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.CandidatoRepository;
 import com.gabriel.empregos.repositories.CandidaturaRepository;
 import com.gabriel.empregos.repositories.CargoRepository;
 import com.gabriel.empregos.repositories.ConcursoRepository;
+import com.gabriel.empregos.repositories.CurriculoRepository;
 import com.gabriel.empregos.repositories.EmpresaRepository;
 import com.gabriel.empregos.repositories.VagaRepository;
 import com.gabriel.empregos.util.Util;
@@ -46,6 +50,9 @@ public class DBService {
 	
 	@Autowired
 	private CandidaturaRepository candidaturaRepository;
+	
+	@Autowired
+	private CurriculoRepository curriculoRepository;
 	
 	public void instanciaBaseDeDados() {
 		
@@ -112,5 +119,10 @@ public class DBService {
 		Candidatura can3 = new Candidatura(null, c1, vaga2, new Date(), CandidaturaStatus.PRESELECIONADO);
 		
 		this.candidaturaRepository.saveAll(Arrays.asList(can1, can2, can3));
+		
+		Curriculo crr1 = new Curriculo(null, c1, "Gabriel", "Sou estudante bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.SOLTEIRO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Seila", "Rua das maringueiras", "0", "Quadra 230 Lote 98", false, "www.linkedin.com.br", "", "www.instagram.com.br", "gmportfolios.com");
+		Curriculo crr2 = new Curriculo(null, c2, "Jorge", "Sou estudante dois bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.CASADO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Porai", "Rua das maringueiras", "0", "Quadra 231 Lote 99", false, "www.linkedin.com.br", "", "www.instagram.com.br", "jorgeportfolios.com");
+		
+		this.curriculoRepository.saveAll(Arrays.asList(crr1, crr2));
 	}
 }

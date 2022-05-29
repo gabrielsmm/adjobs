@@ -1,3 +1,13 @@
+a {
+  text-decoration: none;
+}
+
+.navbar-toggler {
+  color: #ffffff;
+  border: none;
+  font-size: 25px;
+}
+
 .navbar-background {
   background-color: #0e76a8;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
@@ -5,10 +15,6 @@
 
 .navbar {
   min-height: 60px;
-}
-
-a {
-  text-decoration: none;
 }
 
 .navbar-brand {
