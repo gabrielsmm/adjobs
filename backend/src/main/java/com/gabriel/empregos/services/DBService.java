@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gabriel.empregos.entities.Candidato;
+import com.gabriel.empregos.entities.Candidatura;
 import com.gabriel.empregos.entities.Cargo;
 import com.gabriel.empregos.entities.Concurso;
 import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.entities.Vaga;
+import com.gabriel.empregos.enums.CandidaturaStatus;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.CandidatoRepository;
+import com.gabriel.empregos.repositories.CandidaturaRepository;
 import com.gabriel.empregos.repositories.CargoRepository;
 import com.gabriel.empregos.repositories.ConcursoRepository;
 import com.gabriel.empregos.repositories.EmpresaRepository;
@@ -40,6 +43,9 @@ public class DBService {
 	
 	@Autowired
 	private CargoRepository cargoRepository;
+	
+	@Autowired
+	private CandidaturaRepository candidaturaRepository;
 	
 	public void instanciaBaseDeDados() {
 		
@@ -100,5 +106,11 @@ public class DBService {
 		Concurso con10 = new Concurso(null, "Prefeitura de Santa Fé (PR)", new Date(), 32, 6647.97d, "fundamental, médio e superior", "Santa Fé", "Paraná", e1);
 		
 		this.concursoRepository.saveAll(Arrays.asList(con1, con2, con3, con4, con5, con6, con7, con8, con9, con10));
+		
+		Candidatura can1 = new Candidatura(null, c1, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can2 = new Candidatura(null, c2, vaga2, new Date(), CandidaturaStatus.REVISADO);
+		Candidatura can3 = new Candidatura(null, c1, vaga2, new Date(), CandidaturaStatus.PRESELECIONADO);
+		
+		this.candidaturaRepository.saveAll(Arrays.asList(can1, can2, can3));
 	}
 }
