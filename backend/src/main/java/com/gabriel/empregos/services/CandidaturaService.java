@@ -32,6 +32,11 @@ public class CandidaturaService {
 		return repository.findAllByCandidato(idCandidato);
 	}
 	
+	@Transactional(readOnly = true)
+	public Long buscaNumeroVagas(Integer idCandidato) {
+		return repository.buscaNumeroVagas(idCandidato);
+	}
+	
 //	public Candidato create(Candidato obj) {
 //		obj.setId(null);
 //		obj.setSenha(Util.criptografar(obj.getSenha()));

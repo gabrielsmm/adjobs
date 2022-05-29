@@ -39,6 +39,11 @@ public class CandidaturaResource {
 		return ResponseEntity.ok(list);
 	}
 	
+	@GetMapping(value = "/numero-candidaturas/{idCandidato}")
+	public ResponseEntity<?> buscaNumeroCandidaturas(@PathVariable Integer idCandidato) {
+		return ResponseEntity.ok().body(service.buscaNumeroVagas(idCandidato));
+	}
+	
 //	@PostMapping
 //	public ResponseEntity<Candidato> create(@Valid @RequestBody Candidato obj) {
 //		obj = service.create(obj);

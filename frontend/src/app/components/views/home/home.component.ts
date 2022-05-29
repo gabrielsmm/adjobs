@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
   public numeroVagas: number;
 
   ngOnInit(): void {
-    this.obterNumeroVagas();
+    this.getNumeroVagas();
   }
 
-  private obterNumeroVagas() {
+  private getNumeroVagas() {
     const _this = this;
     this.vagaService.getNumeroVagas().subscribe({
       next(data) {

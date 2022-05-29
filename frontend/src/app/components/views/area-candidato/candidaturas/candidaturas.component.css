@@ -12,3 +12,16 @@
   cursor: default;
   color: white;
 }
+
+.btn-verde {
+  background-color: #50a877;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.texto-numvagas {
+  font-weight: bold;
+  font-size: 20px;
+}

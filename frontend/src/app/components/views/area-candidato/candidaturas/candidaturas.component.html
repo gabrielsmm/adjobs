@@ -2,34 +2,42 @@
   <div class="container">
     <div class="row" style="padding: 20px 0px;">
       <div class="col-md-12">
-        <p style="font-weight: bold; font-size: 20px;">Você se candidatou à *numvagas* vaga/vagas</p>
+        <p class="texto-numvagas">Você se candidatou à {{numeroCandidaturas}} <span *ngIf="numeroCandidaturas === 1">vaga</span><span *ngIf="numeroCandidaturas > 1">vagas</span></p>
 
-        <div class="card">
+        <div *ngFor="let candidatura of candidaturas" class="card">
           <div class="card-header">
-            Nome vaga candidatura
+            {{candidatura.vaga.nome}}
           </div>
           <div class="card-body">
             <!-- <h5 class="card-title">Special title treatment</h5> -->
-            <p class="card-text">Nome empresa: </p>
+            <p class="card-text">Nome empresa: {{candidatura.vaga.empresa.nome}}</p>
             <hr>
             <div class="row">
               <div class="col-md-2">
-                <p><i class="bi bi-geo-alt"></i> Localização</p>
+                <p><i class="bi bi-geo-alt"></i> {{candidatura.vaga.localizacao}}</p>
               </div>
               <div class="col-md-2">
                 <button class="btn btn-blue">Opções</button>
               </div>
               <div class="col-md-8 d-flex justify-content-end">
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status"
+                [ngClass]="{'btn-verde': candidatura.status === 0}"
+                [disabled]="candidatura.status !== 0">
                   Recebido
                 </button>
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status"
+                [ngClass]="{'btn-verde': candidatura.status === 1}"
+                [disabled]="candidatura.status !== 1">
                   Revisado
                 </button>
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status"
+                [ngClass]="{'btn-verde': candidatura.status === 2}"
+                [disabled]="candidatura.status !== 2">
                   Pré-selecionado
                 </button>
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status"
+                [ngClass]="{'btn-verde': candidatura.status === 3}"
+                [disabled]="candidatura.status !== 3">
                   Finalista
                 </button>
               </div>

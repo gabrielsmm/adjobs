@@ -14,14 +14,14 @@ export class MinhaAreaComponent implements OnInit {
 
   constructor(public loginService: LoginService,
   public candidatoService: CandidatoService) {
-    this.obterCandidato();
+    this.getCandidato();
   }
 
   ngOnInit(): void {
 
   }
 
-  obterCandidato() {
+  getCandidato() {
     let _this = this;
     this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
       next(data) {
