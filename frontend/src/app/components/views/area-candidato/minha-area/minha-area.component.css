@@ -25,3 +25,7 @@
   background-color: white;
   color: black;
 }
+
+.btn-status:hover {
+  color: white;
+}

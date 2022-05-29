@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   // public isConcursos: boolean = false;
   public isCadastro: boolean = false;
   public isLogin: boolean = false;
+  public isAreaCandidato: boolean = false;
 
   constructor(private router: Router,
     public loginService: LoginService) { }
@@ -35,7 +36,11 @@ export class HeaderComponent implements OnInit {
         this.isLogin = true;
         break;
       default:
-        this.isHome = true;
+        if (this.router.url.includes('/candidato')) {
+          this.isAreaCandidato = true;
+        } else {
+          this.isHome = true;
+        }
     }
   }
 

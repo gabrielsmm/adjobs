@@ -20,7 +20,7 @@
           <a class="nav-link" [ngClass]="{'link-ativo': isConcursos}" [routerLink]="['/concursos']">Concursos</a>
         </li> -->
         <li *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2" class="nav-item">
-          <a class="nav-link" [routerLink]="['/candidato/area']">ÁREA DO CANDIDATO</a>
+          <a class="nav-link" [ngClass]="{'link-ativo': isAreaCandidato}" [routerLink]="['/candidato/area']">ÁREA DO CANDIDATO</a>
         </li>
         <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-arrow-bar-right"></i> ENTRAR</a>
