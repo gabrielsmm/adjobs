@@ -34,7 +34,7 @@ public class Candidato extends Usuario {
 	private Cargo cargo;
 	
 	@OneToOne(mappedBy="candidato")
-	@JoinColumn(name = "candidato_id", unique=true)
+	@JoinColumn(name = "curriculo_id", unique=true)
 	private Curriculo curriculo;
 	
 	

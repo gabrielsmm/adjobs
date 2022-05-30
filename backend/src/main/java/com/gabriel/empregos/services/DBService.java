@@ -11,10 +11,14 @@ import com.gabriel.empregos.entities.Candidatura;
 import com.gabriel.empregos.entities.Cargo;
 import com.gabriel.empregos.entities.Concurso;
 import com.gabriel.empregos.entities.Curriculo;
+import com.gabriel.empregos.entities.CurriculoExperiencia;
+import com.gabriel.empregos.entities.CurriculoFormacao;
 import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.enums.CandidaturaStatus;
 import com.gabriel.empregos.enums.EstadoCivil;
+import com.gabriel.empregos.enums.FormacaoNivel;
+import com.gabriel.empregos.enums.FormacaoStatus;
 import com.gabriel.empregos.enums.Sexo;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.TipoUsuario;
@@ -22,6 +26,8 @@ import com.gabriel.empregos.repositories.CandidatoRepository;
 import com.gabriel.empregos.repositories.CandidaturaRepository;
 import com.gabriel.empregos.repositories.CargoRepository;
 import com.gabriel.empregos.repositories.ConcursoRepository;
+import com.gabriel.empregos.repositories.CurriculoExperienciaRepository;
+import com.gabriel.empregos.repositories.CurriculoFormacaoRepository;
 import com.gabriel.empregos.repositories.CurriculoRepository;
 import com.gabriel.empregos.repositories.EmpresaRepository;
 import com.gabriel.empregos.repositories.VagaRepository;
@@ -53,6 +59,12 @@ public class DBService {
 	
 	@Autowired
 	private CurriculoRepository curriculoRepository;
+	
+	@Autowired
+	private CurriculoFormacaoRepository curriculoFormacaoRepository;
+	
+	@Autowired
+	private CurriculoExperienciaRepository curriculoExperienciaRepository;
 	
 	public void instanciaBaseDeDados() {
 		
@@ -123,6 +135,17 @@ public class DBService {
 		Curriculo crr1 = new Curriculo(null, c1, "Gabriel", "Sou estudante bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.SOLTEIRO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Seila", "Rua das maringueiras", "0", "Quadra 230 Lote 98", false, "www.linkedin.com.br", "", "www.instagram.com.br", "gmportfolios.com");
 		Curriculo crr2 = new Curriculo(null, c2, "Jorge", "Sou estudante dois bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.CASADO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Porai", "Rua das maringueiras", "0", "Quadra 231 Lote 99", false, "www.linkedin.com.br", "", "www.instagram.com.br", "jorgeportfolios.com");
 		
+		CurriculoFormacao cf1 = new CurriculoFormacao(null, "UNIP", FormacaoNivel.SUPERIOR, FormacaoStatus.CURSANDO, "Ciencias da Computação", 1, 2019, 12, 2022, crr1);
+		
+		CurriculoExperiencia cx1 = new CurriculoExperiencia(null, "TESTE", "Estagiário", 1500d, 1, 2019, 12, 2022, true, "Lugar mt bom", crr1);
+		
+		crr1.getFormacoes().addAll(Arrays.asList(cf1));
+		crr1.getExperiencias().addAll(Arrays.asList(cx1));
+		
 		this.curriculoRepository.saveAll(Arrays.asList(crr1, crr2));
+		
+		this.curriculoFormacaoRepository.saveAll(Arrays.asList(cf1));
+		
+		this.curriculoExperienciaRepository.saveAll(Arrays.asList(cx1));
 	}
 }

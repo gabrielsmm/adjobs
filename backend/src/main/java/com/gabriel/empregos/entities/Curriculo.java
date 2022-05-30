@@ -1,15 +1,21 @@
 package com.gabriel.empregos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.gabriel.empregos.enums.EstadoCivil;
 import com.gabriel.empregos.enums.Sexo;
@@ -42,9 +48,13 @@ public class Curriculo implements Serializable {
 	private String complemento;
 	private Boolean pessoaComDeficiencia;
 	
-	// Formação
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "curriculo")
+	private List<CurriculoFormacao> formacoes = new ArrayList<>();
 	
-	//Exp
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "curriculo")
+	private List<CurriculoExperiencia> experiencias = new ArrayList<>();
 	
 	private String linkedIn;
 	private String facebook;
@@ -54,6 +64,8 @@ public class Curriculo implements Serializable {
 	public Curriculo() {
 		
 	}
+
+	
 
 	public Curriculo(Long id, Candidato candidato, String nome, String resumo, String telefone, String telefoneCelular,
 			Date dataNascimento, EstadoCivil estadoCivil, Sexo sexo, String cep, String estado, String cidade,
@@ -217,6 +229,14 @@ public class Curriculo implements Serializable {
 
 	public void setPessoaComDeficiencia(Boolean pessoaComDeficiencia) {
 		this.pessoaComDeficiencia = pessoaComDeficiencia;
+	}
+
+	public List<CurriculoFormacao> getFormacoes() {
+		return formacoes;
+	}
+
+	public List<CurriculoExperiencia> getExperiencias() {
+		return experiencias;
 	}
 
 	public String getLinkedIn() {
