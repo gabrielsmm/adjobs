@@ -1,11 +1,15 @@
+mat-form-field {
+  width: 100%;
+}
+
 .background {
   height: 100%;
   background-color: #dde8ee;
-  padding-top: 20px;
+  padding: 20px 0px;
 }
 
 .card {
-  padding: 20px 0px;
+  padding: 20px;
 }
 
 .titulos {

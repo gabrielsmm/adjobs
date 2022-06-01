@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { MinhaAreaComponent } from './area-candidato/minha-area/minha-area.component';
 import { CandidaturasComponent } from './area-candidato/candidaturas/candidaturas.component';
 import { CurriculoComponent } from './area-candidato/curriculo/curriculo.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,14 @@ import { CurriculoComponent } from './area-candidato/curriculo/curriculo.compone
     MaterialModule,
     FormsModule,
     RouterModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
   exports: [
     CadastroRoutingModule
   ],
-  providers: []
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+  ]
 })
 export class ViewsModule { }

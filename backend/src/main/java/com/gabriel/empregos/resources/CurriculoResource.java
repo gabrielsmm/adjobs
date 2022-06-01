@@ -34,7 +34,7 @@ public class CurriculoResource {
 	}
 	
 	@GetMapping(value = "/candidato/{idCandidato}")
-	public ResponseEntity<Curriculo> findAllByCandidato(@PathVariable Integer idCandidato) {
+	public ResponseEntity<Curriculo> findByCandidato(@PathVariable Integer idCandidato) {
 		Curriculo obj = service.findByCandidato(idCandidato);
 		return ResponseEntity.ok().body(obj);
 	}
