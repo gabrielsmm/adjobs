@@ -17,3 +17,20 @@ mat-form-field {
   font-size: 18px;
   padding: 10px;
 }
+
+.btn-salvar {
+  font-size: 20px;
+  width: 20%;
+}
+
+.btn-adicionar {
+  font-size: 14px;
+}
+
+.card-infos {
+  padding: 5px;
+  background-color: #dde8ee;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}

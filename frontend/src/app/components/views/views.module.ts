@@ -1,7 +1,7 @@
 import { AreaCandidatoComponent } from './area-candidato/area-candidato.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -37,6 +37,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     ComunsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     MatNativeDateModule,
     NgxMaskModule.forRoot()

@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabriel.empregos.enums.TipoUsuario;
 
 @Entity
@@ -33,6 +34,7 @@ public class Candidato extends Usuario {
 	@JoinColumn(name = "cargo_id")
 	private Cargo cargo;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="candidato")
 	@JoinColumn(name = "curriculo_id", unique=true)
 	private Curriculo curriculo;
@@ -80,6 +82,14 @@ public class Candidato extends Usuario {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
+	}
+
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
 	}
 	
 }

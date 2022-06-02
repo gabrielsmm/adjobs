@@ -1,3 +1,5 @@
+import { CurriculoExperiencia } from './../../../../models/CurriculoExperiencia.model';
+import { CurriculoFormacao } from './../../../../models/CurriculoFormacao.model';
 import { Component, OnInit } from '@angular/core';
 
 import { AppService } from './../../../../app.service';
@@ -5,6 +7,7 @@ import { Curriculo } from './../../../../models/Curriculo.model';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { LoginService } from './../../../../services/login.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-curriculo',
@@ -14,6 +17,12 @@ import { ValidaCepService } from './../../../../services/validaCep.service';
 export class CurriculoComponent implements OnInit {
 
   public curriculo: Curriculo = {} as Curriculo;
+  public formacao: CurriculoFormacao = new CurriculoFormacao;
+  public experiencia: CurriculoExperiencia = new CurriculoExperiencia;
+  public formacoes: CurriculoFormacao[] = [];
+  public experiencias: CurriculoExperiencia[] = [];
+  public expandirFormacoes: boolean = false;
+  public expandirExperiencias: boolean = false;
 
   estadosCivis = [
     {value: 0, viewValue: 'Casado(a)'},
@@ -26,6 +35,22 @@ export class CurriculoComponent implements OnInit {
   sexos = [
     {value: 0, viewValue: 'Masculino'},
     {value: 1, viewValue: 'Feminino'},
+  ];
+
+  nivelFormacao = [
+    {value: 0, viewValue: 'Ensino Fundamental'},
+    {value: 1, viewValue: 'Curso extra-curricular'},
+    {value: 2, viewValue: 'Ensino médio'},
+    {value: 3, viewValue: 'Ensino superior'},
+    {value: 4, viewValue: 'Pós-graduação - Especialização/MBA'},
+    {value: 5, viewValue: 'Pós-graduação - Mestrado'},
+    {value: 6, viewValue: 'Pós-graduação - Doutorado'},
+  ];
+
+  statusFormacao = [
+    {value: 0, viewValue: 'Concluído'},
+    {value: 1, viewValue: 'Cursando'},
+    {value: 2, viewValue: 'Trancado'},
   ];
 
   constructor(public curriculoService: CurriculoService,
@@ -44,7 +69,7 @@ export class CurriculoComponent implements OnInit {
     this.curriculoService.findByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
       next(data) {
         _this.curriculo = data;
-        console.log(_this.curriculo);
+        _this.formacoes = data.formacoes;
       },
       error(msg) {
         console.log(msg);
@@ -53,6 +78,44 @@ export class CurriculoComponent implements OnInit {
 
       }
     })
+  }
+
+  abriuFormacoes() {
+    this.formacao = new CurriculoFormacao;
+  }
+
+  salvarFormacao() {
+    this.formacoes.push(this.formacao);
+    this.curriculo.formacoes = this.formacoes;
+    this.formacao = new CurriculoFormacao;
+    this.expandirFormacoes = false;
+    console.log(this.formacoes);
+  }
+
+  cancelarFormacao() {
+    this.formacao = new CurriculoFormacao;
+    this.expandirFormacoes = false;
+  }
+
+  abriuExperiencias() {
+    this.experiencia = new CurriculoExperiencia;
+  }
+
+  salvarExperiencia() {
+    this.experiencias.push(this.experiencia);
+    this.curriculo.experiencias = this.experiencias;
+    this.experiencia = new CurriculoExperiencia;
+    this.expandirExperiencias = false;
+    console.log(this.experiencias);
+  }
+
+  cancelarExperiencia() {
+    this.experiencia = new CurriculoExperiencia;
+    this.expandirExperiencias = false;
+  }
+
+  salvarCurriculo() {
+
   }
 
   validarCEP(cep: string) {
