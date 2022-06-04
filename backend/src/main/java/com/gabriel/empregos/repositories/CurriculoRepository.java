@@ -11,4 +11,7 @@ public interface CurriculoRepository extends JpaRepository<Curriculo, Long> {
 	@Query(value = "SELECT * FROM TB_CURRICULOS AS obj WHERE obj.candidato_id = :idCandidato", nativeQuery = true)
 	Curriculo findByCandidato(@Param(value = "idCandidato") Integer idCandidato);
 	
+	@Query(value = "SELECT MAX(ID) FROM TB_CURRICULOS", nativeQuery = true)
+	Long getMaxId();
+	
 }

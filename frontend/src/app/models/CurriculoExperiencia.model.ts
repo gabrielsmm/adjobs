@@ -1,3 +1,5 @@
+import { Curriculo } from './Curriculo.model';
+
 export class CurriculoExperiencia {
   id: number
   nomeEmpresa?: string
@@ -8,5 +10,6 @@ export class CurriculoExperiencia {
   mesConclusao?: number
   anoConclusao?: number
   atual?: boolean
-  descricao?: string;
+  descricao?: string
+  curriculo: Curriculo
 }

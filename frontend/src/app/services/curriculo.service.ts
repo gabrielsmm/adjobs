@@ -1,3 +1,5 @@
+import { AppService } from './../app.service';
+import { Curriculo } from './../models/Curriculo.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -11,7 +13,8 @@ export class CurriculoService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private appService: AppService) { }
 
   getLista(): Observable<any> {
     const url = `${this.baseUrl}/curriculos`;
@@ -23,19 +26,24 @@ export class CurriculoService {
     return this.http.get(url);
   }
 
+  save(curriculo: Curriculo): Observable<Curriculo>{
+    if (this.appService.isNullOrUndefined(curriculo.id)) {
+      const url = `${this.baseUrl}/curriculos`;
+      return this.http.post<Curriculo>(url, curriculo);
+    } else {
+      const url = `${this.baseUrl}/curriculos/${curriculo.id}`;
+      return this.http.put<Curriculo>(url, curriculo);
+    }
+  }
+
+  // update(curriculo: Curriculo): Observable<void>{
+  //   const url = `${this.baseUrl}/curriculos/${curriculo.id}`;
+  //   return this.http.put<void>(url, curriculo);
+  // }
+
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.get<Categoria>(url);
-  // }
-
-  // create(categoria: Categoria): Observable<Categoria>{
-  //   const url = `${this.baseUrl}/categorias`;
-  //   return this.http.post<Categoria>(url, categoria);
-  // }
-
-  // update(categoria: Categoria): Observable<void>{
-  //   const url = `${this.baseUrl}/categorias/${categoria.id}`;
-  //   return this.http.put<void>(url, categoria);
   // }
 
   // delete(id: string): Observable<void>{

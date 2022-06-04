@@ -245,7 +245,7 @@
               </div>
               <div class="col-md-6">
                 <mat-form-field>
-                  <input [(ngModel)]="experiencia.salario" (keypress)="appService.keyPressNumbers($event)" matInput placeholder="Salário" name="salario" required>
+                  <input currencyMask [(ngModel)]="experiencia.salario" (keypress)="appService.keyPressNumbers($event)" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Salário" name="salario" required>
                 </mat-form-field>
               </div>
             </div>

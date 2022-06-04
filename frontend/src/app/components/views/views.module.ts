@@ -1,3 +1,4 @@
+import { NgxCurrencyModule } from 'ngx-currency';
 import { AreaCandidatoComponent } from './area-candidato/area-candidato.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -40,6 +41,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     ReactiveFormsModule,
     RouterModule,
     MatNativeDateModule,
+    NgxCurrencyModule,
     NgxMaskModule.forRoot()
   ],
   exports: [

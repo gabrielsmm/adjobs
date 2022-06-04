@@ -1,13 +1,14 @@
-import { CurriculoExperiencia } from './../../../../models/CurriculoExperiencia.model';
-import { CurriculoFormacao } from './../../../../models/CurriculoFormacao.model';
+import { Candidato } from './../../../../models/Candidato.model';
+import { CandidatoService } from './../../../../services/candidato.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AppService } from './../../../../app.service';
 import { Curriculo } from './../../../../models/Curriculo.model';
+import { CurriculoExperiencia } from './../../../../models/CurriculoExperiencia.model';
+import { CurriculoFormacao } from './../../../../models/CurriculoFormacao.model';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { LoginService } from './../../../../services/login.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-curriculo',
@@ -16,7 +17,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CurriculoComponent implements OnInit {
 
-  public curriculo: Curriculo = {} as Curriculo;
+  public candidato: Candidato;
+  public curriculo: Curriculo = new Curriculo;
   public formacao: CurriculoFormacao = new CurriculoFormacao;
   public experiencia: CurriculoExperiencia = new CurriculoExperiencia;
   public formacoes: CurriculoFormacao[] = [];
@@ -56,6 +58,7 @@ export class CurriculoComponent implements OnInit {
   constructor(public curriculoService: CurriculoService,
     public loginService: LoginService,
     private validaCepService: ValidaCepService,
+    private candidatoService: CandidatoService,
     public appService: AppService) {
     this.getDadosCurriculo();
    }
@@ -68,8 +71,18 @@ export class CurriculoComponent implements OnInit {
     let _this = this;
     this.curriculoService.findByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
       next(data) {
-        _this.curriculo = data;
-        _this.formacoes = data.formacoes;
+        if (!_this.appService.isNullOrUndefined(data)) {
+          _this.curriculo = data;
+          _this.formacoes = data.formacoes;
+          _this.experiencias = data.experiencias;
+        } else {
+          _this.candidatoService.findById(_this.loginService.objUsuarioAutenticado.id).subscribe({
+            next(data) {
+              _this.curriculo.nome = data.nome;
+              _this.curriculo.candidato = data;
+            }
+          })
+        }
       },
       error(msg) {
         console.log(msg);
@@ -115,7 +128,20 @@ export class CurriculoComponent implements OnInit {
   }
 
   salvarCurriculo() {
+    let _this = this;
+    this.curriculoService.save(this.curriculo).subscribe({
+      next(data) {
+        if (!_this.appService.isNullOrUndefined(data)) {
+          _this.appService.mensagem("Currículo salvo");
+        }
+      },
+      error(error) {
 
+      },
+      complete() {
+
+      }
+    })
   }
 
   validarCEP(cep: string) {
@@ -123,7 +149,6 @@ export class CurriculoComponent implements OnInit {
       let _this = this;
       this.validaCepService.validarCep(cep).subscribe({
         next(data) {
-          console.log(data);
           if (data.erro) {
             _this.appService.mensagem("CEP inválido!");
           } else {

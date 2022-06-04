@@ -1,3 +1,5 @@
+import { Curriculo } from './Curriculo.model';
+
 export class CurriculoFormacao {
   id: number
   nomeInstituicao?: string
@@ -8,4 +10,5 @@ export class CurriculoFormacao {
   anoInicio?: number
   mesConclusao?: number
   anoConclusao?: number
+  curriculo: Curriculo
 }

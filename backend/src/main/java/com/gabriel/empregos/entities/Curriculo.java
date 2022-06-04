@@ -235,8 +235,16 @@ public class Curriculo implements Serializable {
 		return formacoes;
 	}
 
+	public void setFormacoes(List<CurriculoFormacao> formacoes) {
+		this.formacoes = formacoes;
+	}
+
 	public List<CurriculoExperiencia> getExperiencias() {
 		return experiencias;
+	}
+
+	public void setExperiencias(List<CurriculoExperiencia> experiencias) {
+		this.experiencias = experiencias;
 	}
 
 	public String getLinkedIn() {
