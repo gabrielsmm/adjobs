@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'login', loadChildren: () => import('./components/views/login/login-routing.module').then(m => m.LoginRoutingModule)},
   {path: 'empregos', loadChildren: () => import('./components/views/empregos/empregos-routing.module').then(m => m.EmpregosRoutingModule)},
   {path: 'candidato', loadChildren: () => import('./components/views/area-candidato/area-candidato-routing.module').then(m => m.AreaCandidatoRoutingModule), canActivate: [AuthGuard]},
+  {path: 'empresa', loadChildren: () => import('./components/views/area-empresa/area-empresa-routing.module').then(m => m.AreaEmpresaRoutingModule), canActivate: [AuthGuard]},
 
   {path: 'estagios', loadChildren: () => import('./components/views/estagios/estagios-routing.module').then(m => m.EstagiosRoutingModule), canActivate: [AuthGuard]},
   {path: 'concursos', loadChildren: () => import('./components/views/concursos/concursos-routing.module').then(m => m.ConcursosRoutingModule), canActivate: [AuthGuard]},

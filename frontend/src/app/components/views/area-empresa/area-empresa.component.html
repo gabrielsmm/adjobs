@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="d-flex justify-content-around">
+  <div class="container-link">
+    <a class="nav-link" [ngClass]="{'nav-link-ativo': isArea}" [routerLink]="['/empresa/area']"><i class="bi bi-person-badge"></i> MINHA ÁREA</a>
+  </div>
+  <div class="container-link">
+    <a class="nav-link" [ngClass]="{'nav-link-ativo': isVagas}" [routerLink]="['/empresa/vagas']"><i class="bi bi-person-rolodex"></i> VAGAS</a>
+  </div>
+  <div class="container-link">
+    <a class="nav-link" [ngClass]="{'nav-link-ativo': false}" [routerLink]="['/empresa/curriculos']"><i class="bi bi-person-lines-fill"></i> CURRÍCULOS RECEBIDOS</a>
+  </div>
+</div>
+
+<div style="min-height: 70%;">
+  <router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>

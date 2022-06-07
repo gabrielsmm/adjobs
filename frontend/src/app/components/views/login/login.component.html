@@ -10,10 +10,10 @@
     <div class="card">
       <form>
         <mat-form-field style="display: block; margin-top:5px;">
-          <input [(ngModel)]="usuarioLogin.email" matInput placeholder="Seu email" name="email" required>
+          <input [(ngModel)]="usuarioLogin.email" matInput placeholder="E-mail" name="email" required>
         </mat-form-field>
         <mat-form-field style="display: block;">
-          <input [(ngModel)]="usuarioLogin.senha" matInput type="password" placeholder="Sua senha" name="senha" required>
+          <input [(ngModel)]="usuarioLogin.senha" matInput type="password" placeholder="Senha" name="senha" required>
         </mat-form-field>
         <button (click)="realizarLogin()" mat-raised-button class="btn-blue">Entrar</button>
         <span (click)="irParaCadastro()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se cadastrar</span>

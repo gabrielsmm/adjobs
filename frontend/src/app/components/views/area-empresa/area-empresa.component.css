@@ -1,0 +1,10 @@
+.nav-link {
+  font-size: 18px;
+  padding: 20px;
+  color:#0e76a8;
+}
+
+.nav-link-ativo {
+  background-color: #0e76a8;;
+  color: white;
+}

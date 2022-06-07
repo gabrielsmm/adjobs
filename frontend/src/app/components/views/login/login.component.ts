@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
       this.loginService.usuarioAutenticado = true;
       this.loginService.objUsuarioAutenticado = resposta;
       if (this.loginService.objUsuarioAutenticado.tipoUsuario == 1) { //EMPRESA
-        console.log('Ação da empresa...');
+        this.router.navigate(['empresa/area']);
       } else if (this.loginService.objUsuarioAutenticado.tipoUsuario == 2) { //CANDIDATO
-        this.router.navigate(['empregos']);
+        this.router.navigate(['candidato/area']);
       }
       // this.appService.mensagem("Logado com sucesso!");
     }, err => {

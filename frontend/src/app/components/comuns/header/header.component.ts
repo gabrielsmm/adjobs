@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public isCadastro: boolean = false;
   public isLogin: boolean = false;
   public isAreaCandidato: boolean = false;
+  public isAreaEmpresa: boolean = false;
 
   constructor(private router: Router,
     public loginService: LoginService) { }
@@ -38,6 +39,8 @@ export class HeaderComponent implements OnInit {
       default:
         if (this.router.url.includes('/candidato')) {
           this.isAreaCandidato = true;
+        } else if (this.router.url.includes('/empresa')) {
+          this.isAreaEmpresa = true;
         } else {
           this.isHome = true;
         }

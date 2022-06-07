@@ -19,6 +19,8 @@ import { MinhaAreaComponent } from './area-candidato/minha-area/minha-area.compo
 import { CandidaturasComponent } from './area-candidato/candidaturas/candidaturas.component';
 import { CurriculoComponent } from './area-candidato/curriculo/curriculo.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { AreaEmpresaComponent } from './area-empresa/area-empresa.component';
+import { VagasComponent } from './area-empresa/vagas/vagas.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     AreaCandidatoComponent,
     MinhaAreaComponent,
     CandidaturasComponent,
-    CurriculoComponent
+    CurriculoComponent,
+    AreaEmpresaComponent,
+    VagasComponent
   ],
   imports: [
     CommonModule,

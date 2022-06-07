@@ -45,6 +45,10 @@ export class CadastroComponent implements OnInit {
     this.isCandidato = false;
   }
 
+  irParaLogin() {
+    this.router.navigate(['/login']);
+  }
+
   registrarEmpresa() {
     if (!this.validarRegistroEmpresa(this.empresa)) {
       return;

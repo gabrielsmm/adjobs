@@ -1,0 +1,27 @@
+.background {
+  height: 100%;
+  background-color: #dde8ee;
+}
+
+.btn-status {
+  border-radius: 5px 30px 30px 5px;
+  margin-right: 2px;
+}
+
+.btn-status:hover {
+  cursor: default;
+  color: white;
+}
+
+.btn-verde {
+  background-color: #50a877;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.texto-numvagas {
+  font-weight: bold;
+  font-size: 20px;
+}
