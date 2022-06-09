@@ -14,6 +14,11 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) { }
 
+  findById(id: any): Observable<Empresa>{
+    const url = `${this.baseUrl}/empresas/${id}`;
+    return this.http.get<Empresa>(url);
+  }
+
   getLista(): Observable<any> {
     const url = `${this.baseUrl}/empresas`;
     return this.http.get(url);
@@ -23,11 +28,6 @@ export class EmpresaService {
     const url = `${this.baseUrl}/empresas`;
     return this.http.post<Empresa>(url, empresa);
   }
-
-  // findById(id: string): Observable<Categoria>{
-  //   const url = `${this.baseUrl}/categorias/${id}`;
-  //   return this.http.get<Categoria>(url);
-  // }
 
   // update(categoria: Categoria): Observable<void>{
   //   const url = `${this.baseUrl}/categorias/${categoria.id}`;

@@ -3,10 +3,10 @@ package com.gabriel.empregos.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.gabriel.empregos.entities.Candidato;
+import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.enums.TipoUsuario;
 
-public class CandidatoDTO implements Serializable {
+public class EmpresaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -15,19 +15,29 @@ public class CandidatoDTO implements Serializable {
 	private Date dataCadastro;
 	private TipoUsuario tipoUsuario;
 	private String nome;
+	private String cnpj;
+	private Integer qtdFuncionarios;
 	private String cep;
+	private String nomeResponsavel;
+	private String telefone;
+	private String celular;
 	
-	public CandidatoDTO() {
+	public EmpresaDTO() {
 		
 	}
 	
-	public CandidatoDTO(Candidato obj) {
+	public EmpresaDTO(Empresa obj) {
 		this.id = obj.getId();
 		this.email = obj.getEmail();
 		this.dataCadastro = obj.getDataCadastro();
 		this.tipoUsuario = obj.getTipoUsuario();
 		this.nome = obj.getNome();
+		this.cnpj = obj.getCnpj();
+		this.qtdFuncionarios = obj.getQtdFuncionarios();
 		this.cep = obj.getCep();
+		this.nomeResponsavel = obj.getNomeResponsavel();
+		this.telefone = obj.getTelefone();
+		this.celular = obj.getCelular();
 	}
 
 	public Long getId() {
@@ -70,12 +80,52 @@ public class CandidatoDTO implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public Integer getQtdFuncionarios() {
+		return qtdFuncionarios;
+	}
+
+	public void setQtdFuncionarios(Integer qtdFuncionarios) {
+		this.qtdFuncionarios = qtdFuncionarios;
+	}
+
 	public String getCep() {
 		return cep;
 	}
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getNomeResponsavel() {
+		return nomeResponsavel;
+	}
+
+	public void setNomeResponsavel(String nomeResponsavel) {
+		this.nomeResponsavel = nomeResponsavel;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 }

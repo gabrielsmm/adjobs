@@ -37,6 +37,16 @@ export class VagaService {
     return this.http.get(url);
   }
 
+  getNumeroVagasPorEmpresa(idEmpresa: number): Observable<any> {
+    const url = `${this.baseUrl}/vagas/numero-vagas/${idEmpresa}`;
+    return this.http.get(url);
+  }
+
+  findAllByEmpresa(idEmpresa: number): Observable<any> {
+    const url = `${this.baseUrl}/vagas/empresa/${idEmpresa}`;
+    return this.http.get(url);
+  }
+
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.get<Categoria>(url);

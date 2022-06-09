@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinhaAreaComponent implements OnInit {
 
-  candidato: Candidato = {} as Candidato;
+  candidato: Candidato = new Candidato;
 
   constructor(public loginService: LoginService,
   public candidatoService: CandidatoService) {

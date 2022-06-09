@@ -30,6 +30,11 @@ public class VagaService {
 	}
 	
 	@Transactional(readOnly = true)
+	public List<Vaga> findAllByEmpresa(Integer idEmpresa) {
+		return repository.findAllByEmpresa(idEmpresa);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Vaga> getSomenteVagasEstagio() {
 		return repository.getSomenteVagasEstagio();
 	}
@@ -42,6 +47,11 @@ public class VagaService {
 	@Transactional(readOnly = true)
 	public Long buscaNumeroVagas() {
 		return repository.buscaNumeroVagas();
+	}
+	
+	@Transactional(readOnly = true)
+	public Long buscaNumeroVagasCadastradasPorEmpresa(Integer idEmpresa) {
+		return repository.buscaNumeroVagasCadastradasPorEmpresa(idEmpresa);
 	}
 	
 }

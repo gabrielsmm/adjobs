@@ -39,6 +39,12 @@ public class VagaResource {
 		return ResponseEntity.ok(list);
 	}
 	
+	@GetMapping(value="/empresa/{idEmpresa}")
+	public ResponseEntity<List<Vaga>> findAllByEmpresa(@PathVariable("idEmpresa") Integer idEmpresa) {
+		List<Vaga> list = service.findAllByEmpresa(idEmpresa);
+		return ResponseEntity.ok(list);
+	}
+	
 	@GetMapping(value = "/somente-vagas-estagio")
 	public ResponseEntity<List<Vaga>> getSomenteVagasEstagio() {
 		List<Vaga> list = service.getSomenteVagasEstagio();
@@ -54,6 +60,11 @@ public class VagaResource {
 	@GetMapping(value = "/numero-vagas")
 	public ResponseEntity<?> buscaNumeroVagas() {
 		return ResponseEntity.ok().body(service.buscaNumeroVagas());
+	}
+	
+	@GetMapping(value = "/numero-vagas/{idEmpresa}")
+	public ResponseEntity<?> buscaNumeroVagasCadastradasPorEmpresa(@PathVariable Integer idEmpresa) {
+		return ResponseEntity.ok().body(service.buscaNumeroVagasCadastradasPorEmpresa(idEmpresa));
 	}
 	
 }
