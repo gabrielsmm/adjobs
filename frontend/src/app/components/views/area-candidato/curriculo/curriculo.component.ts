@@ -68,26 +68,25 @@ export class CurriculoComponent implements OnInit {
   }
 
   getDadosCurriculo() {
-    let _this = this;
     this.curriculoService.findByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
-      next(data) {
-        if (!_this.appService.isNullOrUndefined(data)) {
-          _this.curriculo = data;
-          _this.formacoes = data.formacoes;
-          _this.experiencias = data.experiencias;
+      next: (data) => {
+        if (!this.appService.isNullOrUndefined(data)) {
+          this.curriculo = data;
+          this.formacoes = data.formacoes;
+          this.experiencias = data.experiencias;
         } else {
-          _this.candidatoService.findById(_this.loginService.objUsuarioAutenticado.id).subscribe({
-            next(data) {
-              _this.curriculo.nome = data.nome;
-              _this.curriculo.candidato = data;
+          this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+            next: (data) => {
+              this.curriculo.nome = data.nome;
+              this.curriculo.candidato = data;
             }
           })
         }
       },
-      error(msg) {
+      error: (msg) => {
         console.log(msg);
       },
-      complete() {
+      complete: () => {
 
       }
     })
@@ -128,17 +127,16 @@ export class CurriculoComponent implements OnInit {
   }
 
   salvarCurriculo() {
-    let _this = this;
     this.curriculoService.save(this.curriculo).subscribe({
-      next(data) {
-        if (!_this.appService.isNullOrUndefined(data)) {
-          _this.appService.mensagem("Currículo salvo");
+      next: (data) => {
+        if (!this.appService.isNullOrUndefined(data)) {
+          this.appService.mensagem("Currículo salvo");
         }
       },
-      error(error) {
+      error: (error) => {
 
       },
-      complete() {
+      complete: () => {
 
       }
     })
@@ -146,23 +144,22 @@ export class CurriculoComponent implements OnInit {
 
   validarCEP(cep: string) {
     if (cep.length === 8) {
-      let _this = this;
       this.validaCepService.validarCep(cep).subscribe({
-        next(data) {
+        next: (data) => {
           if (data.erro) {
-            _this.appService.mensagem("CEP inválido!");
+            this.appService.mensagem("CEP inválido!");
           } else {
-            _this.curriculo.estado = data.uf;
-            _this.curriculo.cidade = data.localidade;
-            _this.curriculo.bairro = data.bairro;
-            _this.curriculo.rua = data.logradouro;
-            _this.curriculo.complemento = data.complemento;
+            this.curriculo.estado = data.uf;
+            this.curriculo.cidade = data.localidade;
+            this.curriculo.bairro = data.bairro;
+            this.curriculo.rua = data.logradouro;
+            this.curriculo.complemento = data.complemento;
           }
         },
-        error(err) {
+        error: (err) => {
 
         },
-        complete() {
+        complete: () => {
 
         }
       })

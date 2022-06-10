@@ -1,57 +1,123 @@
 <div class="background">
   <div class="container">
     <div class="row" style="padding: 20px 0px;">
-      <div class="col-md-12">
-        <p *ngIf="numeroVagas > 0" class="texto-numvagas">Você cadastrou {{numeroVagas}} <span *ngIf="numeroVagas === 1">vaga</span><span *ngIf="numeroVagas > 1">vagas</span></p>
+      <div [ngSwitch]="stateChange" class="col-md-12">
 
-        <div *ngFor="let vaga of vagas" class="card">
-          <div class="card-header">
-            {{vaga.nome}}
-          </div>
-          <div class="card-body">
-            <!-- <h5 class="card-title">Special title treatment</h5> -->
-            <p class="card-text">Tipo da vaga: {{vaga.tipo}}</p>
-            <hr>
-            <div class="row">
-              <div class="col-md-2">
-                <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
+        <div *ngSwitchCase="state.StateGrid">
+          <p *ngIf="numeroVagas > 0" class="texto-vagas">Você cadastrou {{numeroVagas}} <span *ngIf="numeroVagas === 1">vaga</span><span *ngIf="numeroVagas > 1">vagas</span></p>
+
+          <button (click)="cadastrarVagaClick()" class="btn btn-green"><i class="bi bi-plus-square"></i> Cadastrar nova vaga</button>
+
+          <div *ngFor="let vaga of vagas" class="card">
+            <div class="card-header d-flex justify-content-between">
+              <p class="nome-vaga">{{vaga.nome}}</p>
+              <button (click)="editarClick(vaga)" class="btn btn-orange"><i class="bi bi-pencil"></i> Editar</button>
+            </div>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <p class="card-text">Tipo da vaga: {{tiposContratacao[vaga.tipo].viewValue}}</p>
+              <hr>
+              <div class="row">
+                <div class="col-md-2">
+                  <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
+                </div>
+                <div class="col-md-2">
+                  <p>Quantidade: {{vaga.quantidade}}</p>
+                </div>
+                <div class="col-md-2">
+                  <p>Salário: {{vaga.salario | currency:'BRL'}}</p>
+                </div>
+                <div class="col-md-3">
+                  <p>Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
+                </div>
+                <!-- <div class="col-md-2">
+                  <button class="btn btn-blue">Opções</button>
+                </div> -->
+                <!-- <div class="col-md-8 d-flex justify-content-end">
+                  <button type="button" class="btn btn-blue btn-status"
+                  [ngClass]="{'btn-verde': candidatura.status === 0}"
+                  [disabled]="candidatura.status !== 0">
+                    Recebido
+                  </button>
+                  <button type="button" class="btn btn-blue btn-status"
+                  [ngClass]="{'btn-verde': candidatura.status === 1}"
+                  [disabled]="candidatura.status !== 1">
+                    Revisado
+                  </button>
+                  <button type="button" class="btn btn-blue btn-status"
+                  [ngClass]="{'btn-verde': candidatura.status === 2}"
+                  [disabled]="candidatura.status !== 2">
+                    Pré-selecionado
+                  </button>
+                  <button type="button" class="btn btn-blue btn-status"
+                  [ngClass]="{'btn-verde': candidatura.status === 3}"
+                  [disabled]="candidatura.status !== 3">
+                    Finalista
+                  </button>
+                </div> -->
               </div>
-              <div class="col-md-2">
-                <p>Quantidade: {{vaga.quantidade}}</p>
-              </div>
-              <div class="col-md-2">
-                <p>Salário: {{vaga.salario | currency:'BRL'}}</p>
-              </div>
-              <div class="col-md-3">
-                <p>Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
-              </div>
-              <div class="col-md-2">
-                <button class="btn btn-blue">Opções</button>
-              </div>
-              <!-- <div class="col-md-8 d-flex justify-content-end">
-                <button type="button" class="btn btn-blue btn-status"
-                [ngClass]="{'btn-verde': candidatura.status === 0}"
-                [disabled]="candidatura.status !== 0">
-                  Recebido
-                </button>
-                <button type="button" class="btn btn-blue btn-status"
-                [ngClass]="{'btn-verde': candidatura.status === 1}"
-                [disabled]="candidatura.status !== 1">
-                  Revisado
-                </button>
-                <button type="button" class="btn btn-blue btn-status"
-                [ngClass]="{'btn-verde': candidatura.status === 2}"
-                [disabled]="candidatura.status !== 2">
-                  Pré-selecionado
-                </button>
-                <button type="button" class="btn btn-blue btn-status"
-                [ngClass]="{'btn-verde': candidatura.status === 3}"
-                [disabled]="candidatura.status !== 3">
-                  Finalista
-                </button>
-              </div> -->
             </div>
           </div>
+        </div>
+
+        <div *ngSwitchCase="state.StateDados">
+          <div class="d-flex justify-content-between align-items-end">
+            <p class="texto-vagas">Dados da vaga</p>
+            <button (click)="voltarClick()" class="btn btn-red"><i class="bi bi-arrow-return-left"></i> Voltar</button>
+          </div>
+
+          <div class="card card-cadastro">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input [(ngModel)]="vaga.nome" matInput placeholder="Nome da vaga" name="nome" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input [(ngModel)]="vaga.localizacao" matInput placeholder="Localização (ex: Goiânia - GO)" name="localizacao" required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row align-items-end">
+              <div class="col-md-4">
+                <mat-form-field>
+                  <input [(ngModel)]="vaga.quantidade" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="Quantidade de vagas" name="quantidade" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field>
+                  <input currencyMask [(ngModel)]="vaga.salario" (keypress)="appService.keyPressNumbers($event)" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Salário" name="salario" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="fill">
+                  <mat-label>Tipo de Contratação</mat-label>
+                  <mat-select [(ngModel)]="vaga.tipo">
+                    <mat-option *ngFor="let tipo of tiposContratacao" [value]="tipo.value">
+                      {{tipo.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field appearance="fill">
+                  <mat-label>Validade da vaga</mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="vaga.expiracao">
+                  <mat-hint>DD/MM/YYYY</mat-hint>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <button (click)="salvarVagaClick()" class="btn btn-blue btn-salvar">Salvar vaga</button>
+          </div>
+
         </div>
 
       </div>

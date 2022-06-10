@@ -34,7 +34,7 @@ public class Vaga {
 	
 //	@OneToOne
 //	@JoinColumn(name = "tipocontratacao_id")
-	@Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.ORDINAL)
 	private TipoContratacao tipo;
 	
 	@ManyToOne

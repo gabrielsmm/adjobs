@@ -1,5 +1,7 @@
 package com.gabriel.empregos.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoContratacao {
 	
 	TEMPORARIO(1),
@@ -18,6 +20,11 @@ public enum TipoContratacao {
 
     public int getId() {
         return id;
+    }
+    
+    @JsonValue
+    public int toValue() {
+        return ordinal();
     }
 	
 }

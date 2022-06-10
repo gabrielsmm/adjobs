@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,7 +13,8 @@ export class VagaService {
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+  private appService: AppService) { }
 
   getListaPaginada(page: number = 0, size: number = 5, nome: string = ""): Observable<any> {
     let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
@@ -45,6 +47,16 @@ export class VagaService {
   findAllByEmpresa(idEmpresa: number): Observable<any> {
     const url = `${this.baseUrl}/vagas/empresa/${idEmpresa}`;
     return this.http.get(url);
+  }
+
+  save(vaga: Vaga): Observable<Vaga>{
+    if (this.appService.isNullOrUndefined(vaga.id)) {
+      const url = `${this.baseUrl}/vagas`;
+      return this.http.post<Vaga>(url, vaga);
+    } else {
+      const url = `${this.baseUrl}/vagas/${vaga.id}`;
+      return this.http.put<Vaga>(url, vaga);
+    }
   }
 
   // findById(id: string): Observable<Categoria>{
