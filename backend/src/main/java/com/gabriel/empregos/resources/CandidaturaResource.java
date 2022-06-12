@@ -1,5 +1,6 @@
 package com.gabriel.empregos.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gabriel.empregos.entities.Candidatura;
 import com.gabriel.empregos.services.CandidaturaService;
@@ -20,6 +22,13 @@ public class CandidaturaResource {
 	
 	@Autowired
 	private CandidaturaService service;
+	
+	@GetMapping(value = "/candidatar/{idCandidato}/{idVaga}")
+	public ResponseEntity<?> salvarCandidatura(@PathVariable Integer idCandidato, @PathVariable Integer idVaga){
+		Candidatura obj = service.salvarCandidatura(idCandidato, idVaga);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
+	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Candidatura> findById(@PathVariable Integer id){

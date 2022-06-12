@@ -16,4 +16,7 @@ public interface CandidaturaRepository extends JpaRepository<Candidatura, Long> 
 	@Query(value = "SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato", nativeQuery = true)
 	long buscaNumeroCandidaturas(@Param(value = "idCandidato") Integer idCandidato);
 	
+//	@Query(value = "INSERT INTO TB_CANDIDATURAS (DATA_CANDIDATURA, STATUS, CANDIDATO_ID, VAGA_ID) VALUES (:dataCandidatura, :status, :idCandidato, :idVaga)", nativeQuery = true)
+//	void salvarCandidatura(@Param(value = "dataCandidatura") Date dataCandidatura, @Param(value = "status") CandidaturaStatus status, @Param(value = "idCandidato") Integer idCandidato, @Param(value = "idVaga") Integer idVaga);
+	
 }

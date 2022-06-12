@@ -14,6 +14,11 @@ export class CandidaturaService {
 
   constructor(private http: HttpClient) { }
 
+  salvarCandidatura(idCandidato: number, idVaga: number) {
+    const url = `${this.baseUrl}/candidaturas/candidatar/${idCandidato}/${idVaga}`;
+    return this.http.get<Candidatura>(url);
+  }
+
   findById(id: any): Observable<Candidatura>{
     const url = `${this.baseUrl}/candidaturas/${id}`;
     return this.http.get<Candidatura>(url);

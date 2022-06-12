@@ -18,7 +18,6 @@
           {{vaga.id}} - {{vaga.nome}}
         </div>
         <div class="card-body">
-          <!-- <h5 class="card-title">Special title treatment</h5> -->
           <p class="card-text">Tipo de contratação: {{vaga.tipo}}</p>
           <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
           <p class="card-text">Salário: {{vaga.salario | currency:'BRL'}}</p>
@@ -30,9 +29,11 @@
             <div class="col-md-3">
               <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
             </div>
-            <div class="col-md-6">
-              <!-- <button class="btn btn-success" style="margin-right: 15px;">Candidatar-se</button> -->
+            <div class="col-md-3">
               <button (click)="openDetalhes(vaga.id)" class="btn btn-blue">Ver detalhes</button>
+            </div>
+            <div *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  class="col-md-3">
+              <button (click)="candidatarClick(vaga.id)" class="btn btn-green">Candidatar-se</button>
             </div>
           </div>
         </div>

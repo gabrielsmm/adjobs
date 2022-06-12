@@ -1,3 +1,7 @@
+import { Router } from '@angular/router';
+import { AppService } from './../../../app.service';
+import { LoginService } from './../../../services/login.service';
+import { CandidaturaService } from './../../../services/candidatura.service';
 import { DialogComponent } from './../../comuns/dialog/dialog.component';
 import { Vaga } from '../../../models/vaga.model';
 import { VagaService } from './../../../services/vaga.service';
@@ -24,7 +28,11 @@ export class EmpregosComponent implements OnInit {
   public last: boolean;
 
   constructor(private vagaService: VagaService,
-    public dialog: MatDialog) { }
+    private candidaturaService: CandidaturaService,
+    public loginService: LoginService,
+    private appService: AppService,
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getVagas();
@@ -39,17 +47,16 @@ export class EmpregosComponent implements OnInit {
   }
 
   getListaPaginada() {
-    const _this = this;
     this.vagaService.getListaPaginada(this.page, this.size, this.pesquisa).subscribe({
-      next(data) {
-        _this.vagas = data['content'];
-        _this.first = data['first'];
-        _this.last = data['last'];
+      next: (data) => {
+        this.vagas = data['content'];
+        this.first = data['first'];
+        this.last = data['last'];
       },
-      error(msg) {
+      error: (msg) => {
         console.log('Error', msg);
       },
-      complete() {
+      complete: () => {
 
       }
     });
@@ -71,14 +78,12 @@ export class EmpregosComponent implements OnInit {
   }
 
   openDetalhes(idVaga: any) {
-    const _this = this;
     this.vagaService.getDados(idVaga).subscribe({
-      next(data: Vaga) {
-        _this.vaga = data;
-        console.log(_this.vaga);
-        const dialogRef = _this.dialog.open(DialogComponent, {
-          data: _this.vaga,
-          height: '500px',
+      next: (data: Vaga) => {
+        this.vaga = data;
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: this.vaga,
+          height: '600px',
           width: '700px'
         });
 
@@ -86,13 +91,33 @@ export class EmpregosComponent implements OnInit {
           console.log(`Dialog fechado`);
         })
       },
-      error(msg) {
-        console.log('Error', msg);
+      error: (msg) => {
+        console.error('Error', msg);
       },
-      complete() {
+      complete: () => {
 
       }
     })
+  }
+
+  candidatarClick(idVaga: any) {
+    console.log('realizando candidatura...');
+    if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
+      this.candidaturaService.salvarCandidatura(this.loginService.objUsuarioAutenticado.id, idVaga).subscribe({
+        next: (data) => {
+          if (!this.appService.isNullOrUndefined(data)) {
+            this.appService.mensagem("Candidatura realizada com sucesso!");
+            this.router.navigate(['candidato/candidaturas']);
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+
+        }
+      })
+    }
   }
 
   buscar() {
