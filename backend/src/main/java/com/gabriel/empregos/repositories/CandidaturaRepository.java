@@ -13,6 +13,9 @@ public interface CandidaturaRepository extends JpaRepository<Candidatura, Long> 
 	@Query(value = "SELECT * FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato", nativeQuery = true)
 	List<Candidatura> findAllByCandidato(@Param(value = "idCandidato") Integer idCandidato);
 	
+	@Query(value = "SELECT * FROM TB_CANDIDATURAS AS obj WHERE obj.vaga_id = :idVaga", nativeQuery = true)
+	List<Candidatura> findAllByVaga(@Param(value = "idVaga") Integer idVaga);
+	
 	@Query(value = "SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato", nativeQuery = true)
 	long buscaNumeroCandidaturas(@Param(value = "idCandidato") Integer idCandidato);
 	

@@ -1,3 +1,5 @@
+import { NgxMaskModule } from 'ngx-mask';
+import { DialogCurriculoComponent } from './dialog-curriculo/dialog-curriculo.component';
 import { MaterialModule } from './../../material.module';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,12 +12,14 @@ import { DialogComponent } from './dialog/dialog.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    DialogComponent
+    DialogComponent,
+    DialogCurriculoComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     HeaderComponent,

@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>Detalhes do currículo</h2>
+<hr>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <h2>{{data.nome}}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>Resumo:</p>
+    <div class="col-md-12">
+      <p>{{data.resumo}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>Data de nascimento: {{data.dataNascimento | date: 'dd/MM/yyyy'}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>Telefone: {{data.telefone | mask: '(00) 0000-0000'}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p>Telefone celular: {{data.telefoneCelular | mask: '(00) 00000-0000'}}</p>
+    </div>
+  </div>
+
+  <hr>
+
+  Endereço...
+
+  <hr>
+
+  Formações...
+
+  <hr>
+
+  Experiências...
+
+  <hr>
+
+  Redes sociais...
+
+  <!-- <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>Quantidade de Vagas: {{data.quantidade}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p>Salário: {{data.salario | currency:'BRL'}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>Localização: <i class="bi bi-geo-alt"></i> {{data.localizacao}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p><i class="bi bi-calendar"></i> Expira em: {{data.expiracao | date: 'dd/MM/yyyy'}}</p>
+    </div>
+  </div> -->
+
+  <hr>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button color="primary" mat-button mat-raised-button mat-dialog-close>Voltar</button>
+  <button *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="openCandidatar()" class="btn-blue" mat-button mat-raised-button cdkFocusInitial>Candidatar-se</button>
+</mat-dialog-actions>

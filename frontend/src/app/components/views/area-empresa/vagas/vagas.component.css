@@ -49,3 +49,10 @@ mat-form-field {
   font-size: 18px;
   width: 20%;
 }
+
+.editar {
+  font-size: 16px;
+  font-weight: bold;
+  color: #bc511b;
+  cursor: pointer;
+}

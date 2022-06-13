@@ -29,6 +29,11 @@ export class CandidaturaService {
     return this.http.get(url);
   }
 
+  findAllByVaga(idVaga: number): Observable<any> {
+    const url = `${this.baseUrl}/candidaturas/vaga/${idVaga}`;
+    return this.http.get(url);
+  }
+
   getLista(): Observable<any> {
     const url = `${this.baseUrl}/candidaturas`;
     return this.http.get(url);

@@ -10,8 +10,8 @@
 
           <div *ngFor="let vaga of vagas" class="card">
             <div class="card-header d-flex justify-content-between">
-              <p class="nome-vaga">{{vaga.nome}}</p>
-              <button (click)="editarClick(vaga)" class="btn btn-orange"><i class="bi bi-pencil"></i> Editar</button>
+              <p class="nome-vaga">{{vaga.id}} - {{vaga.nome}}</p>
+              <span (click)="editarClick(vaga)" class="editar"><i class="bi bi-pencil"></i> Editar</span>
             </div>
             <div class="card-body">
               <!-- <h5 class="card-title">Special title treatment</h5> -->
@@ -30,31 +30,9 @@
                 <div class="col-md-3">
                   <p>Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
                 </div>
-                <!-- <div class="col-md-2">
-                  <button class="btn btn-blue">Opções</button>
-                </div> -->
-                <!-- <div class="col-md-8 d-flex justify-content-end">
-                  <button type="button" class="btn btn-blue btn-status"
-                  [ngClass]="{'btn-verde': candidatura.status === 0}"
-                  [disabled]="candidatura.status !== 0">
-                    Recebido
-                  </button>
-                  <button type="button" class="btn btn-blue btn-status"
-                  [ngClass]="{'btn-verde': candidatura.status === 1}"
-                  [disabled]="candidatura.status !== 1">
-                    Revisado
-                  </button>
-                  <button type="button" class="btn btn-blue btn-status"
-                  [ngClass]="{'btn-verde': candidatura.status === 2}"
-                  [disabled]="candidatura.status !== 2">
-                    Pré-selecionado
-                  </button>
-                  <button type="button" class="btn btn-blue btn-status"
-                  [ngClass]="{'btn-verde': candidatura.status === 3}"
-                  [disabled]="candidatura.status !== 3">
-                    Finalista
-                  </button>
-                </div> -->
+                <div class="col-md-3">
+                  <button (click)="exibirCandidatosClick(vaga)" class="btn btn-blue" style="width: 100%;">Ver candidatos</button>
+                </div>
               </div>
             </div>
           </div>
@@ -116,6 +94,31 @@
             </div>
 
             <button (click)="salvarVagaClick()" class="btn btn-blue btn-salvar">Salvar vaga</button>
+          </div>
+
+        </div>
+
+        <div *ngSwitchCase="state.StateCandidatos">
+          <div class="d-flex justify-content-between align-items-end">
+            <p class="texto-vagas">Candidatos da vaga: {{vaga.id}} - {{vaga.nome}}</p>
+            <button (click)="voltarClick()" class="btn btn-red"><i class="bi bi-arrow-return-left"></i> Voltar</button>
+          </div>
+
+          <div *ngFor="let candidatura of candidaturas" class="card" style="margin-top: 10px;">
+            <div class="card-header d-flex justify-content-between">
+              <p class="nome-vaga">{{candidatura.candidato.id}} - {{candidatura.candidato.nome}}</p>
+            </div>
+            <div class="card-body">
+              <hr>
+              <div class="row">
+                <div class="col-md-3">
+                  <p>No AdJobs desde: {{candidatura.candidato.dataCadastro | date: 'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="col-md-3">
+                  <button (click)="exibirCurriculoClick(candidatura.candidato.id)" class="btn btn-blue" style="width: 100%;">Exibir currículo completo</button>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>

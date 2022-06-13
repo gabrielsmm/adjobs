@@ -17,6 +17,14 @@ export class AppService {
     })
   }
 
+  mensagemTime(str: string, duration: number){
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: duration
+    })
+  }
+
   goBack(){
     this.location.back();
   }

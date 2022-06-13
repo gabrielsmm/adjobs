@@ -13,7 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .btn-orange {
-  background-color: #e29c5e;
+  background-color: #bc511b;
   color: white;
 }
 
@@ -23,11 +23,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .btn-green {
-  background-color: #257F1B;
+  background-color: #14a800;
   color: white;
 }
 
 .btn-red {
-  background-color: #B40404;
+  background-color: #b7253e;
   color: white;
 }

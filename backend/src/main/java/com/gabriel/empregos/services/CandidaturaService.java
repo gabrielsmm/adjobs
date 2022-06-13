@@ -28,6 +28,17 @@ public class CandidaturaService {
 	@Autowired
 	private VagaService vagaService;
 	
+	public Candidatura salvarCandidatura(Integer idCandidato, Integer idVaga) {
+		try {
+			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
+			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
+			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
+			return repository.save(obj);
+		} catch(org.springframework.dao.DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Erro ao inserir a candidatura " + e.getMessage());
+		}
+	}
+	
 	public Candidatura findById(Long id) {
 		Optional<Candidatura> obj = this.repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName())); //caso nao encontre retorna null
@@ -42,20 +53,13 @@ public class CandidaturaService {
 		return repository.findAllByCandidato(idCandidato);
 	}
 	
+	public List<Candidatura> findAllByVaga(Integer idVaga) {
+		return repository.findAllByCandidato(idVaga);
+	}
+	
 	@Transactional(readOnly = true)
 	public Long buscaNumeroCandidaturas(Integer idCandidato) {
 		return repository.buscaNumeroCandidaturas(idCandidato);
-	}
-	
-	public Candidatura salvarCandidatura(Integer idCandidato, Integer idVaga) {
-		try {
-			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
-			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
-			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
-			return repository.save(obj);
-		} catch(org.springframework.dao.DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Erro ao inserir a candidatura " + e.getMessage());
-		}
 	}
 	
 //	public Candidato create(Candidato obj) {

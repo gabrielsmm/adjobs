@@ -7,8 +7,8 @@ export class Curriculo {
   candidato: Candidato
   nome: string
   resumo?: string
-  telefone?: string
-  telefoneCelular?: string
+  telefone: string
+  telefoneCelular: string
   dataNascimento?: Date
   estadoCivil?: number
   sexo?: number

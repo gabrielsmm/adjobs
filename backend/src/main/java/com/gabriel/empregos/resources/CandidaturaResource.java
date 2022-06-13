@@ -48,6 +48,12 @@ public class CandidaturaResource {
 		return ResponseEntity.ok(list);
 	}
 	
+	@GetMapping(value = "/vaga/{idVaga}")
+	public ResponseEntity<List<Candidatura>> findAllByVaga(@PathVariable Integer idVaga) {
+		List<Candidatura> list = service.findAllByVaga(idVaga);
+		return ResponseEntity.ok(list);
+	}
+	
 	@GetMapping(value = "/numero-candidaturas/{idCandidato}")
 	public ResponseEntity<?> buscaNumeroCandidaturas(@PathVariable Integer idCandidato) {
 		return ResponseEntity.ok().body(service.buscaNumeroCandidaturas(idCandidato));
