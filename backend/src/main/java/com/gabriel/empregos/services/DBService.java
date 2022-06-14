@@ -132,8 +132,8 @@ public class DBService {
 		
 		this.candidaturaRepository.saveAll(Arrays.asList(can1, can2, can3));
 		
-		Curriculo crr1 = new Curriculo(null, c1, "Gabriel", "Sou estudante bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.SOLTEIRO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Seila", "Rua das maringueiras", "0", "Quadra 230 Lote 98", false, "www.linkedin.com.br", "", "www.instagram.com.br", "gmportfolios.com");
-		Curriculo crr2 = new Curriculo(null, c2, "Jorge", "Sou estudante dois bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.CASADO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Porai", "Rua das maringueiras", "0", "Quadra 231 Lote 99", false, "www.linkedin.com.br", "", "www.instagram.com.br", "jorgeportfolios.com");
+		Curriculo crr1 = new Curriculo(null, c1, "Gabriel", "Sou estudante bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.SOLTEIRO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Seila", "Rua das maringueiras", "0", "Quadra 230 Lote 98", false, "https://www.linkedin.com.br", "", "https://www.instagram.com.br", "gmportfolios.com");
+		Curriculo crr2 = new Curriculo(null, c2, "Jorge", "Sou estudante dois bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.CASADO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Porai", "Rua das maringueiras", "0", "Quadra 231 Lote 99", false, "https://www.linkedin.com.br", "", "https://www.instagram.com.br", "jorgeportfolios.com");
 		
 		CurriculoFormacao cf1 = new CurriculoFormacao(null, "UNIP", FormacaoNivel.SUPERIOR, FormacaoStatus.CURSANDO, "Ciencias da Computação", 1, 2019, 12, 2022, crr1);
 		

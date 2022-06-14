@@ -54,7 +54,7 @@ public class CandidaturaService {
 	}
 	
 	public List<Candidatura> findAllByVaga(Integer idVaga) {
-		return repository.findAllByCandidato(idVaga);
+		return repository.findAllByVaga(idVaga);
 	}
 	
 	@Transactional(readOnly = true)

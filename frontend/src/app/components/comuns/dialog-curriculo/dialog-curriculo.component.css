@@ -1,3 +1,12 @@
 p {
   font-size: 16px;
 }
+
+.mat-typography {
+  font-size: 12px;
+}
+
+.link {
+  font-size: 20px;
+  text-decoration: none;
+}

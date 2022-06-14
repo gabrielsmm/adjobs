@@ -148,7 +148,7 @@ export class VagasComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogCurriculoComponent, {
           data: data,
           height: '600px',
-          width: '700px'
+          width: '800px'
         });
 
         dialogRef.afterClosed().subscribe(result => {
