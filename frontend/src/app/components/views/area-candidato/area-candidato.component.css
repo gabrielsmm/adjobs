@@ -1,3 +1,8 @@
+.background {
+  min-height: 70%;
+  background-color: #dde8ee;
+}
+
 .nav-link {
   font-size: 18px;
   padding: 20px;

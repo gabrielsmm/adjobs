@@ -1,69 +1,153 @@
-<div class="background">
-  <div class="container">
-    <div class="card">
-      <div class="row">
-        <div class="col-md-3">
-          <p class="titulos">DADOS PESSOAIS</p>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-3">
+        <p class="titulos">DADOS PESSOAIS</p>
+      </div>
+
+      <div class="col-md-9">
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.nome" matInput placeholder="Nome completo" name="nome" required>
+            </mat-form-field>
+          </div>
         </div>
 
-        <div class="col-md-9">
-
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.nome" matInput placeholder="Nome completo" name="nome" required>
-              </mat-form-field>
-            </div>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Resumo</mat-label>
+              <textarea [(ngModel)]="curriculo.resumo" matInput></textarea>
+            </mat-form-field>
           </div>
+        </div>
+
+        <div class="row align-items-end">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Data de nascimento</mat-label>
+              <input matInput [matDatepicker]="picker" [value]="curriculo.dataNascimento">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.telefone" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.telefoneCelular" matInput placeholder="Telefone celular" name="telefoneCelular" mask="(00)00000-0000" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Estado Civil</mat-label>
+              <mat-select [(ngModel)]="curriculo.estadoCivil">
+                <mat-option *ngFor="let estadoCivil of estadosCivis" [value]="estadoCivil.value">
+                  {{estadoCivil.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select [(ngModel)]="curriculo.sexo">
+                <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
+                  {{sexo.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="curriculo.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.estado" [readonly]="true" matInput placeholder="Estado" name="estado" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.cidade" [readonly]="true" matInput placeholder="Cidade" name="cidade" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.bairro" [readonly]="true" matInput placeholder="Bairro" name="bairro" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.rua" [readonly]="true" matInput placeholder="Rua" name="rua" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="curriculo.complemento" matInput placeholder="Complemento" name="complemento" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <section>
+          <mat-checkbox [(ngModel)]="curriculo.pessoaComDeficiencia">Pessoa com deficiência</mat-checkbox>
+        </section>
+
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <p class="titulos">FORMAÇÕES</p>
+      </div>
+
+      <div class="col-md-9">
+        <mat-expansion-panel [(expanded)]="expandirFormacoes" (opened)="abriuFormacoes()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              + Adicionar formação acadêmica
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
           <div class="row">
             <div class="col-md-12">
               <mat-form-field>
-                <mat-label>Resumo</mat-label>
-                <textarea [(ngModel)]="curriculo.resumo" matInput></textarea>
+                <input [(ngModel)]="formacao.nomeInstituicao" matInput placeholder="Nome da Instituição" name="nomeInstituicao" required>
               </mat-form-field>
             </div>
           </div>
 
           <div class="row align-items-end">
-            <div class="col-md-4">
-              <mat-form-field appearance="fill">
-                <mat-label>Data de nascimento</mat-label>
-                <input matInput [matDatepicker]="picker" [value]="curriculo.dataNascimento">
-                <mat-hint>DD/MM/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.telefone" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.telefoneCelular" matInput placeholder="Telefone celular" name="telefoneCelular" mask="(00)00000-0000" required>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
             <div class="col-md-6">
-              <mat-form-field appearance="fill">
-                <mat-label>Estado Civil</mat-label>
-                <mat-select [(ngModel)]="curriculo.estadoCivil">
-                  <mat-option *ngFor="let estadoCivil of estadosCivis" [value]="estadoCivil.value">
-                    {{estadoCivil.viewValue}}
-                  </mat-option>
-                </mat-select>
+              <mat-form-field>
+                <input [(ngModel)]="formacao.curso" matInput placeholder="Curso" name="curso" required>
               </mat-form-field>
             </div>
             <div class="col-md-6">
               <mat-form-field appearance="fill">
-                <mat-label>Sexo</mat-label>
-                <mat-select [(ngModel)]="curriculo.sexo">
-                  <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
-                    {{sexo.viewValue}}
+                <mat-label>Nível</mat-label>
+                <mat-select [(ngModel)]="formacao.nivel">
+                  <mat-option *ngFor="let nivel of nivelFormacao" [value]="nivel.value">
+                    {{nivel.viewValue}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -72,266 +156,180 @@
 
           <div class="row">
             <div class="col-md-6">
-              <mat-form-field style="display: block;">
-                <input [(ngModel)]="curriculo.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.estado" [readonly]="true" matInput placeholder="Estado" name="estado" required>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.cidade" [readonly]="true" matInput placeholder="Cidade" name="cidade" required>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.bairro" [readonly]="true" matInput placeholder="Bairro" name="bairro" required>
+              <mat-form-field appearance="fill">
+                <mat-label>Situação</mat-label>
+                <mat-select [(ngModel)]="formacao.status">
+                  <mat-option *ngFor="let status of statusFormacao" [value]="status.value">
+                    {{status.viewValue}}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.rua" [readonly]="true" matInput placeholder="Rua" name="rua" required>
-              </mat-form-field>
+              <p>Início</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="formacao.mesInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="2" matInput placeholder="MM" name="mesInicio" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="formacao.anoInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
+                  </mat-form-field>
+                </div>
+              </div>
             </div>
             <div class="col-md-6">
-              <mat-form-field>
-                <input [(ngModel)]="curriculo.complemento" matInput placeholder="Complemento" name="complemento" required>
-              </mat-form-field>
+              <p>Conclusão esperada</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="formacao.mesConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="formacao.anoConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
+                  </mat-form-field>
+                </div>
+              </div>
             </div>
           </div>
 
-          <section>
-            <mat-checkbox [(ngModel)]="curriculo.pessoaComDeficiencia">Pessoa com deficiência</mat-checkbox>
-          </section>
+          <mat-action-row>
+            <button (click)="salvarFormacao()" class="btn btn-blue">Salvar formação</button>
+            <button (click)="cancelarFormacao()" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
+          </mat-action-row>
+        </mat-expansion-panel>
 
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-          <p class="titulos">FORMAÇÕES</p>
-        </div>
-
-        <div class="col-md-9">
-          <mat-expansion-panel [(expanded)]="expandirFormacoes" (opened)="abriuFormacoes()">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                + Adicionar formação acadêmica
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field>
-                  <input [(ngModel)]="formacao.nomeInstituicao" matInput placeholder="Nome da Instituição" name="nomeInstituicao" required>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row align-items-end">
-              <div class="col-md-6">
-                <mat-form-field>
-                  <input [(ngModel)]="formacao.curso" matInput placeholder="Curso" name="curso" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>Nível</mat-label>
-                  <mat-select [(ngModel)]="formacao.nivel">
-                    <mat-option *ngFor="let nivel of nivelFormacao" [value]="nivel.value">
-                      {{nivel.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>Situação</mat-label>
-                  <mat-select [(ngModel)]="formacao.status">
-                    <mat-option *ngFor="let status of statusFormacao" [value]="status.value">
-                      {{status.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <p>Início</p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="formacao.mesInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="2" matInput placeholder="MM" name="mesInicio" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="formacao.anoInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <p>Conclusão esperada</p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="formacao.mesConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="formacao.anoConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <mat-action-row>
-              <button (click)="salvarFormacao()" class="btn btn-blue">Salvar formação</button>
-              <button (click)="cancelarFormacao()" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
-            </mat-action-row>
-          </mat-expansion-panel>
-
-          <div *ngIf="formacoes.length > 0">
-            <div *ngFor="let formacao of formacoes" class="card-infos d-flex justify-content-around align-items-center">
-              <p>{{formacao.nomeInstituicao}} - {{formacao.curso}}</p>
-              <p>{{formacao.mesInicio}}/{{formacao.anoInicio}} - {{formacao.mesConclusao}}/{{formacao.anoConclusao}}</p>
-            </div>
+        <div *ngIf="formacoes.length > 0">
+          <div *ngFor="let formacao of formacoes" class="card-infos d-flex justify-content-around align-items-center">
+            <p>{{formacao.nomeInstituicao}} - {{formacao.curso}}</p>
+            <p>{{formacao.mesInicio}}/{{formacao.anoInicio}} - {{formacao.mesConclusao}}/{{formacao.anoConclusao}}</p>
           </div>
         </div>
       </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-          <p class="titulos">EXPERIÊNCIAS</p>
-        </div>
-
-        <div class="col-md-9">
-          <mat-expansion-panel [(expanded)]="expandirExperiencias" (opened)="abriuExperiencias()">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                + Adicionar experiência profissional
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field>
-                  <input [(ngModel)]="experiencia.nomeEmpresa" matInput placeholder="Nome da Empresa" name="nomeEmpresa" required>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row align-items-end">
-              <div class="col-md-6">
-                <mat-form-field>
-                  <input [(ngModel)]="experiencia.cargo" matInput placeholder="Cargo" name="cargo" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field>
-                  <input currencyMask [(ngModel)]="experiencia.salario" (keypress)="appService.keyPressNumbers($event)" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Salário" name="salario" required>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <p>Início</p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="experiencia.mesInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="experiencia.anoInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <p>Conclusão</p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="experiencia.mesConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <input [(ngModel)]="experiencia.anoConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <mat-checkbox [(ngModel)]="experiencia.atual">Experiência atual</mat-checkbox>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field>
-                  <mat-label>Descrição</mat-label>
-                  <textarea [(ngModel)]="experiencia.descricao" matInput></textarea>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <mat-action-row>
-              <button (click)="salvarExperiencia()" class="btn btn-blue">Salvar experiência</button>
-              <button (click)="cancelarExperiencia()" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
-            </mat-action-row>
-          </mat-expansion-panel>
-
-          <div *ngIf="experiencias.length > 0">
-            <div *ngFor="let experiencia of experiencias" class="card-infos d-flex justify-content-around align-items-center">
-              <p>{{experiencia.nomeEmpresa}} - {{experiencia.cargo}}</p>
-              <p>{{experiencia.mesInicio}}/{{experiencia.anoInicio}} - {{experiencia.mesConclusao}}/{{experiencia.anoConclusao}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-          <p class="titulos">REDES SOCIAIS</p>
-        </div>
-
-        <div class="col-md-9">
-          <mat-form-field>
-            <input [(ngModel)]="curriculo.linkedIn" matInput placeholder="LinkedIn" name="linkedin" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input [(ngModel)]="curriculo.facebook" matInput placeholder="Facebook" name="facebook" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input [(ngModel)]="curriculo.instagram" matInput placeholder="Instagram" name="instagram" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input [(ngModel)]="curriculo.site" matInput placeholder="Site" name="site" required>
-          </mat-form-field>
-        </div>
-      </div>
-      <button (click)="salvarCurriculo()" class="btn btn-blue btn-salvar">Salvar currículo</button>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <p class="titulos">EXPERIÊNCIAS</p>
+      </div>
+
+      <div class="col-md-9">
+        <mat-expansion-panel [(expanded)]="expandirExperiencias" (opened)="abriuExperiencias()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              + Adicionar experiência profissional
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <input [(ngModel)]="experiencia.nomeEmpresa" matInput placeholder="Nome da Empresa" name="nomeEmpresa" required>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row align-items-end">
+            <div class="col-md-6">
+              <mat-form-field>
+                <input [(ngModel)]="experiencia.cargo" matInput placeholder="Cargo" name="cargo" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input currencyMask [(ngModel)]="experiencia.salario" (keypress)="appService.keyPressNumbers($event)" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Salário" name="salario" required>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <p>Início</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="experiencia.mesInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="experiencia.anoInicio" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p>Conclusão</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="experiencia.mesConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="2" min="1" max="12" matInput placeholder="MM" name="mesInicio" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="experiencia.anoConclusao" (keypress)="appService.keyPressNumbers($event)" maxlength="4" matInput placeholder="AAAA" name="anoInicio" required>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <mat-checkbox [(ngModel)]="experiencia.atual">Experiência atual</mat-checkbox>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Descrição</mat-label>
+                <textarea [(ngModel)]="experiencia.descricao" matInput></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-action-row>
+            <button (click)="salvarExperiencia()" class="btn btn-blue">Salvar experiência</button>
+            <button (click)="cancelarExperiencia()" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <div *ngIf="experiencias.length > 0">
+          <div *ngFor="let experiencia of experiencias" class="card-infos d-flex justify-content-around align-items-center">
+            <p>{{experiencia.nomeEmpresa}} - {{experiencia.cargo}}</p>
+            <p>{{experiencia.mesInicio}}/{{experiencia.anoInicio}} - {{experiencia.mesConclusao}}/{{experiencia.anoConclusao}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <p class="titulos">REDES SOCIAIS</p>
+      </div>
+
+      <div class="col-md-9">
+        <mat-form-field>
+          <input [(ngModel)]="curriculo.linkedIn" matInput placeholder="LinkedIn" name="linkedin" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="curriculo.facebook" matInput placeholder="Facebook" name="facebook" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="curriculo.instagram" matInput placeholder="Instagram" name="instagram" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="curriculo.site" matInput placeholder="Site" name="site" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <button (click)="salvarCurriculo()" class="btn btn-blue btn-salvar">Salvar currículo</button>
   </div>
 </div>

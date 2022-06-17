@@ -101,7 +101,6 @@ export class EmpregosComponent implements OnInit {
   }
 
   candidatarClick(idVaga: any) {
-    console.log('realizando candidatura...');
     if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
       this.candidaturaService.salvarCandidatura(this.loginService.objUsuarioAutenticado.id, idVaga).subscribe({
         next: (data) => {
@@ -111,7 +110,9 @@ export class EmpregosComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error(error);
+          if (!this.appService.isNullOrUndefined(error.error.error) && error.error.error != '') {
+            this.appService.mensagemErro(error.error.error);
+          }
         },
         complete: () => {
 

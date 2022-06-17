@@ -1,7 +1,7 @@
 .footer {
   color: white;
   background-color: #0e76a8 !important;
-  min-height: 15%;
+  min-height: 10%;
   position: static;
   bottom: 0;
   z-index: 1000;

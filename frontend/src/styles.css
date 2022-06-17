@@ -28,6 +28,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .btn-red {
-  background-color: #b7253e;
+  background-color: rgb(153, 50, 50);
   color: white;
+}
+
+.snack-background-red{
+  background-color: rgb(153, 50, 50);
+  color: #fff;
 }

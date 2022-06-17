@@ -53,4 +53,8 @@ export class CandidaturasComponent implements OnInit {
     });
   }
 
+  excluirCandidaturaClick(candidatura: Candidatura) {
+    console.log('Excluindo candidatura...');
+  }
+
 }

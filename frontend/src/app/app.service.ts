@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
 @Injectable({
@@ -23,6 +23,15 @@ export class AppService {
       verticalPosition: 'top',
       duration: duration
     })
+  }
+
+  mensagemErro(str: string){
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['snack-background-red'];
+    config.duration = 3000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'top';
+    this._snack.open(`${str}`, '', config);
   }
 
   goBack(){

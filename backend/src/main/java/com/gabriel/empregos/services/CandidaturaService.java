@@ -30,6 +30,9 @@ public class CandidaturaService {
 	
 	public Candidatura salvarCandidatura(Integer idCandidato, Integer idVaga) {
 		try {
+			if (repository.verificaExisteCandidatura(idCandidato, idVaga) != null) {
+				throw new DataIntegrityViolationException("Candidato já possui candidatura para a vaga selecionada");
+			}
 			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
 			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
 			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
