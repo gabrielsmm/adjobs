@@ -1,13 +1,13 @@
-import { Router } from '@angular/router';
-import { AppService } from './../../../app.service';
-import { LoginService } from './../../../services/login.service';
-import { CandidaturaService } from './../../../services/candidatura.service';
-import { DialogComponent } from './../../comuns/dialog/dialog.component';
-import { Vaga } from '../../../models/vaga.model';
-import { VagaService } from './../../../services/vaga.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+
+import { Vaga } from '../../../models/vaga.model';
+import { AppService } from './../../../app.service';
+import { CandidaturaService } from './../../../services/candidatura.service';
+import { LoginService } from './../../../services/login.service';
+import { VagaService } from './../../../services/vaga.service';
+import { DialogVagaComponent } from './../../comuns/dialog-vaga/dialog-vaga.component';
 
 @Component({
   selector: 'app-empregos',
@@ -81,7 +81,7 @@ export class EmpregosComponent implements OnInit {
     this.vagaService.getDados(idVaga).subscribe({
       next: (data: Vaga) => {
         this.vaga = data;
-        const dialogRef = this.dialog.open(DialogComponent, {
+        const dialogRef = this.dialog.open(DialogVagaComponent, {
           data: this.vaga,
           height: '600px',
           width: '700px'
@@ -102,7 +102,7 @@ export class EmpregosComponent implements OnInit {
 
   candidatarClick(idVaga: any) {
     if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
-      this.candidaturaService.salvarCandidatura(this.loginService.objUsuarioAutenticado.id, idVaga).subscribe({
+      this.candidaturaService.create(this.loginService.objUsuarioAutenticado.id, idVaga).subscribe({
         next: (data) => {
           if (!this.appService.isNullOrUndefined(data)) {
             this.appService.mensagem("Candidatura realizada com sucesso!");

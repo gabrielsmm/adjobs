@@ -1,18 +1,20 @@
-import { NgxMaskModule } from 'ngx-mask';
-import { DialogCurriculoComponent } from './dialog-curriculo/dialog-curriculo.component';
-import { MaterialModule } from './../../material.module';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
+
+import { MaterialModule } from './../../material.module';
+import { DialogConfirmacaoComponent } from './dialog-confirmacao/dialog-confirmacao.component';
+import { DialogCurriculoComponent } from './dialog-curriculo/dialog-curriculo.component';
+import { DialogVagaComponent } from './dialog-vaga/dialog-vaga.component';
 import { FooterComponent } from './footer/footer.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    DialogComponent,
+    DialogVagaComponent,
     DialogCurriculoComponent
   ],
   imports: [
@@ -25,6 +27,7 @@ import { DialogComponent } from './dialog/dialog.component';
     HeaderComponent,
     FooterComponent
   ],
-  providers: []
+  providers: [],
+  entryComponents: [DialogConfirmacaoComponent]
 })
 export class ComunsModule { }

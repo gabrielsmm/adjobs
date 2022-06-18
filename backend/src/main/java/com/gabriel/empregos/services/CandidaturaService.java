@@ -28,20 +28,6 @@ public class CandidaturaService {
 	@Autowired
 	private VagaService vagaService;
 	
-	public Candidatura salvarCandidatura(Integer idCandidato, Integer idVaga) {
-		try {
-			if (repository.verificaExisteCandidatura(idCandidato, idVaga) != null) {
-				throw new DataIntegrityViolationException("Candidato já possui candidatura para a vaga selecionada");
-			}
-			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
-			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
-			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
-			return repository.save(obj);
-		} catch(org.springframework.dao.DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Erro ao inserir a candidatura " + e.getMessage());
-		}
-	}
-	
 	public Candidatura findById(Long id) {
 		Optional<Candidatura> obj = this.repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName())); //caso nao encontre retorna null
@@ -58,6 +44,33 @@ public class CandidaturaService {
 	
 	public List<Candidatura> findAllByVaga(Integer idVaga) {
 		return repository.findAllByVaga(idVaga);
+	}
+	
+	public Candidatura create(Integer idCandidato, Integer idVaga) {
+		try {
+			if (repository.verificaExistenciaCandidatura(idCandidato, idVaga) != null) {
+				throw new DataIntegrityViolationException("Candidato já possui candidatura para a vaga selecionada");
+			}
+			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
+			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
+			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
+			return repository.save(obj);
+		} catch(org.springframework.dao.DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Erro ao inserir a candidatura " + e.getMessage());
+		}
+	}
+	
+	public Candidatura update(Long id, Candidatura obj) {
+		Candidatura newObj = this.findById(id);
+		this.updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+	
+	private void updateData(Candidatura newObj, Candidatura obj) {
+		newObj.setCandidato(obj.getCandidato());
+		newObj.setVaga(obj.getVaga());
+		newObj.setStatus(obj.getStatus());
+		newObj.setDataCandidatura(obj.getDataCandidatura());
 	}
 	
 	@Transactional(readOnly = true)

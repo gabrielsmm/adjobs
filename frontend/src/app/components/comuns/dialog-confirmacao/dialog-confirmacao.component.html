@@ -1,0 +1,6 @@
+<h1 md-dialog-title>Confirmação</h1>
+<p md-dialog-content>{{confirmMessage}}</p>
+<div md-dialog-actions style="margin-top: 10px;">
+  <button md-button class="btn btn-blue" (click)="dialogRef.close(true)">Confirmar</button>
+  <button md-button class="btn btn-red" (click)="dialogRef.close(false)">Cancelar</button>
+</div>

@@ -14,9 +14,14 @@ export class CandidaturaService {
 
   constructor(private http: HttpClient) { }
 
-  salvarCandidatura(idCandidato: number, idVaga: number) {
+  create(idCandidato: number, idVaga: number) {
     const url = `${this.baseUrl}/candidaturas/candidatar/${idCandidato}/${idVaga}`;
     return this.http.get<Candidatura>(url);
+  }
+
+  update(candidatura: Candidatura): Observable<Candidatura>{
+    const url = `${this.baseUrl}/candidaturas/${candidatura.id}`;
+    return this.http.put<Candidatura>(url, candidatura);
   }
 
   findById(id: any): Observable<Candidatura>{
@@ -47,11 +52,6 @@ export class CandidaturaService {
   // create(candidato: Candidato): Observable<Candidato>{
   //   const url = `${this.baseUrl}/candidatos`;
   //   return this.http.post<Candidato>(url, candidato);
-  // }
-
-  // update(categoria: Categoria): Observable<void>{
-  //   const url = `${this.baseUrl}/categorias/${categoria.id}`;
-  //   return this.http.put<void>(url, categoria);
   // }
 
   // delete(id: string): Observable<void>{
