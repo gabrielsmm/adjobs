@@ -1,6 +1,7 @@
 package com.gabriel.empregos.util;
 
 import java.security.SecureRandom;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,53 +26,30 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 		this(-1);
 	}
 
-	/**
-	 * @param strength the log rounds to use, between 4 and 31
-	 */
 	public CustomPasswordEncoder(int strength) {
 		this(strength, null);
 	}
 
-	/**
-	 * @param version the version of bcrypt, can be 2a,2b,2y
-	 */
 	public CustomPasswordEncoder(CustomPasswordEncoderVersion version) {
 		this(version, null);
 	}
 
-	/**
-	 * @param version the version of bcrypt, can be 2a,2b,2y
-	 * @param random the secure random instance to use
-	 */
 	public CustomPasswordEncoder(CustomPasswordEncoderVersion version, SecureRandom random) {
 		this(version, -1, random);
 	}
 
-	/**
-	 * @param strength the log rounds to use, between 4 and 31
-	 * @param random the secure random instance to use
-	 */
 	public CustomPasswordEncoder(int strength, SecureRandom random) {
 		this(CustomPasswordEncoderVersion.$2A, strength, random);
 	}
 
-	/**
-	 * @param version the version of bcrypt, can be 2a,2b,2y
-	 * @param strength the log rounds to use, between 4 and 31
-	 */
 	public CustomPasswordEncoder(CustomPasswordEncoderVersion version, int strength) {
 		this(version, strength, null);
 	}
 
-	/**
-	 * @param version the version of bcrypt, can be 2a,2b,2y
-	 * @param strength the log rounds to use, between 4 and 31
-	 * @param random the secure random instance to use
-	 */
 	public CustomPasswordEncoder(CustomPasswordEncoderVersion version, int strength, SecureRandom random) {
-//		if (strength != -1 && (strength < BCrypt.MIN_LOG_ROUNDS || strength > BCrypt.MAX_LOG_ROUNDS)) {
-//			throw new IllegalArgumentException("Bad strength");
-//		}
+		if (strength != -1 && (strength < 4 || strength > 31)) {
+			throw new IllegalArgumentException("Bad strength");
+		}
 		this.version = version;
 		this.strength = (strength == -1) ? 10 : strength;
 		this.random = random;
@@ -82,7 +60,7 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 		if (rawPassword == null) {
 			throw new IllegalArgumentException("rawPassword cannot be null");
 		}
-		rawPassword = reverse(rawPassword.toString(), rawPassword.toString().length()-1);
+		rawPassword = reverseCustom(rawPassword.toString());
 		String salt = getSalt();
 		return BCrypt.hashpw(rawPassword.toString(), salt);
 	}
@@ -107,7 +85,7 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 			this.logger.warn("Encoded password does not look like BCrypt");
 			return false;
 		}
-		rawPassword = reverse(rawPassword.toString(), rawPassword.toString().length()-1);
+		rawPassword = reverseCustom(rawPassword.toString());
 		return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
 	}
 
@@ -126,15 +104,25 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 	}
 	
 	/*
-	 * Reverte a string passada de forma recursiva
+	 * Reverte a string passada como parâmetro
 	 */
-	private String reverse(String str, int index){
-		if(index == 0){
-			return str.charAt(0) + "";
-		}
-		char letter = str.charAt(index);
-		return letter + reverse(str, index-1);
-	}
+    private String reverse(String str){
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
+        }
+        StringBuilder strb = new StringBuilder();
+        while (!stack.empty()) {
+            strb.append(stack.pop());
+        }
+        return strb.toString();
+    }
+    
+    private String reverseCustom(String str){
+        String parte1 = reverse(str.substring(0, str.length()/2));
+        String parte2 = reverse(str.substring(str.length()/2, str.length()));
+        return new StringBuilder().append(parte1).append(parte2).toString();
+    }
 
 	/**
 	 * Salva a versão padrão para uso na configuração.

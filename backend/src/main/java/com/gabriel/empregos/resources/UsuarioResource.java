@@ -3,13 +3,16 @@ package com.gabriel.empregos.resources;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gabriel.empregos.dtos.UsuarioDTO;
 import com.gabriel.empregos.entities.Usuario;
 import com.gabriel.empregos.services.UsuarioService;
 
@@ -21,17 +24,17 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService service;
 	
+	@PostMapping(value = "/login")
+	public ResponseEntity<UsuarioDTO> findByEmail(@Valid @RequestBody Usuario obj, @RequestHeader String authorization){
+		Usuario usuario = this.service.login(obj, authorization);
+		return new ResponseEntity<UsuarioDTO>(new UsuarioDTO(usuario, "Bearer "), HttpStatus.ACCEPTED);
+	}
+	
 //	@GetMapping(value = "/{id}")
 //	public ResponseEntity<Usuario> findById(@PathVariable Integer id){
 //		Usuario obj = this.usuarioService.findById(id);
 //		return ResponseEntity.ok().body(obj);
 //	}
-	
-	@PostMapping(value = "/login")
-	public ResponseEntity<Usuario> findByEmail(@Valid @RequestBody Usuario obj){
-		Usuario usuario = this.service.findByEmail(obj);
-		return ResponseEntity.ok().body(usuario);
-	}
 	
 //	@GetMapping
 //	public ResponseEntity<List<UsuarioDTO>> findAll(){

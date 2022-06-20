@@ -40,6 +40,7 @@ public class Usuario implements Serializable {
 	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
 //	@JsonIgnore
 	private String senha;
+	private String token;
 	private Date dataCadastro;
 	
 	@Enumerated(value = EnumType.ORDINAL)
@@ -86,6 +87,14 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public Date getDataCadastro() {

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.appService.mensagem(err.error.errors[i].message);
         }
       } else {
-        this.appService.mensagem("Usuário ou senha incorretos!");
+        this.appService.mensagemErro("Usuário ou senha incorretos!");
       }
     });
   }
