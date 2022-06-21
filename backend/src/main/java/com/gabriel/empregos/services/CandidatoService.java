@@ -21,9 +21,6 @@ public class CandidatoService {
 	@Autowired
 	private CandidatoRepository repository;
 	
-	@Autowired
-	private TokenService tokenService;
-	
 	public Candidato findById(Long id) {
 		Optional<Candidato> obj = this.repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName())); //caso nao encontre retorna null
@@ -39,7 +36,6 @@ public class CandidatoService {
 		obj.setSenha(Util.criptografar(obj.getSenha()));
 		obj.setDataCadastro(new Date(System.currentTimeMillis()));
 		obj.setTipoUsuario(TipoUsuario.CANDIDATO);
-		obj.setToken(tokenService.generateToken(obj));
 		try {
 			return repository.save(obj);
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {

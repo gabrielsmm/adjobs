@@ -2,36 +2,26 @@ package com.gabriel.empregos.config;
 
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.gabriel.empregos.security.JwtTokenAuthenticationFilter;
+import com.gabriel.empregos.security.JwtTokenProvider;
+
 @Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private Environment env;
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
-			http.headers().frameOptions().disable();
-		}
-		
-		http.cors().and().csrf().disable();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().anyRequest().permitAll();
-	}
-
+public class SecurityConfig {
+	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
@@ -40,4 +30,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
+	
+	@Bean
+    SecurityFilterChain springWebFilterChain(HttpSecurity http,
+                                             JwtTokenProvider tokenProvider) throws Exception {
+        return http
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(c-> c.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                .authorizeRequests(c -> c
+                        .antMatchers("/usuarios/login").permitAll()
+                        .antMatchers(HttpMethod.POST, "/candidatos/**").permitAll()
+                        .antMatchers(HttpMethod.POST, "/empresas/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(new JwtTokenAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
+
+//	@Autowired
+//	private Environment env;
+//
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
+//			http.headers().frameOptions().disable();
+//		}
+//		
+//		http.cors().and().csrf().disable();
+//		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//		http.authorizeRequests().anyRequest().permitAll();
+////		http.authorizeRequests().antMatchers("usuarios/login", "candidatos/create", "empresas/create").permitAll().and().httpBasic();
+//	}
+
 }
