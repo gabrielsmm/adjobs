@@ -48,6 +48,32 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtTokenAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+	
+//	@Bean
+//    UserDetailsService customUserDetailsService(UsuarioRepository users) {
+//        return (email) -> users.findByEmailCustom(email)
+//                .orElseThrow(() -> new ObjectNotFoundException("Username: " + username + " not found"));
+//    }
+//	
+//	@Bean
+//    AuthenticationManager customAuthenticationManager(UserDetailsService userDetailsService, PasswordEncoder encoder) {
+//        return authentication -> {
+//            String username = authentication.getPrincipal() + "";
+//            String password = authentication.getCredentials() + "";
+//            
+//            UserDetails user = userDetailsService.loadUserByUsername(username);
+//            
+//            if (!encoder.matches(password, user.getPassword())) {
+//                throw new BadCredentialsException("Bad credentials");
+//            }
+//            
+//            if (!user.isEnabled()) {
+//                throw new DisabledException("User account is not active");
+//            }
+//            
+//            return new UsernamePasswordAuthenticationToken(username, null, user.getAuthorities());
+//        };
+//    }
 
 //	@Autowired
 //	private Environment env;

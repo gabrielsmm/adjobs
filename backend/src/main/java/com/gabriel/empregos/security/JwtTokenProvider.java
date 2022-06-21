@@ -1,7 +1,5 @@
 package com.gabriel.empregos.security;
 
-import static java.util.stream.Collectors.joining;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Collection;
@@ -16,6 +14,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
+
+import com.gabriel.empregos.entities.Usuario;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -42,14 +42,16 @@ private static final String AUTHORITIES_KEY = "roles";
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
     
-    public String createToken(Authentication authentication) {
+    public String createToken(Usuario usuario) {
         
-        String username = authentication.getName();
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        Claims claims = Jwts.claims().setSubject(username);
-        if (!authorities.isEmpty()) {
-            claims.put(AUTHORITIES_KEY, authorities.stream().map(GrantedAuthority::getAuthority).collect(joining(",")));
-        }
+        String email = usuario.getEmail();
+        Claims claims = Jwts.claims().setSubject(email);
+        
+//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+       
+//        if (!authorities.isEmpty()) {
+//            claims.put(AUTHORITIES_KEY, authorities.stream().map(GrantedAuthority::getAuthority).collect(joining(",")));
+//        }
         
         Date now = new Date();
         Date validity = new Date(now.getTime() + this.validityInMs);
