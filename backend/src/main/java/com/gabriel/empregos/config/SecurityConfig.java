@@ -25,6 +25,7 @@ public class SecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
@@ -35,6 +36,7 @@ public class SecurityConfig {
     SecurityFilterChain springWebFilterChain(HttpSecurity http,
                                              JwtTokenProvider tokenProvider) throws Exception {
         return http
+        		.cors().and().csrf().disable()
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -43,6 +45,7 @@ public class SecurityConfig {
                         .antMatchers("/usuarios/login").permitAll()
                         .antMatchers(HttpMethod.POST, "/candidatos/**").permitAll()
                         .antMatchers(HttpMethod.POST, "/empresas/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/vagas/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtTokenAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)

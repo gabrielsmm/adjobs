@@ -32,19 +32,21 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.usuarioLogin).subscribe((resposta) => {
       this.loginService.usuarioAutenticado = true;
       this.loginService.objUsuarioAutenticado = resposta;
+      localStorage.setItem("token", this.loginService.objUsuarioAutenticado.token);
       if (this.loginService.objUsuarioAutenticado.tipoUsuario == 1) { //EMPRESA
         this.router.navigate(['empresa/area']);
       } else if (this.loginService.objUsuarioAutenticado.tipoUsuario == 2) { //CANDIDATO
         this.router.navigate(['candidato/area']);
       }
-      // this.appService.mensagem("Logado com sucesso!");
     }, err => {
-      if(err.error.errors !== undefined){
+      if(!this.appService.isNullOrUndefined(err.error.errors)){
         for(let i = 0; i < err.error.errors.length; i++){
-          this.appService.mensagem(err.error.errors[i].message);
+          this.appService.mensagemErro(err.error.errors[i].message);
         }
+      } else if (!this.appService.isNullOrUndefined(err.error.error)) {
+        this.appService.mensagemErro(err.error.error);
       } else {
-        this.appService.mensagemErro("Usuário ou senha incorretos!");
+        this.appService.mensagemErro("Houve um error de conexão, por favor tente novamente.");
       }
     });
   }
