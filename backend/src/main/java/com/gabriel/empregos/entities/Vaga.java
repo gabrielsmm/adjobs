@@ -31,6 +31,8 @@ public class Vaga {
 	private Double salario;
 	private String localizacao;
 	private Date expiracao;
+	@Column(columnDefinition = "TEXT")
+	private String descricao;
 	
 //	@OneToOne
 //	@JoinColumn(name = "tipocontratacao_id")
@@ -46,7 +48,7 @@ public class Vaga {
 	}
 	
 	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
-			Date expiracao, Empresa empresa) {
+			Date expiracao, String descricao, Empresa empresa) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -54,6 +56,7 @@ public class Vaga {
 		this.salario = salario;
 		this.localizacao = localizacao;
 		this.expiracao = expiracao;
+		this.descricao = descricao;
 		this.empresa = empresa;
 	}
 
@@ -111,6 +114,14 @@ public class Vaga {
 	
 	public void setExpiracao(Date expiracao) {
 		this.expiracao = expiracao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Empresa getEmpresa() {

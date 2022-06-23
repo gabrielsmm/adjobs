@@ -98,18 +98,18 @@ public class DBService {
 		
 //		this.tpContratacaoRepository.saveAll(Arrays.asList(tp1, tp2, tp3, tp4, tp5, tp6, tp7));
 		
-		Vaga vaga1 = new Vaga(null, "Auxiliar", TipoContratacao.ESTAGIO, 5, 2000d, "Goiânia", new Date(), e1);
-		Vaga vaga2 = new Vaga(null, "Estagiario", TipoContratacao.HOME_OFFICE, 2, 1200d, "Goiânia", new Date(), e2);
-		Vaga vaga3 = new Vaga(null, "Ajudante", TipoContratacao.ESTAGIO, 5, 1600d, "Goiânia", new Date(), e3);
-		Vaga vaga4 = new Vaga(null, "Estagiario", TipoContratacao.HOME_OFFICE, 5, 2000d, "Ap. de Goiânia", new Date(), e1);
-		Vaga vaga5 = new Vaga(null, "Auxiliar", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), e2);
-		Vaga vaga6 = new Vaga(null, "Ajudante", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), e3);
-		Vaga vaga7 = new Vaga(null, "Analista", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), e1);
-		Vaga vaga8 = new Vaga(null, "Gerente", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), e2);
-		Vaga vaga9 = new Vaga(null, "Estudante", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), e3);
-		Vaga vaga10 = new Vaga(null, "Brabeza", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), e1);
-		Vaga vaga11 = new Vaga(null, "Programador", TipoContratacao.ESTAGIO, 5, 3000d, "Goiânia", new Date(), e1);
-		Vaga vaga12 = new Vaga(null, "Empacotador", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), e1);
+		Vaga vaga1 = new Vaga(null, "Auxiliar", TipoContratacao.ESTAGIO, 5, 2000d, "Goiânia", new Date(), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend, ex non efficitur dictum, sem tellus dictum dui, feugiat venenatis diam nunc nec lectus. Nunc ac justo leo. Curabitur faucibus lorem ac tortor semper, eget eleifend velit egestas. Nulla facilisi. Mauris congue nisl ac sem imperdiet, nec sollicitudin eros rhoncus. Aliquam eleifend gravida semper. Nullam nisi tortor, venenatis vitae leo eget, facilisis consequat ligula. Nam augue tellus, sodales sit amet augue in, volutpat rhoncus massa. ", e1);
+		Vaga vaga2 = new Vaga(null, "Estagiario", TipoContratacao.HOME_OFFICE, 2, 1200d, "Goiânia", new Date(), "", e2);
+		Vaga vaga3 = new Vaga(null, "Ajudante", TipoContratacao.ESTAGIO, 5, 1600d, "Goiânia", new Date(), "", e3);
+		Vaga vaga4 = new Vaga(null, "Estagiario", TipoContratacao.HOME_OFFICE, 5, 2000d, "Ap. de Goiânia", new Date(), "", e1);
+		Vaga vaga5 = new Vaga(null, "Auxiliar", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), "", e2);
+		Vaga vaga6 = new Vaga(null, "Ajudante", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), "", e3);
+		Vaga vaga7 = new Vaga(null, "Analista", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), "", e1);
+		Vaga vaga8 = new Vaga(null, "Gerente", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), "", e2);
+		Vaga vaga9 = new Vaga(null, "Estudante", TipoContratacao.JOVEM_APRENDIZ, 5, 1900d, "Goiânia", new Date(), "", e3);
+		Vaga vaga10 = new Vaga(null, "Brabeza", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), "", e1);
+		Vaga vaga11 = new Vaga(null, "Programador", TipoContratacao.ESTAGIO, 5, 3000d, "Goiânia", new Date(), "", e1);
+		Vaga vaga12 = new Vaga(null, "Empacotador", TipoContratacao.HOME_OFFICE, 5, 1900d, "Goiânia", new Date(), "", e1);
 		
 		this.vagaRepository.saveAll(Arrays.asList(vaga1, vaga2, vaga3, vaga4, vaga5, vaga6, vaga7, vaga8, vaga9, vaga10, vaga11, vaga12));
 		

@@ -17,6 +17,16 @@ export class CandidaturasComponent implements OnInit {
   public numeroCandidaturas: number;
   public candidaturas: Candidatura[] = [];
 
+  tiposContratacao = [
+    {value: 0, viewValue: 'Temporário'},
+    {value: 1, viewValue: 'Parcial'},
+    {value: 2, viewValue: 'Estágio'},
+    {value: 3, viewValue: 'Jovem Aprendiz'},
+    {value: 4, viewValue: 'Terceirizado'},
+    {value: 5, viewValue: 'Home Office'},
+    {value: 6, viewValue: 'Intermitente'},
+  ];
+
   constructor(public candidaturaService: CandidaturaService,
     public loginService: LoginService,
     private appService: AppService,
@@ -30,15 +40,14 @@ export class CandidaturasComponent implements OnInit {
   }
 
   getCandidaturas() {
-    let _this = this;
     this.candidaturaService.findAllByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
-      next(data) {
-        _this.candidaturas = data;
+      next: (data) => {
+        this.candidaturas = data;
       },
-      error(msg) {
+      error: (msg) => {
         console.log('Error', msg);
       },
-      complete() {
+      complete: () => {
 
       }
     })

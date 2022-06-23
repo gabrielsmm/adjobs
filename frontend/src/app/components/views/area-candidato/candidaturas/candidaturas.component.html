@@ -10,17 +10,35 @@
 
         </div>
         <div class="card-body">
-          <!-- <h5 class="card-title">Special title treatment</h5> -->
-          <p class="card-text">Nome empresa: {{candidatura.vaga.empresa.nome}}</p>
-          <hr>
+          <p class="card-text" style="font-size: 18px;"><i class="bi bi-building"></i> {{candidatura.vaga.empresa.nome}}</p>
           <div class="row">
-            <div class="col-md-2">
-              <p><i class="bi bi-geo-alt"></i> {{candidatura.vaga.localizacao}}</p>
+            <div class="col-md-3">
+              <p class="card-text">Salário: {{candidatura.vaga.salario | currency:'BRL'}}</p>
             </div>
+            <div class="col-md-3">
+              <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{candidatura.vaga.localizacao}}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="card-text">Tipo: {{tiposContratacao[candidatura.vaga.tipo].viewValue}}</p>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+          </div>
+          <hr>
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-md-12">
+              <p class="card-text" style="text-align: justify;">{{candidatura.vaga.descricao}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 15px;">
+            <!-- <div class="col-md-2">
+              <p><i class="bi bi-geo-alt"></i> {{candidatura.vaga.localizacao}}</p>
+            </div> -->
             <!-- <div class="col-md-2">
               <button class="btn btn-blue">Opções</button>
             </div> -->
-            <div class="col-md-8 d-flex justify-content-end">
+            <div class="col-md-12 d-flex justify-content-end">
               <button type="button" class="btn btn-blue btn-status"
               [ngClass]="{'btn-verde': candidatura.status === 0}"
               [disabled]="candidatura.status !== 0">

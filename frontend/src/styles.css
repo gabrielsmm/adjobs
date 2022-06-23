@@ -23,7 +23,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .btn-green {
-  background-color: #14a800;
+  background-color: #2b8b3b;
   color: white;
 }
 
@@ -35,4 +35,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .snack-background-red{
   background-color: rgb(153, 50, 50);
   color: #fff;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px -4px #000000;
+}
+
+.card-header {
+  background-color: #fbfbfb;
 }

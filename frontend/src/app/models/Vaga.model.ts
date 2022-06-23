@@ -9,5 +9,6 @@ export class Vaga{
   salario: number
   localizacao: string
   expiracao: Date
+  descricao: string
   empresa: Empresa
 }
