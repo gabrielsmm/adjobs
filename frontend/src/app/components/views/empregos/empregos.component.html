@@ -11,23 +11,38 @@
               aria-label="Select page">
       </mat-paginator> -->
 
-      <h2>Últimas oportunidades</h2>
+      <p class="texto-oportunidades">Últimas oportunidades</p>
 
       <div *ngFor="let vaga of vagas" class="card">
         <div class="card-header">
-          {{vaga.id}} - {{vaga.nome}}
+          <p class="nome-vaga">{{vaga.nome}}</p>
         </div>
         <div class="card-body">
-          <p class="card-text">Tipo de contratação: {{vaga.tipo}}</p>
-          <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
-          <p class="card-text">Salário: {{vaga.salario | currency:'BRL'}}</p>
+          <p class="card-text" style="font-size: 18px;"><i class="bi bi-building"></i> {{vaga.empresa.nome}}</p>
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="card-text">Tipo de contratação: {{appService.tiposContratacao[vaga.tipo].viewValue}}</p>
+            </div>
+            <div class="col-md-4">
+              <p class="card-text">Quantidade de Vagas: {{vaga.quantidade}}</p>
+            </div>
+            <div class="col-md-4">
+              <p class="card-text">Salário: {{vaga.salario | currency:'BRL'}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 12px;">
+            <div class="col-md-12">
+              <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{vaga.localizacao}}</p>
+            </div>
+          </div>
           <hr>
           <div class="row">
             <div class="col-md-3">
-              <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
+              <!-- <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{vaga.localizacao}}</p> -->
             </div>
             <div class="col-md-3">
-              <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
+              <!-- <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p> -->
             </div>
             <div class="col-md-3">
               <button (click)="openDetalhes(vaga.id)" class="btn btn-blue">Ver detalhes</button>
@@ -57,7 +72,7 @@
     <div class="col-md-3">
       <p style="margin-top: 48px;">Procure uma oportunidade</p>
       <div class="input-group">
-        <input [(ngModel)]="pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
+        <input (keyup)="buscar()" [(ngModel)]="pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
         <span class="input-group-btn">
           <button (click)="buscar()" class="btn btn-blue btn-lg" type="button">
             <i class="bi bi-search"></i>

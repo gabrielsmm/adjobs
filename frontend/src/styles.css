@@ -7,6 +7,11 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.btn {
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px -4px #000000;
+}
+
 .btn-blue {
   background-color: #0e76a8;
   color: white;
@@ -32,8 +37,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: white;
 }
 
-.snack-background-red{
+.snack-background-red {
   background-color: rgb(153, 50, 50);
+  color: #fff;
+}
+
+.snack-background-green {
+  background-color: #2b8b3b;
   color: #fff;
 }
 
@@ -44,4 +54,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .card-header {
   background-color: #fbfbfb;
+}
+
+/*Dialog*/
+.cdk-overlay-container {
+  z-index: 9999 !important;
 }

@@ -32,16 +32,7 @@ export class VagasComponent implements OnInit {
   public curriculo: Curriculo;
   public state = State;
   public stateChange = State.StateGrid;
-
-  tiposContratacao = [
-    {value: 0, viewValue: 'Temporário'},
-    {value: 1, viewValue: 'Parcial'},
-    {value: 2, viewValue: 'Estágio'},
-    {value: 3, viewValue: 'Jovem Aprendiz'},
-    {value: 4, viewValue: 'Terceirizado'},
-    {value: 5, viewValue: 'Home Office'},
-    {value: 6, viewValue: 'Intermitente'},
-  ];
+  public readMore = false;
 
   constructor(private vagaService: VagaService,
   private loginService: LoginService,
@@ -89,7 +80,7 @@ export class VagasComponent implements OnInit {
     this.vagaService.save(this.vaga).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
-          this.appService.mensagem("Vaga salva");
+          this.appService.mensagemSucesso("Vaga salva");
           this.stateChange = State.StateGrid;
           this.getVagas();
         }

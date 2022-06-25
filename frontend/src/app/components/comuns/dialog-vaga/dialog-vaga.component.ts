@@ -1,3 +1,4 @@
+import { AppService } from './../../../app.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,8 +11,11 @@ import { LoginService } from '../../../services/login.service';
 })
 export class DialogVagaComponent implements OnInit {
 
+  readMore = false;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-    public loginService: LoginService) { }
+    public loginService: LoginService,
+    public appService: AppService) { }
 
   ngOnInit(): void {
   }

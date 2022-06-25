@@ -7,6 +7,16 @@ import { Location } from '@angular/common';
 })
 export class AppService {
 
+  tiposContratacao = [
+    {value: 0, viewValue: 'Temporário'},
+    {value: 1, viewValue: 'Parcial'},
+    {value: 2, viewValue: 'Estágio'},
+    {value: 3, viewValue: 'Jovem Aprendiz'},
+    {value: 4, viewValue: 'Terceirizado'},
+    {value: 5, viewValue: 'Home Office'},
+    {value: 6, viewValue: 'Intermitente'},
+  ];
+
   constructor(private _snack: MatSnackBar, private location: Location) { }
 
   mensagem(str: string){
@@ -28,6 +38,15 @@ export class AppService {
   mensagemErro(str: string){
     const config = new MatSnackBarConfig();
     config.panelClass = ['snack-background-red'];
+    config.duration = 3000;
+    config.horizontalPosition = 'end';
+    config.verticalPosition = 'top';
+    this._snack.open(`${str}`, '', config);
+  }
+
+  mensagemSucesso(str: string){
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['snack-background-green'];
     config.duration = 3000;
     config.horizontalPosition = 'end';
     config.verticalPosition = 'top';

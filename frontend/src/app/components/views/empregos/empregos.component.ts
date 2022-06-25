@@ -30,7 +30,7 @@ export class EmpregosComponent implements OnInit {
   constructor(private vagaService: VagaService,
     private candidaturaService: CandidaturaService,
     public loginService: LoginService,
-    private appService: AppService,
+    public appService: AppService,
     public dialog: MatDialog,
     private router: Router) { }
 

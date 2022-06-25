@@ -60,6 +60,7 @@ a {
   background-color: transparent;
   border: none;
   font-size: 18px;
+  box-shadow: none;
 }
 
 .anunciar-link {

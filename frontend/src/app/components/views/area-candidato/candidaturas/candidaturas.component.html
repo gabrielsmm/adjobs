@@ -19,7 +19,7 @@
               <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{candidatura.vaga.localizacao}}</p>
             </div>
             <div class="col-md-3">
-              <p class="card-text">Tipo: {{tiposContratacao[candidatura.vaga.tipo].viewValue}}</p>
+              <p class="card-text">Tipo: {{appService.tiposContratacao[candidatura.vaga.tipo].viewValue}}</p>
             </div>
             <div class="col-md-3">
 
@@ -28,7 +28,11 @@
           <hr>
           <div class="row" style="margin-top: 10px;">
             <div class="col-md-12">
-              <p class="card-text" style="text-align: justify;">{{candidatura.vaga.descricao}}</p>
+              <p style="text-align: justify;">
+                {{(readMore) ? candidatura.vaga.descricao : candidatura.vaga.descricao | slice:0:500}} <span *ngIf="!readMore">... </span>
+                <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">Ler mais</a>
+                <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">Ler menos</a>
+              </p>
             </div>
           </div>
           <div class="row" style="margin-top: 15px;">

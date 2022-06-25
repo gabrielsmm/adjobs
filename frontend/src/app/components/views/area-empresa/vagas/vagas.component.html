@@ -9,26 +9,42 @@
 
         <div *ngFor="let vaga of vagas" class="card">
           <div class="card-header d-flex justify-content-between">
-            <p class="nome-vaga">{{vaga.id}} - {{vaga.nome}}</p>
+            <p class="nome-vaga">{{vaga.nome}}</p>
             <span (click)="editarClick(vaga)" class="editar"><i class="bi bi-pencil"></i> Editar</span>
           </div>
           <div class="card-body">
             <!-- <h5 class="card-title">Special title treatment</h5> -->
-            <p class="card-text">Tipo da vaga: {{tiposContratacao[vaga.tipo].viewValue}}</p>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="card-text">Tipo da vaga: {{appService.tiposContratacao[vaga.tipo].viewValue}}</p>
+              </div>
+              <div class="col-md-4">
+                <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{vaga.localizacao}}</p>
+              </div>
+              <div class="col-md-4">
+                <p class="card-text">Quantidade: {{vaga.quantidade}}</p>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-4">
+                <p class="card-text">Salário: {{vaga.salario | currency:'BRL'}}</p>
+              </div>
+              <div class="col-md-4">
+                <p class="card-text">Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-12">
+                <p style="text-align: justify; font-size: 15px;">
+                  {{(readMore) ? vaga.descricao : vaga.descricao | slice:0:500}} <span *ngIf="!readMore">... </span>
+                  <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">Ler mais</a>
+                  <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">Ler menos</a>
+                </p>
+              </div>
+            </div>
             <hr>
             <div class="row">
-              <div class="col-md-2">
-                <p><i class="bi bi-geo-alt"></i> {{vaga.localizacao}}</p>
-              </div>
-              <div class="col-md-2">
-                <p>Quantidade: {{vaga.quantidade}}</p>
-              </div>
-              <div class="col-md-2">
-                <p>Salário: {{vaga.salario | currency:'BRL'}}</p>
-              </div>
-              <div class="col-md-3">
-                <p>Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
-              </div>
+              <div class="col-md-9"></div>
               <div class="col-md-3">
                 <button (click)="exibirCandidatosClick(vaga)" class="btn btn-blue" style="width: 100%;">Ver candidatos</button>
               </div>
@@ -72,7 +88,7 @@
               <mat-form-field appearance="fill">
                 <mat-label>Tipo de Contratação</mat-label>
                 <mat-select [(ngModel)]="vaga.tipo">
-                  <mat-option *ngFor="let tipo of tiposContratacao" [value]="tipo.value">
+                  <mat-option *ngFor="let tipo of appService.tiposContratacao" [value]="tipo.value">
                     {{tipo.viewValue}}
                   </mat-option>
                 </mat-select>
@@ -88,6 +104,15 @@
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Descrição da vaga</mat-label>
+                <textarea [(ngModel)]="vaga.descricao" matInput></textarea>
               </mat-form-field>
             </div>
           </div>

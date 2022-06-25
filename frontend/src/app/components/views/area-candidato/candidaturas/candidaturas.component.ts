@@ -16,20 +16,11 @@ export class CandidaturasComponent implements OnInit {
   public dialogRef: MatDialogRef<DialogConfirmacaoComponent>;
   public numeroCandidaturas: number;
   public candidaturas: Candidatura[] = [];
-
-  tiposContratacao = [
-    {value: 0, viewValue: 'Temporário'},
-    {value: 1, viewValue: 'Parcial'},
-    {value: 2, viewValue: 'Estágio'},
-    {value: 3, viewValue: 'Jovem Aprendiz'},
-    {value: 4, viewValue: 'Terceirizado'},
-    {value: 5, viewValue: 'Home Office'},
-    {value: 6, viewValue: 'Intermitente'},
-  ];
+  public readMore = false;
 
   constructor(public candidaturaService: CandidaturaService,
     public loginService: LoginService,
-    private appService: AppService,
+    public appService: AppService,
     public dialog: MatDialog) {
       this.getNumeroCandidaturas();
       this.getCandidaturas();

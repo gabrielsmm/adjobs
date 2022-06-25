@@ -83,6 +83,7 @@ public class VagaService {
 		newObj.setSalario(obj.getSalario());
 		newObj.setTipo(obj.getTipo());
 		newObj.setExpiracao(obj.getExpiracao());
+		newObj.setDescricao(obj.getDescricao());
 		newObj.setEmpresa(obj.getEmpresa());
 	}
 	

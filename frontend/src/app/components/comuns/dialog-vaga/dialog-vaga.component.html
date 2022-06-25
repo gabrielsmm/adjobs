@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-md-6">
-      <p>Tipo de Contratação: {{data.tipo.nome}}</p>
+      <p>Tipo de Contratação: {{appService.tiposContratacao[data.tipo].viewValue}}</p>
     </div>
   </div>
 
@@ -35,6 +35,16 @@
 
     <div class="col-md-6">
       <p><i class="bi bi-calendar"></i> Expira em: {{data.expiracao | date: 'dd/MM/yyyy'}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p style="text-align: justify;">
+        {{(readMore) ? data.descricao : data.descricao | slice:0:50}} <span *ngIf="!readMore">... </span>
+        <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">Ler mais</a>
+        <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">Ler menos</a>
+      </p>
     </div>
   </div>
 
