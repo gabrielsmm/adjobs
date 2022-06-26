@@ -21,6 +21,11 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
 	Page<Vaga> findAllByNomeIgnoreCaseContaining(String nome, Pageable pageable);
 	
+	@Query(value = "SELECT * FROM TB_VAGAS obj WHERE obj.tipo = ?1",
+		    countQuery = "SELECT count(*) FROM TB_VAGAS WHERE obj.tipo = ?1",
+		    nativeQuery = true)
+	Page<Vaga> findAllByTipo(Integer tipo, Pageable pageable);
+	
 	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS", nativeQuery = true)
 	long buscaNumeroVagas();
 	

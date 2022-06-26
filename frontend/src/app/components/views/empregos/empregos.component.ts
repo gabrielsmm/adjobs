@@ -22,6 +22,7 @@ export class EmpregosComponent implements OnInit {
   public vagas: Vaga[] = [];
   public vaga: Vaga;
   public pesquisa: string = "";
+  public tipo: number;
   public page = 0;
   public size = 5;
   public first: boolean;
@@ -47,7 +48,7 @@ export class EmpregosComponent implements OnInit {
   }
 
   getListaPaginada() {
-    this.vagaService.getListaPaginada(this.page, this.size, this.pesquisa).subscribe({
+    this.vagaService.getListaPaginada(this.page, this.size, this.pesquisa, this.tipo).subscribe({
       next: (data) => {
         this.vagas = data['content'];
         this.first = data['first'];
@@ -125,14 +126,29 @@ export class EmpregosComponent implements OnInit {
     this.getListaPaginada();
   }
 
+  buscarTipo(tipo: number = -1) {
+    this.tipo = tipo;
+    this.buscar();
+  }
+
   irPaginaAnterior() {
     this.page = --this.page;
     this.buscar();
+    this.scrollToTop();
   }
 
   irPaginaPosterior() {
     this.page = ++this.page;
     this.buscar();
+    this.scrollToTop();
+  }
+
+  scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

@@ -30,7 +30,8 @@ public class Vaga {
 	private Integer quantidade;
 	private Double salario;
 	private String localizacao;
-	private Date expiracao;
+	private Date dataCadastro;
+	private Date dataAlteracao;
 	@Column(columnDefinition = "TEXT")
 	private String descricao;
 	
@@ -48,14 +49,15 @@ public class Vaga {
 	}
 	
 	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
-			Date expiracao, String descricao, Empresa empresa) {
+			Date dataCadastro, Date dataAlteracao, String descricao, Empresa empresa) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.quantidade = quantidade;
 		this.salario = salario;
 		this.localizacao = localizacao;
-		this.expiracao = expiracao;
+		this.dataCadastro = dataCadastro;
+		this.dataAlteracao = dataAlteracao;
 		this.descricao = descricao;
 		this.empresa = empresa;
 	}
@@ -107,13 +109,21 @@ public class Vaga {
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
-	
-	public Date getExpiracao() {
-		return expiracao;
+
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
-	
-	public void setExpiracao(Date expiracao) {
-		this.expiracao = expiracao;
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Date getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(Date dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getDescricao() {

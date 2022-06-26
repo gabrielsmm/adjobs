@@ -37,11 +37,13 @@ public class SecurityConfig {
                                              JwtTokenProvider tokenProvider) throws Exception {
         return http
         		.cors().and().csrf().disable()
+        		.headers().frameOptions().sameOrigin().and() // h2-console
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(c-> c.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .authorizeRequests(c -> c
+                		.antMatchers("/h2-console/**").permitAll()
                         .antMatchers("/usuarios/login").permitAll()
                         .antMatchers(HttpMethod.POST, "/candidatos/**").permitAll()
                         .antMatchers(HttpMethod.POST, "/empresas/**").permitAll()

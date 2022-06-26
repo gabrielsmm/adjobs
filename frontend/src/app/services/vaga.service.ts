@@ -16,10 +16,12 @@ export class VagaService {
   constructor(private http: HttpClient,
   private appService: AppService) { }
 
-  getListaPaginada(page: number = 0, size: number = 5, nome: string = ""): Observable<any> {
+  getListaPaginada(page: number = 0, size: number = 5, pesquisa: string = "", tipo: number = -1): Observable<any> {
     let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
-    if (nome !== "") {
-      url += `&nome=${nome}`;
+    if (pesquisa !== "") {
+      url += `&nome=${pesquisa}`;
+    } else if (!this.appService.isNullOrUndefined(tipo) && tipo >= 0) {
+      url += `&tipo=${tipo}`;
     }
     return this.http.get(url);
   }

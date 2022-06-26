@@ -38,6 +38,12 @@ public class VagaService {
 	}
 	
 	@Transactional(readOnly = true)
+	public Page<Vaga> findAllByTipo(Integer tipo, Pageable pageable) {
+		Page<Vaga> result = repository.findAllByTipo(tipo, pageable);
+		return result;
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Vaga> findAllByEmpresa(Integer idEmpresa) {
 		return repository.findAllByEmpresa(idEmpresa);
 	}
@@ -82,7 +88,8 @@ public class VagaService {
 		newObj.setQuantidade(obj.getQuantidade());
 		newObj.setSalario(obj.getSalario());
 		newObj.setTipo(obj.getTipo());
-		newObj.setExpiracao(obj.getExpiracao());
+		newObj.setDataCadastro(obj.getDataCadastro());
+		newObj.setDataAlteracao(obj.getDataAlteracao());
 		newObj.setDescricao(obj.getDescricao());
 		newObj.setEmpresa(obj.getEmpresa());
 	}

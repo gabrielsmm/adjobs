@@ -30,7 +30,7 @@
                 <p class="card-text">Salário: {{vaga.salario | currency:'BRL'}}</p>
               </div>
               <div class="col-md-4">
-                <p class="card-text">Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p>
+                <p class="card-text">Data inclusão: {{vaga.dataCadastro | date: 'dd/MM/yyyy'}}</p>
               </div>
             </div>
             <div class="row" style="margin-top: 10px;">
@@ -96,7 +96,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-4">
               <mat-form-field appearance="fill">
                 <mat-label>Validade da vaga</mat-label>
@@ -106,7 +106,7 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
-          </div>
+          </div> -->
 
           <div class="row" style="margin-top: 10px;">
             <div class="col-md-12">

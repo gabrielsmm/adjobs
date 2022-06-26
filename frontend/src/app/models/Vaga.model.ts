@@ -8,7 +8,8 @@ export class Vaga{
   quantidade: number
   salario: number
   localizacao: string
-  expiracao: Date
+  dataCadastro: Date
+  dataAlteracao: Date
   descricao: string
   empresa: Empresa
 }

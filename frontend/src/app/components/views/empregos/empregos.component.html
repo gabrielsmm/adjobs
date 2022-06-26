@@ -79,6 +79,14 @@
           </button>
         </span>
       </div>
+
+      <p style="margin-top: 10px;">Tipos de contratações</p>
+      <mat-button-toggle-group vertical style="width: 100%;">
+        <mat-button-toggle (click)="buscarTipo()" class="button" value="bold">Todos</mat-button-toggle>
+        <ng-container *ngFor="let tipo of appService.tiposContratacao">
+          <mat-button-toggle (click)="buscarTipo(tipo.value)" class="button" value="bold">{{tipo.viewValue}}</mat-button-toggle>
+        </ng-container>
+      </mat-button-toggle-group>
     </div>
   </div>
 
