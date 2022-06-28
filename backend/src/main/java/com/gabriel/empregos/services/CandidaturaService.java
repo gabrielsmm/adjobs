@@ -52,7 +52,7 @@ public class CandidaturaService {
 				throw new DataIntegrityViolationException("Candidato já possui candidatura para a vaga selecionada");
 			}
 			Candidato candidato = this.candidatoService.findById(Integer.toUnsignedLong(idCandidato));
-			Vaga vaga = this.vagaService.findById(Integer.toUnsignedLong(idVaga));
+			Vaga vaga = this.vagaService.findById(idVaga);
 			Candidatura obj = new Candidatura(null, candidato, vaga, new Date(), CandidaturaStatus.RECEBIDO);
 			return repository.save(obj);
 		} catch(org.springframework.dao.DataIntegrityViolationException e) {

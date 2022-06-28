@@ -11,7 +11,8 @@
               aria-label="Select page">
       </mat-paginator> -->
 
-      <p class="texto-oportunidades">Últimas oportunidades</p>
+      <p *ngIf="totalElements > 0" class="texto-oportunidades">Últimas oportunidades</p>
+      <p *ngIf="totalElements <= 0" class="texto-oportunidades">Não há vagas para serem exibidas</p>
 
       <div *ngFor="let vaga of vagas" class="card">
         <div class="card-header">
@@ -48,13 +49,13 @@
               <button (click)="openDetalhes(vaga.id)" class="btn btn-blue">Ver detalhes</button>
             </div>
             <div *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  class="col-md-3">
-              <button (click)="candidatarClick(vaga.id)" class="btn btn-green">Candidatar-se</button>
+              <button (click)="candidatarClick(vaga)" class="btn btn-green">Candidatar-se</button>
             </div>
           </div>
         </div>
       </div>
 
-      <nav aria-label="...">
+      <nav *ngIf="totalElements > 0" aria-label="...">
         <ul class="pagination">
           <li class="page-item" [ngClass]="{'disabled' : page === 0}">
             <a (click)="irPaginaAnterior()" class="page-link">Anterior</a>

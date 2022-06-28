@@ -14,7 +14,7 @@ export class LoginService {
   baseUrl: string = environment.baseUrl;
 
   public usuarioAutenticado: boolean = false;
-  public objUsuarioAutenticado: Usuario;
+  public objUsuarioAutenticado: Usuario | any;
 
   constructor(private http: HttpClient,
     private router: Router) { }
@@ -26,7 +26,8 @@ export class LoginService {
 
   deslogar() {
     this.usuarioAutenticado = false;
-    this.objUsuarioAutenticado = new Usuario();
+    this.objUsuarioAutenticado = null;
+    localStorage.removeItem('token');
     this.router.navigate(['inicio']);
   }
 

@@ -1,10 +1,11 @@
-import { AppService } from './../../../../app.service';
-import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Candidatura } from './../../../../models/Candidatura.model';
-import { LoginService } from './../../../../services/login.service';
-import { CandidaturaService } from './../../../../services/candidatura.service';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+import { AppService } from './../../../../app.service';
+import { Candidatura } from './../../../../models/Candidatura.model';
+import { CandidaturaService } from './../../../../services/candidatura.service';
+import { LoginService } from './../../../../services/login.service';
+import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 
 @Component({
   selector: 'app-candidaturas',

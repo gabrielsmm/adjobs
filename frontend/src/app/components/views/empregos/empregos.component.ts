@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Vaga } from '../../../models/vaga.model';
@@ -7,6 +7,7 @@ import { AppService } from './../../../app.service';
 import { CandidaturaService } from './../../../services/candidatura.service';
 import { LoginService } from './../../../services/login.service';
 import { VagaService } from './../../../services/vaga.service';
+import { DialogConfirmacaoComponent } from './../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogVagaComponent } from './../../comuns/dialog-vaga/dialog-vaga.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class EmpregosComponent implements OnInit {
   @Input() estagios: boolean = false;
   @Input() labelInfoVagas: string = " de Emprego";
 
+  public dialogRef: MatDialogRef<DialogConfirmacaoComponent>;
   public vagas: Vaga[] = [];
   public vaga: Vaga;
   public pesquisa: string = "";
@@ -27,6 +29,7 @@ export class EmpregosComponent implements OnInit {
   public size = 5;
   public first: boolean;
   public last: boolean;
+  public totalElements = 0;
 
   constructor(private vagaService: VagaService,
     private candidaturaService: CandidaturaService,
@@ -53,6 +56,7 @@ export class EmpregosComponent implements OnInit {
         this.vagas = data['content'];
         this.first = data['first'];
         this.last = data['last'];
+        this.totalElements = data['totalElements'];
       },
       error: (msg) => {
         console.log('Error', msg);
@@ -64,15 +68,14 @@ export class EmpregosComponent implements OnInit {
   }
 
   getSomenteEstagios() {
-    const _this = this;
     this.vagaService.getSomenteEstagios().subscribe({
-      next(data) {
-        _this.vagas = data;
+      next: (data) => {
+        this.vagas = data;
       },
-      error(msg) {
+      error: (msg) => {
         console.log('Error', msg);
       },
-      complete() {
+      complete: () => {
 
       }
     })
@@ -101,25 +104,34 @@ export class EmpregosComponent implements OnInit {
     })
   }
 
-  candidatarClick(idVaga: any) {
-    if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
-      this.candidaturaService.create(this.loginService.objUsuarioAutenticado.id, idVaga).subscribe({
-        next: (data) => {
-          if (!this.appService.isNullOrUndefined(data)) {
-            this.appService.mensagem("Candidatura realizada com sucesso!");
-            this.router.navigate(['candidato/candidaturas']);
-          }
-        },
-        error: (error) => {
-          if (!this.appService.isNullOrUndefined(error.error.error) && error.error.error != '') {
-            this.appService.mensagemErro(error.error.error);
-          }
-        },
-        complete: () => {
+  candidatarClick(vaga: Vaga) {
+    this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja se candidatar para a vaga ${vaga.id} - ${vaga.nome}?`
 
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
+          this.candidaturaService.create(this.loginService.objUsuarioAutenticado.id, vaga.id).subscribe({
+            next: (data) => {
+              if (!this.appService.isNullOrUndefined(data)) {
+                this.appService.mensagemSucesso("Candidatura realizada com sucesso!");
+                this.router.navigate(['candidato/candidaturas']);
+              }
+            },
+            error: (error) => {
+              if (!this.appService.isNullOrUndefined(error.error.error) && error.error.error != '') {
+                this.appService.mensagemErro(error.error.error);
+              }
+            },
+            complete: () => {
+
+            }
+          })
         }
-      })
-    }
+      }
+    });
   }
 
   buscar() {

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Proxy;
 
@@ -25,10 +27,14 @@ public class Vaga {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty(message = "Campo NOME é requerido")
 	@Column(name = "nome")
 	private String nome;
+	@NotNull(message = "Campo QUANTIDADE é requerido")
 	private Integer quantidade;
+	@NotNull(message = "Campo SALÁRIO é requerido")
 	private Double salario;
+	@NotEmpty(message = "Campo LOCALIZAÇÃO é requerido")
 	private String localizacao;
 	private Date dataCadastro;
 	private Date dataAlteracao;

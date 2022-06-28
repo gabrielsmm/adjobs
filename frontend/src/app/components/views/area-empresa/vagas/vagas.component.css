@@ -49,9 +49,16 @@ mat-form-field {
   width: 20%;
 }
 
-.editar {
+.span-actions {
   font-size: 16px;
   font-weight: bold;
-  color: #bc511b;
   cursor: pointer;
+}
+
+.editar {
+  color: #bc511b;
+}
+
+.excluir {
+  color: rgb(153, 50, 50);
 }

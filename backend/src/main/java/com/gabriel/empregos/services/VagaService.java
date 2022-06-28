@@ -1,5 +1,6 @@
 package com.gabriel.empregos.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,8 @@ public class VagaService {
 	@Autowired
 	private VagaRepository repository;
 	
-	public Vaga findById(Long id) {
-		Optional<Vaga> obj = this.repository.findById(id);
+	public Vaga findById(Integer id) {
+		Optional<Vaga> obj = this.repository.findById(Integer.toUnsignedLong(id));
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Vaga.class.getName())); //caso nao encontre retorna null
 	}
 	
@@ -70,13 +71,14 @@ public class VagaService {
 	
 	public Vaga create(Vaga obj) {
 		try {
+			obj.setDataCadastro(new Date(System.currentTimeMillis()));
 			return repository.save(obj);
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Erro ao inserir curriculo " + e.getMessage());
+			throw new DataIntegrityViolationException("Erro ao inserir currículo ");
 		}		
 	}
 	
-	public Vaga update(Long id, Vaga obj) {
+	public Vaga update(Integer id, Vaga obj) {
 		Vaga newObj = this.findById(id);
 		this.updateData(newObj, obj);
 		return repository.save(newObj);
@@ -89,9 +91,18 @@ public class VagaService {
 		newObj.setSalario(obj.getSalario());
 		newObj.setTipo(obj.getTipo());
 		newObj.setDataCadastro(obj.getDataCadastro());
-		newObj.setDataAlteracao(obj.getDataAlteracao());
+		newObj.setDataAlteracao(new Date(System.currentTimeMillis()));
 		newObj.setDescricao(obj.getDescricao());
 		newObj.setEmpresa(obj.getEmpresa());
+	}
+	
+	public void delete(Integer id) {
+		this.findById(id);
+		try {
+			this.repository.deleteById(Integer.toUnsignedLong(id));
+		} catch(org.springframework.dao.DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Vaga não pode ser deletada! Possui candidaturas associadas");
+		}
 	}
 	
 }

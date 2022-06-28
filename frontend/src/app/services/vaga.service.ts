@@ -61,6 +61,11 @@ export class VagaService {
     }
   }
 
+  delete(id: number): Observable<void>{
+    const url = `${this.baseUrl}/vagas/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   // findById(id: string): Observable<Categoria>{
   //   const url = `${this.baseUrl}/categorias/${id}`;
   //   return this.http.get<Categoria>(url);
@@ -74,10 +79,5 @@ export class VagaService {
   // update(categoria: Categoria): Observable<void>{
   //   const url = `${this.baseUrl}/categorias/${categoria.id}`;
   //   return this.http.put<void>(url, categoria);
-  // }
-
-  // delete(id: string): Observable<void>{
-  //   const url = `${this.baseUrl}/categorias/${id}`;
-  //   return this.http.delete<void>(url);
   // }
 }

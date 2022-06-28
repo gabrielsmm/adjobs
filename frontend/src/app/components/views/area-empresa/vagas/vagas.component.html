@@ -10,7 +10,10 @@
         <div *ngFor="let vaga of vagas" class="card">
           <div class="card-header d-flex justify-content-between">
             <p class="nome-vaga">{{vaga.nome}}</p>
-            <span (click)="editarClick(vaga)" class="editar"><i class="bi bi-pencil"></i> Editar</span>
+            <div>
+              <span (click)="editarClick(vaga)" class="span-actions editar"><i class="bi bi-pencil"></i> Editar</span>
+              <span (click)="excluirClick(vaga)" class="span-actions excluir" style="margin-left: 10px;"><i class="bi bi-trash"></i> Excluir</span>
+            </div>
           </div>
           <div class="card-body">
             <!-- <h5 class="card-title">Special title treatment</h5> -->

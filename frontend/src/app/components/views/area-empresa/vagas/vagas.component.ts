@@ -1,5 +1,6 @@
+import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogCurriculoComponent } from './../../../comuns/dialog-curriculo/dialog-curriculo.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Curriculo } from './../../../../models/Curriculo.model';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { Candidatura } from './../../../../models/Candidatura.model';
@@ -24,6 +25,7 @@ export enum State {
 })
 export class VagasComponent implements OnInit {
 
+  public dialogRef: MatDialogRef<DialogConfirmacaoComponent>;
   public numeroVagas: number;
   public numeroVaga: number;
   public vaga: Vaga = new Vaga;
@@ -80,13 +82,15 @@ export class VagasComponent implements OnInit {
     this.vagaService.save(this.vaga).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
-          this.appService.mensagemSucesso("Vaga salva");
+          this.appService.mensagemSucesso("Vaga salva com sucesso!");
           this.stateChange = State.StateGrid;
           this.getVagas();
         }
       },
       error: (error) => {
-        console.error(error);
+        if (!this.appService.isNullOrUndefined(error.error.error)) {
+          this.appService.mensagemErro(`${error.error.error}, por favor preencha os campos corretamente!`);
+        }
       },
       complete: () => {
 
@@ -153,6 +157,33 @@ export class VagasComponent implements OnInit {
 
       }
     })
+  }
+
+  excluirClick(vaga: Vaga) {
+    this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja excluir a vaga vaga ${vaga.id} - ${vaga.nome}?`
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.vagaService.delete(vaga.id).subscribe({
+          next: (data) => {
+            this.appService.mensagemSucesso("Vaga deletada com sucesso!");
+            this.getNumeroVagas();
+            this.getVagas();
+          },
+          error: (error) => {
+            if (!this.appService.isNullOrUndefined(error.error.error)) {
+              this.appService.mensagemErro(error.error.error);
+            }
+          },
+          complete: () => {
+
+          }
+        })
+      }
+    });
   }
 
 }
