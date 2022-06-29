@@ -77,7 +77,7 @@ public class CurriculoService {
 		newObj.setNumero(obj.getNumero());
 		newObj.setComplemento(obj.getComplemento());
 		newObj.setPessoaComDeficiencia(obj.getPessoaComDeficiencia());
-		newObj.setLinkedIn(obj.getLinkedIn());
+		newObj.setLinkedin(obj.getLinkedin());
 		newObj.setFacebook(obj.getFacebook());
 		newObj.setInstagram(obj.getInstagram());
 		newObj.setSite(obj.getSite());

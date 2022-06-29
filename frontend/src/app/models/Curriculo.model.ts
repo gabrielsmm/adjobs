@@ -22,7 +22,7 @@ export class Curriculo {
   pessoaComDeficiencia?: boolean
   formacoes?: CurriculoFormacao[]
   experiencias?: CurriculoExperiencia[]
-  linkedIn?: string
+  linkedin?: string
   facebook?: string
   instagram?: string
   site?: string

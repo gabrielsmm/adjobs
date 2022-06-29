@@ -56,7 +56,7 @@ public class Curriculo implements Serializable {
 	@OneToMany(mappedBy = "curriculo")
 	private List<CurriculoExperiencia> experiencias = new ArrayList<>();
 	
-	private String linkedIn;
+	private String linkedin;
 	private String facebook;
 	private String instagram;
 	private String site;
@@ -69,7 +69,7 @@ public class Curriculo implements Serializable {
 
 	public Curriculo(Long id, Candidato candidato, String nome, String resumo, String telefone, String telefoneCelular,
 			Date dataNascimento, EstadoCivil estadoCivil, Sexo sexo, String cep, String estado, String cidade,
-			String bairro, String rua, String numero, String complemento, Boolean pessoaComDeficiencia, String linkedIn,
+			String bairro, String rua, String numero, String complemento, Boolean pessoaComDeficiencia, String linkedin,
 			String facebook, String instagram, String site) {
 		super();
 		this.id = id;
@@ -89,7 +89,7 @@ public class Curriculo implements Serializable {
 		this.numero = numero;
 		this.complemento = complemento;
 		this.pessoaComDeficiencia = pessoaComDeficiencia;
-		this.linkedIn = linkedIn;
+		this.linkedin = linkedin;
 		this.facebook = facebook;
 		this.instagram = instagram;
 		this.site = site;
@@ -245,14 +245,14 @@ public class Curriculo implements Serializable {
 
 	public void setExperiencias(List<CurriculoExperiencia> experiencias) {
 		this.experiencias = experiencias;
+	}	
+
+	public String getLinkedin() {
+		return linkedin;
 	}
 
-	public String getLinkedIn() {
-		return linkedIn;
-	}
-
-	public void setLinkedIn(String linkedIn) {
-		this.linkedIn = linkedIn;
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
 	}
 
 	public String getFacebook() {
