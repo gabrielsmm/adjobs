@@ -1,3 +1,4 @@
+import { LoaderService } from './../../../services/loader.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -36,7 +37,8 @@ export class EmpregosComponent implements OnInit {
     public loginService: LoginService,
     public appService: AppService,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    public loaderService: LoaderService) { }
 
   ngOnInit(): void {
     this.getVagas();

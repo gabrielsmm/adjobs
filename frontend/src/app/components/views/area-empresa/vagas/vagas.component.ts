@@ -1,16 +1,18 @@
-import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
-import { DialogCurriculoComponent } from './../../../comuns/dialog-curriculo/dialog-curriculo.component';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Curriculo } from './../../../../models/Curriculo.model';
-import { CurriculoService } from './../../../../services/curriculo.service';
-import { Candidatura } from './../../../../models/Candidatura.model';
-import { CandidaturaService } from './../../../../services/candidatura.service';
-import { EmpresaService } from './../../../../services/empresa.service';
+
 import { AppService } from './../../../../app.service';
+import { Candidatura } from './../../../../models/Candidatura.model';
+import { Curriculo } from './../../../../models/Curriculo.model';
+import { Vaga } from './../../../../models/vaga.model';
+import { CandidaturaService } from './../../../../services/candidatura.service';
+import { CurriculoService } from './../../../../services/curriculo.service';
+import { EmpresaService } from './../../../../services/empresa.service';
+import { LoaderService } from './../../../../services/loader.service';
 import { LoginService } from './../../../../services/login.service';
 import { VagaService } from './../../../../services/vaga.service';
-import { Vaga } from './../../../../models/vaga.model';
-import { Component, OnInit } from '@angular/core';
+import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
+import { DialogCurriculoComponent } from './../../../comuns/dialog-curriculo/dialog-curriculo.component';
 
 export enum State {
   StateGrid = 1,
@@ -42,7 +44,8 @@ export class VagasComponent implements OnInit {
   private empresaService: EmpresaService,
   private candidaturaService: CandidaturaService,
   private curriculoService: CurriculoService,
-  private dialog: MatDialog) {
+  private dialog: MatDialog,
+  public loaderService: LoaderService) {
     this.getNumeroVagas();
     this.getVagas();
   }
@@ -122,7 +125,7 @@ export class VagasComponent implements OnInit {
       next: (data) => {
         this.candidaturas = data;
         if (this.candidaturas.length <= 0) {
-          this.appService.mensagemTime("Vaga selecionada ainda não possui candidaturas.", 5000);
+          this.appService.mensagemErro("Vaga selecionada ainda não possui candidaturas.");
         } else {
           this.vaga = vaga;
           this.stateChange = State.StateCandidatos;
@@ -184,6 +187,10 @@ export class VagasComponent implements OnInit {
         })
       }
     });
+  }
+
+  atualizarStatus(candidatura: Candidatura) {
+
   }
 
 }

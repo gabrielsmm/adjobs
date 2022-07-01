@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from './../../../../app.service';
 import { Candidatura } from './../../../../models/Candidatura.model';
 import { CandidaturaService } from './../../../../services/candidatura.service';
+import { LoaderService } from './../../../../services/loader.service';
 import { LoginService } from './../../../../services/login.service';
 import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 
@@ -22,7 +23,8 @@ export class CandidaturasComponent implements OnInit {
   constructor(public candidaturaService: CandidaturaService,
     public loginService: LoginService,
     public appService: AppService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    public loaderService: LoaderService) {
       this.getNumeroCandidaturas();
       this.getCandidaturas();
     }

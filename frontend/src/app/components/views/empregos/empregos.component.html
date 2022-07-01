@@ -1,5 +1,7 @@
 <app-header></app-header>
-
+<div *ngIf="loaderService.isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="container">
 
   <div class="row">
