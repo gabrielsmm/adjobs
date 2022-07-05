@@ -1,8 +1,13 @@
 <div class="container">
   <div class="card">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-12 d-flex justify-content-between">
         <p class="titulos">DADOS PESSOAIS</p>
+        <span (click)="editarClick()" [hidden]="isEditavel" class="span-actions editar"><i class="bi bi-pencil"></i> Editar</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
       </div>
 
       <div class="col-md-9">
@@ -10,7 +15,7 @@
         <div class="row">
           <div class="col-md-12">
             <mat-form-field>
-              <input [(ngModel)]="curriculo.nome" matInput placeholder="Nome completo" name="nome" required>
+              <input [(ngModel)]="curriculo.nome" [readonly]="!isEditavel" matInput placeholder="Nome completo" name="nome" required>
             </mat-form-field>
           </div>
         </div>
@@ -19,7 +24,7 @@
           <div class="col-md-12">
             <mat-form-field>
               <mat-label>Resumo</mat-label>
-              <textarea [(ngModel)]="curriculo.resumo" matInput></textarea>
+              <textarea [(ngModel)]="curriculo.resumo" [readonly]="!isEditavel" matInput></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -28,7 +33,7 @@
           <div class="col-md-4">
             <mat-form-field appearance="fill">
               <mat-label>Data de nascimento</mat-label>
-              <input matInput [matDatepicker]="picker" [value]="curriculo.dataNascimento">
+              <input matInput [matDatepicker]="picker" [value]="curriculo.dataNascimento" [disabled]="!isEditavel">
               <mat-hint>DD/MM/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -36,12 +41,12 @@
           </div>
           <div class="col-md-4">
             <mat-form-field>
-              <input [(ngModel)]="curriculo.telefone" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
+              <input [(ngModel)]="curriculo.telefone" [readonly]="!isEditavel" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
             </mat-form-field>
           </div>
           <div class="col-md-4">
             <mat-form-field>
-              <input [(ngModel)]="curriculo.telefoneCelular" matInput placeholder="Telefone celular" name="telefoneCelular" mask="(00)00000-0000" required>
+              <input [(ngModel)]="curriculo.telefoneCelular" [readonly]="!isEditavel" matInput placeholder="Telefone celular" name="telefoneCelular" mask="(00)00000-0000" required>
             </mat-form-field>
           </div>
         </div>
@@ -50,7 +55,7 @@
           <div class="col-md-6">
             <mat-form-field appearance="fill">
               <mat-label>Estado Civil</mat-label>
-              <mat-select [(ngModel)]="curriculo.estadoCivil">
+              <mat-select [(ngModel)]="curriculo.estadoCivil" [disabled]="!isEditavel">
                 <mat-option *ngFor="let estadoCivil of estadosCivis" [value]="estadoCivil.value">
                   {{estadoCivil.viewValue}}
                 </mat-option>
@@ -60,7 +65,7 @@
           <div class="col-md-6">
             <mat-form-field appearance="fill">
               <mat-label>Sexo</mat-label>
-              <mat-select [(ngModel)]="curriculo.sexo">
+              <mat-select [(ngModel)]="curriculo.sexo" [disabled]="!isEditavel">
                 <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
                   {{sexo.viewValue}}
                 </mat-option>
@@ -72,7 +77,7 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field style="display: block;">
-              <input [(ngModel)]="curriculo.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
+              <input [(ngModel)]="curriculo.cep" [readonly]="!isEditavel" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
             </mat-form-field>
           </div>
           <div class="col-md-6">
@@ -103,13 +108,13 @@
           </div>
           <div class="col-md-6">
             <mat-form-field>
-              <input [(ngModel)]="curriculo.complemento" matInput placeholder="Complemento" name="complemento" required>
+              <input [(ngModel)]="curriculo.complemento" [readonly]="!isEditavel" matInput placeholder="Complemento" name="complemento" required>
             </mat-form-field>
           </div>
         </div>
 
         <section>
-          <mat-checkbox [(ngModel)]="curriculo.pessoaComDeficiencia">Pessoa com deficiência</mat-checkbox>
+          <mat-checkbox [(ngModel)]="curriculo.pessoaComDeficiencia" [disabled]="!isEditavel">Pessoa com deficiência</mat-checkbox>
         </section>
 
       </div>
@@ -121,7 +126,7 @@
       </div>
 
       <div class="col-md-9">
-        <mat-expansion-panel [(expanded)]="expandirFormacoes" (opened)="abriuFormacoes()">
+        <mat-expansion-panel [(expanded)]="expandirFormacoes" (opened)="abriuFormacoes()" [disabled]="!isEditavel">
           <mat-expansion-panel-header>
             <mat-panel-title>
               + Adicionar formação acadêmica
@@ -221,7 +226,7 @@
       </div>
 
       <div class="col-md-9">
-        <mat-expansion-panel [(expanded)]="expandirExperiencias" (opened)="abriuExperiencias()">
+        <mat-expansion-panel [(expanded)]="expandirExperiencias" (opened)="abriuExperiencias()" [disabled]="!isEditavel">
           <mat-expansion-panel-header>
             <mat-panel-title>
               + Adicionar experiência profissional
@@ -316,20 +321,21 @@
       </div>
 
       <div class="col-md-9">
+        <p>Por gentileza, insira os links corretamente de suas redes sociais...</p>
         <mat-form-field>
-          <input [(ngModel)]="curriculo.linkedin" matInput placeholder="LinkedIn" name="linkedin" required>
+          <input [(ngModel)]="curriculo.linkedin" [readonly]="!isEditavel" matInput placeholder="LinkedIn" name="linkedin" required>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="curriculo.facebook" matInput placeholder="Facebook" name="facebook" required>
+          <input [(ngModel)]="curriculo.facebook" [readonly]="!isEditavel" matInput placeholder="Facebook" name="facebook" required>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="curriculo.instagram" matInput placeholder="Instagram" name="instagram" required>
+          <input [(ngModel)]="curriculo.instagram" [readonly]="!isEditavel" matInput placeholder="Instagram" name="instagram" required>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="curriculo.site" matInput placeholder="Site" name="site" required>
+          <input [(ngModel)]="curriculo.site" [readonly]="!isEditavel" matInput placeholder="Site" name="site" required>
         </mat-form-field>
       </div>
     </div>
-    <button (click)="salvarCurriculo()" class="btn btn-blue btn-salvar">Salvar currículo</button>
+    <button (click)="salvarCurriculo()" [disabled]="!isEditavel" class="btn btn-blue btn-salvar">Salvar currículo</button>
   </div>
 </div>

@@ -25,6 +25,7 @@ export class CurriculoComponent implements OnInit {
   public experiencias: CurriculoExperiencia[] = [];
   public expandirFormacoes: boolean = false;
   public expandirExperiencias: boolean = false;
+  public isEditavel: boolean = false;
 
   estadosCivis = [
     {value: 0, viewValue: 'Casado(a)'},
@@ -163,6 +164,12 @@ export class CurriculoComponent implements OnInit {
 
         }
       })
+    }
+  }
+
+  editarClick() {
+    if (!this.isEditavel) {
+      this.isEditavel = true;
     }
   }
 

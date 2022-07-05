@@ -2,11 +2,11 @@
 
 <div class="container">
   <div class="jumbotron" style="margin-top: 40px;">
-    <h1 class="display-4">Atualmente temos {{numeroVagas}} vagas esperando por você!</h1>
+    <h1 class="display-4">Atualmente temos <span style="font-weight: bold;">{{numeroVagas}}</span> vagas esperando por você!</h1>
     <hr class="my-4">
     <p class="lead">Pesquise por vagas de seu interesse</p>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="cargo">O que procura?</span>
@@ -14,7 +14,7 @@
           <input type="text" class="form-control" placeholder="Cargo ou palavra-chave" aria-label="cargo" aria-describedby="cargo">
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="localizacao">Onde?</span>
@@ -22,34 +22,53 @@
           <input type="text" class="form-control" placeholder="Localização" aria-label="localizacao" aria-describedby="localizacao">
         </div>
       </div>
+      <div class="col-md-2">
+        <p class="lead">
+          <a class="btn btn-blue" style="width: 100%;" role="button">Buscar vagas</a>
+        </p>
+      </div>
     </div>
-    <p class="lead">
-      <a class="btn btn-blue btn-lg" role="button">Buscar vagas</a>
-    </p>
   </div>
 
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-6">
       <div class="align-self-center">
         <h1 class="display-3">Se estiver procurando emprego, sua vaga está aqui!</h1>
-        <p>Venha fazer parte dessa história, temos certeza que aqui você
+        <p style="font-size: 17px;">Venha fazer parte dessa história, temos certeza que aqui você
           irá conquistar aquela vaga tão sonhada de emprego!
         </p>
       </div>
+    </div>
+    <div class="col-md-6">
       <div class="align-self-center">
         <h1 class="display-3">Se estiver contratando, anuncie sua vaga aqui!</h1>
-        <p>Venha fazer parte dessa história, temos certeza que aqui você
+        <p style="font-size: 17px;">Venha fazer parte dessa história, temos certeza que aqui você
           irá contratar os melhores profissionais para sua empresa!
         </p>
       </div>
-      <hr>
-      <p class="lead">
-        <a class="btn btn-blue" role="button" [routerLink]="['/cadastro']">Cadastre-se</a>
-      </p>
     </div>
+  </div>
 
-    <div class="col-md-6 d-none d-md-block">
-      <img class="img-fluid" src="assets/img/ilustracao.png" alt="Ilustração">
+  <div class="row">
+    <hr>
+    <p class="lead">
+      <a class="btn btn-blue" role="button" [routerLink]="['/cadastro']">Cadastre-se</a>
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" style="text-align: center;">
+      <h1 class="titulo-h1">Ajudamos você a encontrar um emprego melhor!</h1>
+      <div class="row">
+        <div class="col-md-6 align-self-center">
+          <p class="lead">
+            <a class="btn btn-blue btn-lg" style="width: 60%;" role="button">Visualizar vagas de emprego</a>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img class="img-fluid" src="assets/img/ilustracao.png" width="400" alt="Ilustração">
+        </div>
+      </div>
     </div>
   </div>
 </div>

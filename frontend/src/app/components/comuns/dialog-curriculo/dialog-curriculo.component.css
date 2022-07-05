@@ -2,6 +2,10 @@ p {
   font-size: 16px;
 }
 
+mat-card {
+  background-color: #dde8ee;
+}
+
 .mat-typography {
   font-size: 12px;
 }
