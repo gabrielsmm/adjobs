@@ -35,6 +35,8 @@ public class VagaResource {
 	@GetMapping
 	public ResponseEntity<Page<Vaga>> findAll(@RequestParam(required = false) String nome,
 			@RequestParam(required = false) Integer tipo,
+			@RequestParam(required = false) String palavraChave,
+			@RequestParam(required = false) String localizacao,
 	        @RequestParam(defaultValue = "0") int page,
 	        @RequestParam(defaultValue = "5") int size) {
 		Pageable paging = PageRequest.of(page, size);
@@ -43,6 +45,8 @@ public class VagaResource {
 			list = service.findAllByNome(nome, paging);
 		} else if (tipo != null) {
 			list = service.findAllByTipo(tipo, paging);
+		} else if (palavraChave != null && localizacao != null) {
+			list = service.findAllByPalavraLocalizacao(palavraChave, localizacao, paging);
 		} else {
 			list = service.findAll(paging);
 		}

@@ -1,13 +1,13 @@
 import { LoaderService } from './../../../services/loader.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Vaga } from '../../../models/vaga.model';
 import { AppService } from './../../../app.service';
 import { CandidaturaService } from './../../../services/candidatura.service';
 import { LoginService } from './../../../services/login.service';
-import { VagaService } from './../../../services/vaga.service';
+import { VagaService, Filtro } from './../../../services/vaga.service';
 import { DialogConfirmacaoComponent } from './../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogVagaComponent } from './../../comuns/dialog-vaga/dialog-vaga.component';
 
@@ -24,8 +24,9 @@ export class EmpregosComponent implements OnInit {
   public dialogRef: MatDialogRef<DialogConfirmacaoComponent>;
   public vagas: Vaga[] = [];
   public vaga: Vaga;
-  public pesquisa: string = "";
-  public tipo: number;
+  public filtro = new Filtro();
+
+  // paginação
   public page = 0;
   public size = 5;
   public first: boolean;
@@ -38,9 +39,12 @@ export class EmpregosComponent implements OnInit {
     public appService: AppService,
     public dialog: MatDialog,
     private router: Router,
+    private route: ActivatedRoute,
     public loaderService: LoaderService) { }
 
   ngOnInit(): void {
+    this.filtro.palavraChave = this.route.snapshot.paramMap.get('palavraChave')!;
+    this.filtro.localizacao = this.route.snapshot.paramMap.get('localizacao')!;
     this.getVagas();
   }
 
@@ -53,7 +57,7 @@ export class EmpregosComponent implements OnInit {
   }
 
   getListaPaginada() {
-    this.vagaService.getListaPaginada(this.page, this.size, this.pesquisa, this.tipo).subscribe({
+    this.vagaService.getListaPaginada(this.page, this.size, this.filtro).subscribe({
       next: (data) => {
         this.vagas = data['content'];
         this.first = data['first'];
@@ -141,7 +145,7 @@ export class EmpregosComponent implements OnInit {
   }
 
   buscarTipo(tipo: number = -1) {
-    this.tipo = tipo;
+    this.filtro.tipo = tipo;
     this.buscar();
   }
 

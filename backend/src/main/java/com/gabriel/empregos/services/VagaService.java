@@ -45,6 +45,12 @@ public class VagaService {
 	}
 	
 	@Transactional(readOnly = true)
+	public Page<Vaga> findAllByPalavraLocalizacao(String palavraChave, String localizacao, Pageable pageable) {
+		Page<Vaga> result = repository.findAllByNomeIgnoreCaseContainingAndLocalizacaoIgnoreCaseContaining(palavraChave, localizacao, pageable);
+		return result;
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Vaga> findAllByEmpresa(Integer idEmpresa) {
 		return repository.findAllByEmpresa(idEmpresa);
 	}

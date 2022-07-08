@@ -132,6 +132,7 @@ export class CurriculoComponent implements OnInit {
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
           this.appService.mensagem("Currículo salvo");
+          this.isEditavel = false;
         }
       },
       error: (error) => {

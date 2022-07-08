@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { VagaService } from './../../../services/vaga.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private vagaService: VagaService) { }
+  constructor(private vagaService: VagaService,
+    private router: Router) { }
 
   public numeroVagas: number;
+  public palavraChave: string;
+  public localizacao: string;
 
   ngOnInit(): void {
     this.getNumeroVagas();
@@ -29,6 +33,11 @@ export class HomeComponent implements OnInit {
 
       }
     });
+  }
+
+  buscarVagasClick() {
+    //validar campos
+    this.router.navigate(['/empregos', this.palavraChave, this.localizacao]);
   }
 
 }

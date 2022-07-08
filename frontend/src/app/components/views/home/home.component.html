@@ -11,7 +11,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="cargo">O que procura?</span>
           </div>
-          <input type="text" class="form-control" placeholder="Cargo ou palavra-chave" aria-label="cargo" aria-describedby="cargo">
+          <input type="text" [(ngModel)]="palavraChave" class="form-control" placeholder="Cargo ou palavra-chave" aria-label="cargo" aria-describedby="cargo">
         </div>
       </div>
       <div class="col-md-5">
@@ -19,12 +19,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="localizacao">Onde?</span>
           </div>
-          <input type="text" class="form-control" placeholder="Localização" aria-label="localizacao" aria-describedby="localizacao">
+          <input type="text" [(ngModel)]="localizacao" class="form-control" placeholder="Localização" aria-label="localizacao" aria-describedby="localizacao">
         </div>
       </div>
       <div class="col-md-2">
         <p class="lead">
-          <a class="btn btn-blue" style="width: 100%;" role="button">Buscar vagas</a>
+          <a (click)="buscarVagasClick()" class="btn btn-blue" style="width: 100%;" role="button">Buscar vagas</a>
         </p>
       </div>
     </div>

@@ -75,7 +75,7 @@
     <div class="col-md-3">
       <p style="margin-top: 48px;">Procure uma oportunidade</p>
       <div class="input-group">
-        <input (keyup)="buscar()" [(ngModel)]="pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
+        <input (keyup)="buscar()" [(ngModel)]="filtro.pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
         <span class="input-group-btn">
           <button (click)="buscar()" class="btn btn-blue btn-lg" type="button">
             <i class="bi bi-search"></i>

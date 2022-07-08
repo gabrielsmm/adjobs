@@ -6,6 +6,13 @@ import { Observable } from 'rxjs';
 import { Vaga } from '../models/vaga.model';
 import { environment } from './../../environments/environment';
 
+export class Filtro {
+  public pesquisa: string = "";
+  public tipo: number;
+  public palavraChave: string;
+  public localizacao: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,12 +23,15 @@ export class VagaService {
   constructor(private http: HttpClient,
   private appService: AppService) { }
 
-  getListaPaginada(page: number = 0, size: number = 5, pesquisa: string = "", tipo: number = -1): Observable<any> {
+  getListaPaginada(page: number = 0, size: number = 5, filtro: Filtro): Observable<any> {
     let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
-    if (pesquisa !== "") {
-      url += `&nome=${pesquisa}`;
-    } else if (!this.appService.isNullOrUndefined(tipo) && tipo >= 0) {
-      url += `&tipo=${tipo}`;
+    if (filtro.pesquisa !== "") {
+      url += `&nome=${filtro.pesquisa}`;
+    } else if (!this.appService.isNullOrUndefined(filtro.tipo) && filtro.tipo >= 0) {
+      url += `&tipo=${filtro.tipo}`;
+    } else if (!this.appService.isNullOrUndefined(filtro.palavraChave) &&
+               !this.appService.isNullOrUndefined(filtro.localizacao)) {
+      url += `&palavraChave=${filtro.palavraChave}&localizacao=${filtro.localizacao}`;
     }
     return this.http.get(url);
   }
