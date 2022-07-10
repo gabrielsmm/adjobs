@@ -1,10 +1,10 @@
-import { AppService } from './../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Vaga } from '../models/vaga.model';
+import { Vaga } from '../models/Vagas.model';
 import { environment } from './../../environments/environment';
+import { AppService } from './../app.service';
 
 export class Filtro {
   public pesquisa: string = "";

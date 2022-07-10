@@ -1,5 +1,5 @@
-import { Vaga } from './vaga.model';
 import { Candidato } from './Candidato.model';
+import { Vaga } from './Vagas.model';
 
 export class Candidatura {
   id: number

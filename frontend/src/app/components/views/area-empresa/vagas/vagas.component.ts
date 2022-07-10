@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
+import { Vaga } from '../../../../models/Vagas.model';
 import { AppService } from './../../../../app.service';
 import { Candidatura } from './../../../../models/Candidatura.model';
 import { Curriculo } from './../../../../models/Curriculo.model';
-import { Vaga } from './../../../../models/vaga.model';
 import { CandidaturaService } from './../../../../services/candidatura.service';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { EmpresaService } from './../../../../services/empresa.service';

@@ -1,13 +1,13 @@
-import { LoaderService } from './../../../services/loader.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { Vaga } from '../../../models/vaga.model';
+import { Vaga } from '../../../models/Vagas.model';
 import { AppService } from './../../../app.service';
 import { CandidaturaService } from './../../../services/candidatura.service';
+import { LoaderService } from './../../../services/loader.service';
 import { LoginService } from './../../../services/login.service';
-import { VagaService, Filtro } from './../../../services/vaga.service';
+import { Filtro, VagaService } from './../../../services/vaga.service';
 import { DialogConfirmacaoComponent } from './../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogVagaComponent } from './../../comuns/dialog-vaga/dialog-vaga.component';
 

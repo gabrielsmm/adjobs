@@ -1,5 +1,4 @@
 import { Empresa } from './Empresa.model';
-import { TipoContratacao } from './TipoContratacao.model';
 
 export class Vaga{
   id: number
