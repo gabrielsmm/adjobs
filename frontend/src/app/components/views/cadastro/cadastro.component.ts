@@ -1,5 +1,5 @@
-import { ValidaCepService } from './../../../services/validaCep.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 
@@ -7,9 +7,8 @@ import { AppService } from '../../../app.service';
 import { Empresa } from '../../../models/Empresa.model';
 import { EmpresaService } from '../../../services/empresa.service';
 import { Candidato } from './../../../models/Candidato.model';
-import { Usuario } from './../../../models/Usuario.model';
 import { CandidatoService } from './../../../services/candidato.service';
-import { LoginService } from './../../../services/login.service';
+import { ValidaCepService } from './../../../services/validaCep.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,12 +23,15 @@ export class CadastroComponent implements OnInit {
   public candidato: Candidato = new Candidato();
   public isCandidato: boolean = true;
   public isEmpresa: boolean = false;
+  // public cep = new FormControl([
+  //   Validators.required,
+  //   Validators.maxLength(8)
+  // ]);
 
   constructor(private empresaService: EmpresaService,
     private candidatoService: CandidatoService,
     private appService: AppService,
     private router: Router,
-    private loginService: LoginService,
     private validaCepService: ValidaCepService) { }
 
   ngOnInit(): void {
@@ -53,28 +55,26 @@ export class CadastroComponent implements OnInit {
     if (!this.validarRegistroEmpresa(this.empresa)) {
       return;
     }
-    let _this = this;
     this.empresaService.create(this.empresa).subscribe({
-      next(data) {
-        _this.appService.mensagem("Registro realizado com sucesso!");
-        let usuario: Usuario = new Usuario();
-        usuario = Object.assign(usuario, data);
-        _this.loginService.usuarioAutenticado = true;
-        _this.loginService.objUsuarioAutenticado = usuario;
-        //Ação
-        console.log(data);
+      next: (data) => {
+        this.appService.mensagemSucesso("Registro realizado com sucesso!");
+        setTimeout(() => {this.irParaLogin();}, 1500);
+        // let usuario: Usuario = new Usuario();
+        // usuario = Object.assign(usuario, data);
+        // _this.loginService.usuarioAutenticado = true;
+        // _this.loginService.objUsuarioAutenticado = usuario;
       },
-      error(err) {
+      error: (err) => {
         console.log(err);
-        if (!_this.appService.isNullOrUndefined(err.error.error)) {
-          _this.appService.mensagem(err.error.error);
+        if (!this.appService.isNullOrUndefined(err.error.error)) {
+          this.appService.mensagem(err.error.error);
         } else {
           for(let i = 0; i < err.error.errors.length; i++){
-            _this.appService.mensagem(err.error.errors[i].message);
+            this.appService.mensagem(err.error.errors[i].message);
           }
         }
       },
-      complete() {
+      complete: () => {
 
       }
     });
@@ -84,27 +84,27 @@ export class CadastroComponent implements OnInit {
     if (!this.validarRegistroCandidato(this.candidato)) {
       return;
     }
-    let _this = this;
     this.candidatoService.create(this.candidato).subscribe({
-      next(data) {
-        _this.appService.mensagem("Registro realizado com sucesso!");
-        let usuario: Usuario = new Usuario();
-        usuario = Object.assign(usuario, data);
-        _this.loginService.usuarioAutenticado = true;
-        _this.loginService.objUsuarioAutenticado = usuario;
-        _this.router.navigate(['empregos']);
+      next: (data) => {
+        this.appService.mensagemSucesso("Registro realizado com sucesso!");
+        setTimeout(() => {this.irParaLogin();}, 1500);
+        // let usuario: Usuario = new Usuario();
+        // usuario = Object.assign(usuario, data);
+        // _this.loginService.usuarioAutenticado = true;
+        // _this.loginService.objUsuarioAutenticado = usuario;
+        // _this.router.navigate(['empregos']);
       },
-      error(err) {
+      error: (err) => {
         console.log(err);
-        if (!_this.appService.isNullOrUndefined(err.error.error)) {
-          _this.appService.mensagem(err.error.error);
+        if (!this.appService.isNullOrUndefined(err.error.error)) {
+          this.appService.mensagem(err.error.error);
         } else {
           for(let i = 0; i < err.error.errors.length; i++){
-            _this.appService.mensagem(err.error.errors[i].message);
+            this.appService.mensagem(err.error.errors[i].message);
           }
         }
       },
-      complete() {
+      complete: () => {
 
       }
     });
@@ -113,47 +113,52 @@ export class CadastroComponent implements OnInit {
   private validarRegistroEmpresa(empresa: Empresa): boolean {
 
     if (this.appService.isNullOrUndefined(empresa.nome)) {
-      this.appService.mensagem("Preencha o nome da empresa");
+      this.appService.mensagemErro("Preencha o nome da empresa");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.cnpj)) {
-      this.appService.mensagem("Preencha o CNPJ da empresa");
+      this.appService.mensagemErro("Preencha o CNPJ da empresa");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.qtdFuncionarios)) {
-      this.appService.mensagem("Preencha a quantidade de funcionários que a empresa possui");
+      this.appService.mensagemErro("Preencha a quantidade de funcionários que a empresa possui");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.cep)) {
-      this.appService.mensagem("Preencha o CEP da empresa");
+      this.appService.mensagemErro("Preencha o CEP da empresa");
+      return false;
+    }
+
+    if (!this.validarCEP(empresa.cep)) {
+      this.appService.mensagemErro("CEP inválido");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
-      this.appService.mensagem("Preencha o nome do responsável da empresa");
+      this.appService.mensagemErro("Preencha o nome do responsável da empresa");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.telefone)) {
-      this.appService.mensagem("Preencha o telefone de contato da empresa");
+      this.appService.mensagemErro("Preencha o telefone de contato da empresa");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.celular)) {
-      this.appService.mensagem("Preencha o celular de contato da empresa");
+      this.appService.mensagemErro("Preencha o celular de contato da empresa");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.email)) {
-      this.appService.mensagem("Preencha o email");
+      this.appService.mensagemErro("Preencha o email");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(empresa.senha)) {
-      this.appService.mensagem("Preencha o campo senha");
+      this.appService.mensagemErro("Preencha o campo senha");
       return false;
     }
 
@@ -163,27 +168,32 @@ export class CadastroComponent implements OnInit {
   private validarRegistroCandidato(candidato: Candidato): boolean {
 
     if (this.appService.isNullOrUndefined(candidato.nome)) {
-      this.appService.mensagem("Preencha o nome");
+      this.appService.mensagemErro("Preencha o nome");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(candidato.cep)) {
-      this.appService.mensagem("Preencha o CEP");
+      this.appService.mensagemErro("Preencha o CEP");
+      return false;
+    }
+
+    if (!this.validarCEP(candidato.cep)) {
+      this.appService.mensagemErro("CEP inválido");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(candidato.cargo)) {
-      this.appService.mensagem("Selecione um cargo");
+      this.appService.mensagemErro("Selecione um cargo");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(candidato.email)) {
-      this.appService.mensagem("Preencha o email");
+      this.appService.mensagemErro("Preencha o email");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(candidato.senha)) {
-      this.appService.mensagem("Preencha o campo senha");
+      this.appService.mensagemErro("Preencha o campo senha");
       return false;
     }
 
@@ -194,23 +204,29 @@ export class CadastroComponent implements OnInit {
     this.tabGroup.selectedIndex = 1;
   }
 
-  validarCEP(cep: string) {
+  validarCEP(cep: string): boolean {
+    if (this.appService.isNullOrUndefined(cep)) {
+      return false;
+    }
     if (cep.length === 8) {
-      let _this = this;
       this.validaCepService.validarCep(cep).subscribe({
-        next(data) {
+        next: (data) => {
           if (data.erro) {
-            _this.appService.mensagem("CEP inválido!");
+            this.appService.mensagemErro("CEP inválido!");
+            // this.cep.setErrors({'incorrect': true});
+            return false;
           }
+          return true;
         },
-        error(err) {
-
+        error: (err) => {
+          console.error(err);
         },
-        complete() {
+        complete: () => {
 
         }
       })
     }
+    return false;
   }
 
 }

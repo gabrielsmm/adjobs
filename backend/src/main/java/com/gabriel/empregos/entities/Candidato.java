@@ -30,9 +30,9 @@ public class Candidato extends Usuario {
 	private String nome;
 	private String cep;
 	
-	@OneToOne
-	@JoinColumn(name = "cargo_id")
-	private Cargo cargo;
+//	@OneToOne
+//	@JoinColumn(name = "cargo_id")
+//	private Cargo cargo;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy="candidato")
@@ -44,12 +44,11 @@ public class Candidato extends Usuario {
 		
 	}
 	
-	public Candidato(Long id, String nome, String cep, Cargo cargo, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
+	public Candidato(Long id, String nome, String cep, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
 		super(email, senha, dataCadastro, tipoUsuario);
 		this.id = id;
 		this.nome = nome;
 		this.cep = cep;
-		this.cargo = cargo;
 	}
 	
 	public Long getId() {
@@ -74,14 +73,6 @@ public class Candidato extends Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Cargo getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
 	}
 
 	public Curriculo getCurriculo() {

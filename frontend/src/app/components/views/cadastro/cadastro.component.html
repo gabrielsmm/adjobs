@@ -10,7 +10,7 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4 d-flex flex-column justify-content-around" style="text-align: center;">
-          <a class="navbar-brand" href="#"><img class="img-fluid" style="margin: 0 auto;" src="assets/img/logo_alternativa.png" alt="Logo" width="100"></a>
+          <a class="navbar-brand" [routerLink]="['/inicio']"><img class="img-fluid" style="margin: 0 auto;" src="assets/img/logo_alternativa.png" alt="Logo" width="100"></a>
           <p class="paragrafo">Como deseja realizar seu cadastro?</p>
           <div>
             <button (click)="candidatoClick()" mat-raised-button class="btn candidato">Candidato</button>
@@ -33,11 +33,11 @@
                   <input [(ngModel)]="candidato.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="candidato.cargo.id" matInput type="number" placeholder="Cargo desejado" name="cargoDesejado" required>
                 </mat-form-field>
-              </div>
+              </div> -->
               <!-- <div class="col-md-4">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.cep" matInput placeholder="CEP" name="cep" required>
@@ -48,12 +48,12 @@
             <div class="row">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="candidato.email" matInput placeholder="Seu e-mail" name="emailCandidato" required>
+                  <input [(ngModel)]="candidato.email" matInput placeholder="E-mail" name="emailCandidato" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="candidato.senha" matInput type="password" placeholder="Sua senha para login" name="senhaCandidato" required>
+                  <input [(ngModel)]="candidato.senha" matInput type="password" placeholder="Senha" name="senhaCandidato" required>
                 </mat-form-field>
               </div>
             </div>
@@ -96,17 +96,17 @@
             <div class="row">
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.nomeResponsavel" matInput placeholder="Seu nome completo" name="nomePessoa" required>
+                  <input [(ngModel)]="empresa.nomeResponsavel" matInput placeholder="Nome completo" name="nomePessoa" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Seu telefone fixo" name="telefone" required>
+                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone fixo" name="telefone" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.celular" matInput placeholder="Seu celular" name="celular" required>
+                  <input [(ngModel)]="empresa.celular" matInput placeholder="Celular" name="celular" required>
                 </mat-form-field>
               </div>
             </div>
@@ -114,12 +114,12 @@
             <div class="row">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.email" matInput placeholder="Seu e-mail" name="email" required>
+                  <input [(ngModel)]="empresa.email" matInput placeholder="E-mail" name="email" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.senha" matInput type="password" placeholder="Sua senha para login" name="senha" required>
+                  <input [(ngModel)]="empresa.senha" matInput type="password" placeholder="Senha" name="senha" required>
                 </mat-form-field>
               </div>
             </div>

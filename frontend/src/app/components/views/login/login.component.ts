@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       } else if (!this.appService.isNullOrUndefined(err.error.error)) {
         this.appService.mensagemErro(err.error.error);
       } else {
-        this.appService.mensagemErro("Houve um error de conexão, por favor tente novamente.");
+        this.appService.mensagemErro("Houve um erro de conexão, por favor tente novamente.");
       }
     });
   }
@@ -54,12 +54,12 @@ export class LoginComponent implements OnInit {
   private validarDados(entidadeLogin: Usuario): boolean {
 
     if (this.appService.isNullOrUndefined(entidadeLogin.email)) {
-      this.appService.mensagem("Informe o e-mail");
+      this.appService.mensagemErro("Informe o e-mail");
       return false;
     }
 
     if (this.appService.isNullOrUndefined(entidadeLogin.senha)) {
-      this.appService.mensagem("Informe a senha");
+      this.appService.mensagemErro("Informe a senha");
       return false;
     }
 
