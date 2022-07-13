@@ -9,7 +9,7 @@
         <div class="card-body">
           <h2 class="card-title">{{candidato.nome}}</h2>
           <p class="card-text">Atualize seu currículo para aumentar suas chances!</p>
-          <button class="btn btn-blue" [routerLink]="['/candidato/curriculo']">Ver currículo</button>
+          <button class="btn btn-blue" [routerLink]="['/candidato/curriculo']">Editar currículo</button>
         </div>
       </div>
     </div>
@@ -22,17 +22,17 @@
             <div class="row">
               <div class="col-md-4">
                 <button class="btn btn-blue btn-status">
-                  Enviado <span class="badge badge-light">0</span>
+                  Enviado <span class="badge badge-light">{{qtdEnviados}}</span>
                 </button>
               </div>
               <div class="col-md-4">
                 <button class="btn btn-blue btn-status">
-                  Em processo <span class="badge badge-light">0</span>
+                  Em processo <span class="badge badge-light">{{qtdEmProcesso}}</span>
                 </button>
               </div>
               <div class="col-md-4">
                 <button class="btn btn-blue btn-status">
-                  Finalista <span class="badge badge-light">0</span>
+                  Finalista <span class="badge badge-light">{{qtdFinalista}}</span>
                 </button>
               </div>
             </div>

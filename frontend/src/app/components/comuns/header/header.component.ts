@@ -41,6 +41,8 @@ export class HeaderComponent implements OnInit {
           this.isAreaCandidato = true;
         } else if (this.router.url.includes('/empresa')) {
           this.isAreaEmpresa = true;
+        } else if (this.router.url.includes('/empregos')) {
+          this.isEmpregos = true;
         } else {
           this.isHome = true;
         }

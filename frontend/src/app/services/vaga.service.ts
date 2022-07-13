@@ -7,7 +7,7 @@ import { environment } from './../../environments/environment';
 import { AppService } from './../app.service';
 
 export class Filtro {
-  public pesquisa: string = "";
+  public pesquisa: string;
   public tipo: number;
   public palavraChave: string;
   public localizacao: string;
@@ -25,7 +25,7 @@ export class VagaService {
 
   getListaPaginada(page: number = 0, size: number = 5, filtro: Filtro): Observable<any> {
     let url = `${this.baseUrl}/vagas?page=${page}&size=${size}`;
-    if (filtro.pesquisa !== "") {
+    if (!this.appService.isNullOrUndefined(filtro.pesquisa)) {
       url += `&nome=${filtro.pesquisa}`;
     } else if (!this.appService.isNullOrUndefined(filtro.tipo) && filtro.tipo >= 0) {
       url += `&tipo=${filtro.tipo}`;
@@ -74,6 +74,11 @@ export class VagaService {
   delete(id: number): Observable<void>{
     const url = `${this.baseUrl}/vagas/${id}`;
     return this.http.delete<void>(url);
+  }
+
+  getContador(idEmpresa: number): Observable<any> {
+    const url = `${this.baseUrl}/vagas/contador/${idEmpresa}`;
+    return this.http.get(url);
   }
 
   // findById(id: string): Observable<Categoria>{

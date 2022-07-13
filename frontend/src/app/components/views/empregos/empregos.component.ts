@@ -145,6 +145,7 @@ export class EmpregosComponent implements OnInit {
   }
 
   buscarTipo(tipo: number = -1) {
+    this.filtro = new Filtro();
     this.filtro.tipo = tipo;
     this.buscar();
   }

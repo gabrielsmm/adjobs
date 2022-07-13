@@ -9,6 +9,7 @@
         <div class="card-body">
           <h2 class="card-title">{{empresa.nome}}</h2>
           <p class="card-text">Divulgue suas vagas e obtenha o sucesso almejado!</p>
+          <button class="btn btn-blue" [routerLink]="['/empresa/vagas']">Divulgar vagas</button>
         </div>
       </div>
     </div>
@@ -21,12 +22,12 @@
             <div class="row">
               <div class="col-md-4">
                 <button type="button" class="btn btn-blue btn-status">
-                  Postadas <span class="badge badge-light">0</span>
+                  Postadas <span class="badge badge-light">{{qtdPostadas}}</span>
                 </button>
               </div>
               <div class="col-md-4">
                 <button type="button" class="btn btn-blue btn-status">
-                  Candidatos <span class="badge badge-light">0</span>
+                  Candidatos <span class="badge badge-light">{{qtdCandidatos}}</span>
                 </button>
               </div>
               <!-- <div class="col-md-4">

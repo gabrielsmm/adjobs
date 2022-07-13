@@ -101,4 +101,9 @@ public class VagaResource {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/contador/{idEmpresa}")
+	public ResponseEntity<?> getContador(@PathVariable Integer idEmpresa) {
+		return ResponseEntity.ok().body(service.getContador(idEmpresa));
+	}
+	
 }

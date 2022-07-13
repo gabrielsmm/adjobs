@@ -1,19 +1,24 @@
+import { CandidaturaService } from './../../../../services/candidatura.service';
 import { Candidato } from './../../../../models/Candidato.model';
 import { CandidatoService } from './../../../../services/candidato.service';
 import { LoginService } from './../../../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-minha-area',
+  selector: 'app-minha-area-candidato',
   templateUrl: './minha-area.component.html',
   styleUrls: ['./minha-area.component.css']
 })
-export class MinhaAreaComponent implements OnInit {
+export class MinhaAreaCandidatoComponent implements OnInit {
 
   candidato: Candidato = new Candidato;
+  public qtdEnviados: number = 0;
+  public qtdEmProcesso: number = 0;
+  public qtdFinalista: number = 0;
 
   constructor(public loginService: LoginService,
-  public candidatoService: CandidatoService) {
+  public candidatoService: CandidatoService,
+  public candidaturaService: CandidaturaService) {
     this.getCandidato();
   }
 
@@ -22,18 +27,34 @@ export class MinhaAreaComponent implements OnInit {
   }
 
   getCandidato() {
-    let _this = this;
     this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
-      next(data) {
-        _this.candidato = data;
+      next: (data) => {
+        this.candidato = data;
+        this.getContador();
       },
-      error(err) {
+      error: (err) => {
         console.log(err);
       },
-      complete() {
+      complete: () => {
 
       }
     });
+  }
+
+  getContador() {
+    this.candidaturaService.getContador(this.candidato.id).subscribe({
+      next: (data) => {
+        this.qtdEnviados = data.qtdEnviados;
+        this.qtdEmProcesso = data.qtdEmProcesso;
+        this.qtdFinalista = data.qtdFinalista;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+
+      }
+    })
   }
 
 }

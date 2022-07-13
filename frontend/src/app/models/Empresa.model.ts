@@ -1,5 +1,5 @@
 export class Empresa {
-  id?: number
+  id: number
   nome: string
   cnpj: string
   qtdFuncionarios: number

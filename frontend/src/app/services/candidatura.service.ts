@@ -49,6 +49,11 @@ export class CandidaturaService {
     return this.http.get(url);
   }
 
+  getContador(idCandidato: number): Observable<any> {
+    const url = `${this.baseUrl}/candidaturas/contador/${idCandidato}`;
+    return this.http.get(url);
+  }
+
   // create(candidato: Candidato): Observable<Candidato>{
   //   const url = `${this.baseUrl}/candidatos`;
   //   return this.http.post<Candidato>(url, candidato);

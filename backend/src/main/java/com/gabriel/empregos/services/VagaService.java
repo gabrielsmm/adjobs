@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gabriel.empregos.entities.Vaga;
+import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 import com.gabriel.empregos.repositories.VagaRepository;
 import com.gabriel.empregos.services.exceptions.DataIntegrityViolationException;
 import com.gabriel.empregos.services.exceptions.ObjectNotFoundException;
@@ -109,6 +110,11 @@ public class VagaService {
 		} catch(org.springframework.dao.DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException("Vaga não pode ser deletada! Possui candidaturas associadas");
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	public ContadorAuxiliar getContador(Integer idCandidato) {
+		return repository.getContador(idCandidato);
 	}
 	
 }

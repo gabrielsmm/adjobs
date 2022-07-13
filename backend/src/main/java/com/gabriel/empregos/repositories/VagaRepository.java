@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.gabriel.empregos.entities.Vaga;
+import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 
 public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
@@ -33,5 +34,10 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
 	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa", nativeQuery = true)
 	long buscaNumeroVagasCadastradasPorEmpresa(@Param(value = "idEmpresa") Integer idEmpresa);	
+	
+	@Query(value = "SELECT "
+			+ "(SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa) AS QTDPOSTADAS, "
+			+ "(SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj JOIN TB_VAGAS as v WHERE v.id = obj.vaga_id AND v.empresa_id = :idEmpresa) AS QTDCANDIDATOS", nativeQuery = true)
+	ContadorAuxiliar getContador(@Param(value = "idEmpresa") Integer idEmpresa);
 	
 }

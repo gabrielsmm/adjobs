@@ -1,7 +1,7 @@
 import { Cargo } from './Cargo.model';
 
 export class Candidato {
-  id?: number
+  id: number
   nome: string
   cep: string
   cargo: Cargo

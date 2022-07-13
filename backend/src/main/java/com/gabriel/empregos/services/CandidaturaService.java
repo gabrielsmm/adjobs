@@ -12,6 +12,7 @@ import com.gabriel.empregos.entities.Candidato;
 import com.gabriel.empregos.entities.Candidatura;
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.enums.CandidaturaStatus;
+import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 import com.gabriel.empregos.repositories.CandidaturaRepository;
 import com.gabriel.empregos.services.exceptions.DataIntegrityViolationException;
 import com.gabriel.empregos.services.exceptions.ObjectNotFoundException;
@@ -76,6 +77,11 @@ public class CandidaturaService {
 	@Transactional(readOnly = true)
 	public Long buscaNumeroCandidaturas(Integer idCandidato) {
 		return repository.buscaNumeroCandidaturas(idCandidato);
+	}
+	
+	@Transactional(readOnly = true)
+	public ContadorAuxiliar getContador(Integer idCandidato) {
+		return repository.getContador(idCandidato);
 	}
 	
 //	public Candidato create(Candidato obj) {

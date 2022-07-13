@@ -67,6 +67,11 @@ public class CandidaturaResource {
 		return ResponseEntity.ok().body(service.buscaNumeroCandidaturas(idCandidato));
 	}
 	
+	@GetMapping(value = "/contador/{idCandidato}")
+	public ResponseEntity<?> getContador(@PathVariable Integer idCandidato) {
+		return ResponseEntity.ok().body(service.getContador(idCandidato));
+	}
+	
 //	@PostMapping
 //	public ResponseEntity<Candidato> create(@Valid @RequestBody Candidato obj) {
 //		obj = service.create(obj);
