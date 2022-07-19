@@ -1,8 +1,10 @@
-import { VagaService } from './../../../../services/vaga.service';
-import { LoginService } from './../../../../services/login.service';
-import { EmpresaService } from './../../../../services/empresa.service';
-import { Empresa } from './../../../../models/Empresa.model';
 import { Component, OnInit } from '@angular/core';
+
+import { AppService } from './../../../../app.service';
+import { Empresa } from './../../../../models/Empresa.model';
+import { EmpresaService } from './../../../../services/empresa.service';
+import { LoginService } from './../../../../services/login.service';
+import { VagaService } from './../../../../services/vaga.service';
 
 @Component({
   selector: 'app-minha-area-empresa',
@@ -17,7 +19,8 @@ export class MinhaAreaEmpresaComponent implements OnInit {
 
   constructor(private empresaService: EmpresaService,
   private loginService: LoginService,
-  private vagaService: VagaService) {
+  private vagaService: VagaService,
+  public appService: AppService) {
     this.getEmpresa();
   }
 

@@ -18,7 +18,8 @@
         <div class="card">
           <div class="card-body">
             <h2 class="card-title">Novidades sobre suas candidaturas</h2>
-            <p class="card-text">Não há novidades sobre as candidaturas...</p>
+            <p *ngIf="appService.isNullOrUndefined(qtdEnviados) && appService.isNullOrUndefined(qtdEmProcesso) && appService.isNullOrUndefined(qtdFinalista)"
+            class="card-text">Não há novidades sobre as candidaturas...</p>
             <div class="row">
               <div class="col-md-4">
                 <button class="btn btn-blue btn-status">

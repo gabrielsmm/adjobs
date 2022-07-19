@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   realizarLogin() {
-    console.log('verificando login...');
     if (!this.validarDados(this.usuarioLogin)) {
       return;
     }

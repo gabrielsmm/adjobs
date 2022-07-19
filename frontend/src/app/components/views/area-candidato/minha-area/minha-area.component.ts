@@ -1,8 +1,10 @@
-import { CandidaturaService } from './../../../../services/candidatura.service';
+import { Component, OnInit } from '@angular/core';
+
+import { AppService } from './../../../../app.service';
 import { Candidato } from './../../../../models/Candidato.model';
 import { CandidatoService } from './../../../../services/candidato.service';
+import { CandidaturaService } from './../../../../services/candidatura.service';
 import { LoginService } from './../../../../services/login.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-minha-area-candidato',
@@ -18,7 +20,8 @@ export class MinhaAreaCandidatoComponent implements OnInit {
 
   constructor(public loginService: LoginService,
   public candidatoService: CandidatoService,
-  public candidaturaService: CandidaturaService) {
+  public candidaturaService: CandidaturaService,
+  public appService: AppService) {
     this.getCandidato();
   }
 
