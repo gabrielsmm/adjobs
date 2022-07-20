@@ -2,6 +2,8 @@ package com.gabriel.empregos.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,8 +13,10 @@ import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 
 public interface CandidaturaRepository extends JpaRepository<Candidatura, Long> {
 	
-	@Query(value = "SELECT * FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato AND obj.status <> 4", nativeQuery = true)
-	List<Candidatura> findAllByCandidato(@Param(value = "idCandidato") Integer idCandidato);
+	@Query(value = "SELECT * FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato AND obj.status <> 4",
+			countQuery = "SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj WHERE obj.candidato_id = :idCandidato AND obj.status <> 4",
+			nativeQuery = true)
+	Page<Candidatura> findAllByCandidato(@Param(value = "idCandidato") Integer idCandidato, Pageable pageable);
 	
 	@Query(value = "SELECT * FROM TB_CANDIDATURAS AS obj WHERE obj.vaga_id = :idVaga AND obj.status <> 4", nativeQuery = true)
 	List<Candidatura> findAllByVaga(@Param(value = "idVaga") Integer idVaga);

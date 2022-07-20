@@ -40,6 +40,10 @@ public class Vaga {
 	private Date dataAlteracao;
 	@Column(columnDefinition = "TEXT")
 	private String descricao;
+	@Column(columnDefinition = "TEXT")
+	private String beneficios;
+	@Column(columnDefinition = "TEXT")
+	private String requisitos;
 	
 //	@OneToOne
 //	@JoinColumn(name = "tipocontratacao_id")
@@ -55,7 +59,7 @@ public class Vaga {
 	}
 	
 	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
-			Date dataCadastro, Date dataAlteracao, String descricao, Empresa empresa) {
+			Date dataCadastro, Date dataAlteracao, String descricao, String beneficios, String requisitos, Empresa empresa) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -65,6 +69,8 @@ public class Vaga {
 		this.dataCadastro = dataCadastro;
 		this.dataAlteracao = dataAlteracao;
 		this.descricao = descricao;
+		this.beneficios = beneficios;
+		this.requisitos = requisitos;
 		this.empresa = empresa;
 	}
 
@@ -138,6 +144,22 @@ public class Vaga {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getBeneficios() {
+		return beneficios;
+	}
+
+	public void setBeneficios(String beneficios) {
+		this.beneficios = beneficios;
+	}
+
+	public String getRequisitos() {
+		return requisitos;
+	}
+
+	public void setRequisitos(String requisitos) {
+		this.requisitos = requisitos;
 	}
 
 	public Empresa getEmpresa() {

@@ -48,6 +48,22 @@
                 </p>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <span>Benefícios: </span>
+                <p style="text-align: justify; font-size: 15px;">
+                  {{vaga.beneficios}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <span>Requisitos: </span>
+                <p style="text-align: justify; font-size: 15px;">
+                  {{vaga.requisitos}}
+                </p>
+              </div>
+            </div>
             <hr>
             <div class="row">
               <div class="col-md-9"></div>
@@ -119,6 +135,24 @@
               <mat-form-field>
                 <mat-label>Descrição da vaga</mat-label>
                 <textarea [(ngModel)]="vaga.descricao" matInput></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 2px;">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Benefícios</mat-label>
+                <textarea [(ngModel)]="vaga.beneficios" matInput rows="1" placeholder="Exemplos: VT, VA ou a Combinar"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 2px;">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Requisitos</mat-label>
+                <textarea [(ngModel)]="vaga.requisitos" matInput rows="1"></textarea>
               </mat-form-field>
             </div>
           </div>

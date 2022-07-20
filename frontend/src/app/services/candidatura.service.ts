@@ -29,8 +29,8 @@ export class CandidaturaService {
     return this.http.get<Candidatura>(url);
   }
 
-  findAllByCandidato(idCandidato: number): Observable<any> {
-    const url = `${this.baseUrl}/candidaturas/candidato/${idCandidato}`;
+  findAllByCandidato(page: number = 0, size: number = 5, idCandidato: number): Observable<any> {
+    const url = `${this.baseUrl}/candidaturas/candidato/${idCandidato}?page=${page}&size=${size}`;
     return this.http.get(url);
   }
 

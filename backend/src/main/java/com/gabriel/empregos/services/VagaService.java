@@ -100,6 +100,8 @@ public class VagaService {
 		newObj.setDataCadastro(obj.getDataCadastro());
 		newObj.setDataAlteracao(new Date(System.currentTimeMillis()));
 		newObj.setDescricao(obj.getDescricao());
+		newObj.setRequisitos(obj.getRequisitos());
+		newObj.setBeneficios(obj.getBeneficios());
 		newObj.setEmpresa(obj.getEmpresa());
 	}
 	

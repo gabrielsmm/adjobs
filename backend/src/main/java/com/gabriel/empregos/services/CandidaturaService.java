@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,8 +41,9 @@ public class CandidaturaService {
 		return repository.findAll();
 	}
 	
-	public List<Candidatura> findAllByCandidato(Integer idCandidato) {
-		return repository.findAllByCandidato(idCandidato);
+	public Page<Candidatura> findAllByCandidato(Integer idCandidato, Pageable pageable) {
+		Page<Candidatura> result = repository.findAllByCandidato(idCandidato, pageable);
+		return result;
 	}
 	
 	public List<Candidatura> findAllByVaga(Integer idVaga) {

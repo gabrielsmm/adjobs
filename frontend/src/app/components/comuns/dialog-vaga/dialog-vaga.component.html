@@ -4,47 +4,58 @@
 
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-12">
-      <h2>{{data.nome}}</h2>
+      <h2 style="font-weight: bold;">{{data.nome}}</h2>
     </div>
   </div>
 
   <div class="row" style="margin-top: 10px;">
-    <div class="col-md-6">
-      <p>ID: {{data.id}}</p>
-    </div>
-
     <div class="col-md-6">
       <p>Tipo de Contratação: {{appService.tiposContratacao[data.tipo].viewValue}}</p>
     </div>
-  </div>
 
-  <div class="row" style="margin-top: 10px;">
     <div class="col-md-6">
       <p>Quantidade de Vagas: {{data.quantidade}}</p>
     </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p><i class="bi bi-cash-coin"></i> Salário: {{data.salario | currency:'BRL'}}</p>
+    </div>
 
     <div class="col-md-6">
-      <p>Salário: {{data.salario | currency:'BRL'}}</p>
+      <p><i class="bi bi-geo-alt"></i> Localização: {{data.localizacao}}</p>
     </div>
   </div>
 
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-6">
-      <p>Localização: <i class="bi bi-geo-alt"></i> {{data.localizacao}}</p>
-    </div>
-
-    <div class="col-md-6">
-      <p><i class="bi bi-calendar"></i> Data inclusão: {{data.dataCadastro | date: 'dd/MM/yyyy'}}</p>
+      <p><i class="bi bi-calendar"></i> Data de inclusão: {{data.dataCadastro | date: 'dd/MM/yyyy'}}</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
+      <span>Descrição: </span>
       <p style="text-align: justify;">
         {{(readMore) ? data.descricao : data.descricao | slice:0:50}} <span *ngIf="!readMore">... </span>
         <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">Ler mais</a>
         <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">Ler menos</a>
       </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span>Requisitos: </span>
+      <p>{{data.requisitos}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span>Benefícios: </span>
+      <p>{{data.beneficios}}</p>
     </div>
   </div>
 

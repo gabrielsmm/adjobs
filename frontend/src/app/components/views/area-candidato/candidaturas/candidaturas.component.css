@@ -36,3 +36,7 @@
   color: rgb(153, 50, 50);
   cursor: pointer;
 }
+
+.page-link {
+  cursor: pointer;
+}

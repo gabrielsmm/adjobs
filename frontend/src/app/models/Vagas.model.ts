@@ -10,5 +10,7 @@ export class Vaga{
   dataCadastro: Date
   dataAlteracao: Date
   descricao: string
+  beneficios: string
+  requisitos: string
   empresa: Empresa
 }

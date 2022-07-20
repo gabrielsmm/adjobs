@@ -20,6 +20,13 @@ export class CandidaturasComponent implements OnInit {
   public candidaturas: Candidatura[] = [];
   public readMore = false;
 
+  // paginação
+  public page = 0;
+  public size = 5;
+  public first: boolean;
+  public last: boolean;
+  public totalElements = 0;
+
   constructor(public candidaturaService: CandidaturaService,
     public loginService: LoginService,
     public appService: AppService,
@@ -34,9 +41,12 @@ export class CandidaturasComponent implements OnInit {
   }
 
   getCandidaturas() {
-    this.candidaturaService.findAllByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.candidaturaService.findAllByCandidato(this.page, this.size, this.loginService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
-        this.candidaturas = data;
+        this.candidaturas = data['content'];
+        this.first = data['first'];
+        this.last = data['last'];
+        this.totalElements = data['totalElements'];
       },
       error: (msg) => {
         console.log('Error', msg);
@@ -86,6 +96,26 @@ export class CandidaturasComponent implements OnInit {
           }
         });
       }
+    });
+  }
+
+  irPaginaAnterior() {
+    this.page = --this.page;
+    this.getCandidaturas();
+    this.scrollToTop();
+  }
+
+  irPaginaPosterior() {
+    this.page = ++this.page;
+    this.getCandidaturas();
+    this.scrollToTop();
+  }
+
+  scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
 
