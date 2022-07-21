@@ -153,21 +153,13 @@ export class EmpregosComponent implements OnInit {
   irPaginaAnterior() {
     this.page = --this.page;
     this.buscar();
-    this.scrollToTop();
+    this.appService.scrollToTop();
   }
 
   irPaginaPosterior() {
     this.page = ++this.page;
     this.buscar();
-    this.scrollToTop();
-  }
-
-  scrollToTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    this.appService.scrollToTop();
   }
 
 }

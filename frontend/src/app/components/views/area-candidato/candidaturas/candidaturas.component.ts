@@ -102,21 +102,13 @@ export class CandidaturasComponent implements OnInit {
   irPaginaAnterior() {
     this.page = --this.page;
     this.getCandidaturas();
-    this.scrollToTop();
+    this.appService.scrollToTop();
   }
 
   irPaginaPosterior() {
     this.page = ++this.page;
     this.getCandidaturas();
-    this.scrollToTop();
-  }
-
-  scrollToTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    this.appService.scrollToTop();
   }
 
 }

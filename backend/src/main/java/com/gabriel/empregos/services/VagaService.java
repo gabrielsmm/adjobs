@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gabriel.empregos.entities.Vaga;
+import com.gabriel.empregos.enums.VagaStatus;
 import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 import com.gabriel.empregos.repositories.VagaRepository;
 import com.gabriel.empregos.services.exceptions.DataIntegrityViolationException;
@@ -52,8 +53,9 @@ public class VagaService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Vaga> findAllByEmpresa(Integer idEmpresa) {
-		return repository.findAllByEmpresa(idEmpresa);
+	public Page<Vaga> findAllByEmpresa(Integer idEmpresa, Pageable pageable) {
+		Page<Vaga> result = repository.findAllByEmpresa(idEmpresa, pageable);
+		return result;
 	}
 	
 	@Transactional(readOnly = true)
@@ -79,9 +81,10 @@ public class VagaService {
 	public Vaga create(Vaga obj) {
 		try {
 			obj.setDataCadastro(new Date(System.currentTimeMillis()));
+			obj.setStatus(VagaStatus.ATIVA);
 			return repository.save(obj);
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Erro ao inserir currículo ");
+			throw new DataIntegrityViolationException("Erro ao inserir vaga");
 		}		
 	}
 	
@@ -102,16 +105,19 @@ public class VagaService {
 		newObj.setDescricao(obj.getDescricao());
 		newObj.setRequisitos(obj.getRequisitos());
 		newObj.setBeneficios(obj.getBeneficios());
+		newObj.setStatus(obj.getStatus());
 		newObj.setEmpresa(obj.getEmpresa());
 	}
 	
 	public void delete(Integer id) {
-		this.findById(id);
-		try {
-			this.repository.deleteById(Integer.toUnsignedLong(id));
-		} catch(org.springframework.dao.DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Vaga não pode ser deletada! Possui candidaturas associadas");
-		}
+		Vaga obj = this.findById(id);
+		obj.setStatus(VagaStatus.CANCELADA);
+		repository.save(obj);	
+//		try {
+//			this.repository.deleteById(Integer.toUnsignedLong(id));
+//		} catch(org.springframework.dao.DataIntegrityViolationException e) {
+//			throw new DataIntegrityViolationException("Vaga não pode ser deletada! Possui candidaturas associadas");
+//		}
 	}
 	
 	@Transactional(readOnly = true)

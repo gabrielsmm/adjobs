@@ -54,8 +54,11 @@ public class VagaResource {
 	}
 	
 	@GetMapping(value="/empresa/{idEmpresa}")
-	public ResponseEntity<List<Vaga>> findAllByEmpresa(@PathVariable("idEmpresa") Integer idEmpresa) {
-		List<Vaga> list = service.findAllByEmpresa(idEmpresa);
+	public ResponseEntity<Page<Vaga>> findAllByEmpresa(@PathVariable("idEmpresa") Integer idEmpresa,
+			@RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "5") int size) {
+		Pageable paging = PageRequest.of(page, size);
+		Page<Vaga> list = service.findAllByEmpresa(idEmpresa, paging);
 		return ResponseEntity.ok(list);
 	}
 	

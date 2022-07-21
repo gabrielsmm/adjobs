@@ -38,6 +38,13 @@ export class VagasComponent implements OnInit {
   public stateChange = State.StateGrid;
   public readMore = false;
 
+  // paginação
+  public page = 0;
+  public size = 5;
+  public first: boolean;
+  public last: boolean;
+  public totalElements = 0;
+
   constructor(private vagaService: VagaService,
   private loginService: LoginService,
   public appService: AppService,
@@ -54,9 +61,12 @@ export class VagasComponent implements OnInit {
   }
 
   getVagas() {
-    this.vagaService.findAllByEmpresa(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.vagaService.findAllByEmpresa(this.page, this.size, this.loginService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
-        this.vagas = data;
+        this.vagas = data['content'];
+        this.first = data['first'];
+        this.last = data['last'];
+        this.totalElements = data['totalElements'];
       },
       error: (msg) => {
         console.log('Error', msg);
@@ -191,6 +201,18 @@ export class VagasComponent implements OnInit {
 
   atualizarStatus(candidatura: Candidatura) {
 
+  }
+
+  irPaginaAnterior() {
+    this.page = --this.page;
+    this.getVagas();
+    this.appService.scrollToTop();
+  }
+
+  irPaginaPosterior() {
+    this.page = ++this.page;
+    this.getVagas();
+    this.appService.scrollToTop();
   }
 
 }

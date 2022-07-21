@@ -12,17 +12,20 @@ import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.interfaces.ContadorAuxiliar;
 
 public interface VagaRepository extends JpaRepository<Vaga, Long> {
+	//0 ATIVA 1 CANCELADA
 	
 	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.TIPOCONTRATACAO_ID = 3",
 			nativeQuery = true)
 	List<Vaga> getSomenteVagasEstagio();
 	
-	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa", nativeQuery = true)
-	List<Vaga> findAllByEmpresa(@Param(value = "idEmpresa") Integer idEmpresa);
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1 ORDER BY obj.data_cadastro DESC", 
+			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1",
+			nativeQuery = true)
+	Page<Vaga> findAllByEmpresa(@Param(value = "idEmpresa") Integer idEmpresa, Pageable pageable);
 	
 	Page<Vaga> findAllByNomeIgnoreCaseContaining(String nome, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM TB_VAGAS obj WHERE obj.tipo = ?1",
+	@Query(value = "SELECT * FROM TB_VAGAS obj WHERE obj.tipo = ?1 ORDER BY obj.data_cadastro DESC",
 		    countQuery = "SELECT count(*) FROM TB_VAGAS obj WHERE obj.tipo = ?1",
 		    nativeQuery = true)
 	Page<Vaga> findAllByTipo(Integer tipo, Pageable pageable);

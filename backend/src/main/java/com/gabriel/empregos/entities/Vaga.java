@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Proxy;
 
 import com.gabriel.empregos.enums.TipoContratacao;
+import com.gabriel.empregos.enums.VagaStatus;
 
 @Entity
 @Table(name = "tb_vagas")
@@ -50,6 +51,9 @@ public class Vaga {
 	@Enumerated(value = EnumType.ORDINAL)
 	private TipoContratacao tipo;
 	
+	@Enumerated(value = EnumType.ORDINAL)
+	private VagaStatus status;
+	
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
@@ -59,7 +63,7 @@ public class Vaga {
 	}
 	
 	public Vaga(Long id, String nome, TipoContratacao tipo, Integer quantidade, Double salario, String localizacao,
-			Date dataCadastro, Date dataAlteracao, String descricao, String beneficios, String requisitos, Empresa empresa) {
+			Date dataCadastro, Date dataAlteracao, String descricao, String beneficios, String requisitos, VagaStatus status, Empresa empresa) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -71,6 +75,7 @@ public class Vaga {
 		this.descricao = descricao;
 		this.beneficios = beneficios;
 		this.requisitos = requisitos;
+		this.status = status;
 		this.empresa = empresa;
 	}
 
@@ -160,6 +165,14 @@ public class Vaga {
 
 	public void setRequisitos(String requisitos) {
 		this.requisitos = requisitos;
+	}
+	
+	public VagaStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(VagaStatus status) {
+		this.status = status;
 	}
 
 	public Empresa getEmpresa() {

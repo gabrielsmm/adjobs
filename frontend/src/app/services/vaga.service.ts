@@ -56,8 +56,8 @@ export class VagaService {
     return this.http.get(url);
   }
 
-  findAllByEmpresa(idEmpresa: number): Observable<any> {
-    const url = `${this.baseUrl}/vagas/empresa/${idEmpresa}`;
+  findAllByEmpresa(page: number = 0, size: number = 5, idEmpresa: number): Observable<any> {
+    const url = `${this.baseUrl}/vagas/empresa/${idEmpresa}?page=${page}&size=${size}`;
     return this.http.get(url);
   }
 
