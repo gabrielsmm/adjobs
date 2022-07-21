@@ -18,21 +18,32 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 			nativeQuery = true)
 	List<Vaga> getSomenteVagasEstagio();
 	
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.status <> 1 ORDER BY obj.data_cadastro DESC",
+			countQuery = "SELECT * FROM TB_VAGAS AS obj WHERE obj.status <> 1",
+			nativeQuery = true)
+	Page<Vaga> findAll(Pageable pageable);
+	
 	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1 ORDER BY obj.data_cadastro DESC", 
 			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1",
 			nativeQuery = true)
 	Page<Vaga> findAllByEmpresa(@Param(value = "idEmpresa") Integer idEmpresa, Pageable pageable);
 	
-	Page<Vaga> findAllByNomeIgnoreCaseContaining(String nome, Pageable pageable);
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE UPPER(obj.nome) LIKE '%' || UPPER(:nome) || '%' AND obj.status <> 1 ORDER BY obj.data_cadastro DESC",
+			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE UPPER(obj.nome) LIKE '%' || UPPER(:nome) || '%' AND obj.status <> 1",
+			nativeQuery = true)
+	Page<Vaga> findAllByNome(@Param(value = "nome") String nome, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM TB_VAGAS obj WHERE obj.tipo = ?1 ORDER BY obj.data_cadastro DESC",
-		    countQuery = "SELECT count(*) FROM TB_VAGAS obj WHERE obj.tipo = ?1",
+	@Query(value = "SELECT * FROM TB_VAGAS obj WHERE obj.tipo = :tipo ORDER BY obj.data_cadastro DESC",
+		    countQuery = "SELECT count(*) FROM TB_VAGAS obj WHERE obj.tipo = :tipo",
 		    nativeQuery = true)
-	Page<Vaga> findAllByTipo(Integer tipo, Pageable pageable);
+	Page<Vaga> findAllByTipo(@Param(value = "tipo") Integer tipo, Pageable pageable);
 	
-	Page<Vaga> findAllByNomeIgnoreCaseContainingAndLocalizacaoIgnoreCaseContaining(String palavraChave, String localizacao, Pageable pageable);
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE (UPPER(obj.nome) LIKE '%' || UPPER(:palavraChave) || '%' AND UPPER(obj.localizacao) LIKE '%' || UPPER(:localizacao) || '%') AND obj.status <> 1 ORDER BY obj.data_cadastro DESC",
+			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE (UPPER(obj.nome) LIKE '%' || UPPER(:palavraChave) || '%' AND UPPER(obj.localizacao) LIKE '%' || UPPER(:localizacao) || '%') AND obj.status <> 1",
+			nativeQuery = true)
+	Page<Vaga> findAllByPalavraLocalizacao(@Param(value = "palavraChave") String palavraChave, @Param(value = "localizacao") String localizacao, Pageable pageable);
 	
-	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS", nativeQuery = true)
+	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.status <> 1", nativeQuery = true)
 	long buscaNumeroVagas();
 	
 	@Query(value = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa", nativeQuery = true)
