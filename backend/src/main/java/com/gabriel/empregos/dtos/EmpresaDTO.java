@@ -21,6 +21,8 @@ public class EmpresaDTO implements Serializable {
 	private String nomeResponsavel;
 	private String telefone;
 	private String celular;
+	private String descricao;
+	private String seguimento;
 	
 	public EmpresaDTO() {
 		
@@ -38,6 +40,8 @@ public class EmpresaDTO implements Serializable {
 		this.nomeResponsavel = obj.getNomeResponsavel();
 		this.telefone = obj.getTelefone();
 		this.celular = obj.getCelular();
+		this.descricao = obj.getDescricao();
+		this.seguimento = obj.getSeguimento();
 	}
 
 	public Long getId() {
@@ -126,6 +130,22 @@ public class EmpresaDTO implements Serializable {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getSeguimento() {
+		return seguimento;
+	}
+
+	public void setSeguimento(String seguimento) {
+		this.seguimento = seguimento;
 	}
 
 }

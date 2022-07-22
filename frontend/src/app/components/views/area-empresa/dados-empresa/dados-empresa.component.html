@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-between">
+        <p class="titulos">DADOS DA EMPRESA</p>
+        <span (click)="editarClick()" [hidden]="isEditavel" class="span-actions editar"><i class="bi bi-pencil"></i> Editar</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+
+      <div class="col-md-9">
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.nome" [readonly]="!isEditavel" matInput placeholder="Nome da empresa" name="nome" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.cnpj" matInput placeholder="CNPJ da Empresa" name="cnpj" mask="00.000.000/0000-00" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.qtdFuncionarios" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.cep" [readonly]="!isEditavel" matInput placeholder="CEP" name="cep" mask="00000-000" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.nomeResponsavel" [readonly]="!isEditavel" matInput placeholder="Nome do responsável" name="nomeResponsavel" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone fixo" name="telefone" mask="(00)0000-0000" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.celular" matInput placeholder="Celular" name="celular" mask="(00)00000-0000" required>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.seguimento" [readonly]="!isEditavel" matInput placeholder="Seguimento da empresa (Ex.: T.I.)" name="seguimento" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Descrição</mat-label>
+              <textarea [(ngModel)]="empresa.descricao" matInput placeholder="Quem somos..."></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <button (click)="salvarClick()" [disabled]="!isEditavel" class="btn btn-blue btn-salvar">Salvar</button>
+
+      </div>
+    </div>
+  </div>
+</div>

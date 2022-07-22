@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gabriel.empregos.dtos.EmpresaDTO;
 import com.gabriel.empregos.entities.Empresa;
 import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.EmpresaRepository;
@@ -21,8 +22,8 @@ public class EmpresaService {
 	@Autowired
 	private EmpresaRepository repository;
 	
-	public Empresa findById(Long id) {
-		Optional<Empresa> obj = this.repository.findById(id);
+	public Empresa findById(Integer id) {
+		Optional<Empresa> obj = this.repository.findById(Integer.toUnsignedLong(id));
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Empresa.class.getName())); //caso nao encontre retorna null
 	}
 	
@@ -41,6 +42,28 @@ public class EmpresaService {
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException("E-mail já cadastrado!");
 		}
+	}
+	
+	public Empresa update(Integer id, EmpresaDTO obj) {
+		Empresa newObj = this.findById(id);
+		this.updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+	
+	private void updateData(Empresa newObj, EmpresaDTO obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setCnpj(obj.getCnpj());
+		newObj.setQtdFuncionarios(obj.getQtdFuncionarios());
+		newObj.setCep(obj.getCep());
+		newObj.setNomeResponsavel(obj.getNomeResponsavel());
+		newObj.setTelefone(obj.getTelefone());
+		newObj.setCelular(obj.getCelular());
+		newObj.setDescricao(obj.getDescricao());
+		newObj.setSeguimento(obj.getSeguimento());
+//		newObj.setEmail(obj.getEmail());
+//		newObj.setSenha(obj.getSenha());
+//		newObj.setDataCadastro(obj.getDataCadastro());
+//		newObj.setTipoUsuario(obj.getTipoUsuario());
 	}
 	
 }

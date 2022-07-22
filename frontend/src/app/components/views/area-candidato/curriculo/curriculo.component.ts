@@ -61,11 +61,10 @@ export class CurriculoComponent implements OnInit {
     private validaCepService: ValidaCepService,
     private candidatoService: CandidatoService,
     public appService: AppService) {
-    this.getDadosCurriculo();
    }
 
   ngOnInit(): void {
-
+    this.getDadosCurriculo();
   }
 
   getDadosCurriculo() {

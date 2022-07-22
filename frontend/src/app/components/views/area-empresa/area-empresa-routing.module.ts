@@ -1,3 +1,4 @@
+import { DadosEmpresaComponent } from './dados-empresa/dados-empresa.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -9,7 +10,7 @@ const routes: Routes = [
   {path : '', component : AreaEmpresaComponent, children: [
     {path: 'area', component: MinhaAreaEmpresaComponent},
     {path: 'vagas', component: VagasComponent},
-    // {path: 'curriculo', component: CurriculoComponent},
+    {path: 'dados', component: DadosEmpresaComponent}
   ]}
 ];
 

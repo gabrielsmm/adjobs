@@ -29,10 +29,10 @@ export class EmpresaService {
     return this.http.post<Empresa>(url, empresa);
   }
 
-  // update(categoria: Categoria): Observable<void>{
-  //   const url = `${this.baseUrl}/categorias/${categoria.id}`;
-  //   return this.http.put<void>(url, categoria);
-  // }
+  update(empresa: Empresa): Observable<Empresa>{
+    const url = `${this.baseUrl}/empresas/${empresa.id}`;
+    return this.http.put<Empresa>(url, empresa);
+  }
 
   // delete(id: string): Observable<void>{
   //   const url = `${this.baseUrl}/categorias/${id}`;

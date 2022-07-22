@@ -7,6 +7,8 @@ export class Empresa {
   nomeResponsavel: string
   telefone: string
   celular: string
+  descricao: string
+  seguimento: string
   email: string
   senha: string
   dataCadastro: Date

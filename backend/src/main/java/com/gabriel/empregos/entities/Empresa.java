@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,6 +50,9 @@ public class Empresa extends Usuario {
 	@NotEmpty(message = "Campo CELULAR é requerido")
 	@Size(max = 11, message = "O campo CELULAR deve ter no máximo 11 caracteres")
 	private String celular;
+	@Column(columnDefinition = "TEXT")
+	private String descricao;
+	private String seguimento;
 	
 	@OneToMany(mappedBy = "empresa")
 	private List<Concurso> concursos = new ArrayList<>();
@@ -61,7 +65,7 @@ public class Empresa extends Usuario {
 	}
 
 	public Empresa(Long id, String nome, String cnpj, Integer qtdFuncionarios, String cep, String nomeResponsavel,
-			String telefone, String celular, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
+			String telefone, String celular, String descricao, String seguimento, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
 		super(email, senha, dataCadastro, tipoUsuario);
 		this.id = id;
 		this.nome = nome;
@@ -71,6 +75,8 @@ public class Empresa extends Usuario {
 		this.nomeResponsavel = nomeResponsavel;
 		this.telefone = telefone;
 		this.celular = celular;
+		this.descricao = descricao;
+		this.seguimento = seguimento;
 	}
 
 	public Long getId() {
@@ -135,6 +141,22 @@ public class Empresa extends Usuario {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getSeguimento() {
+		return seguimento;
+	}
+
+	public void setSeguimento(String seguimento) {
+		this.seguimento = seguimento;
 	}
 
 }

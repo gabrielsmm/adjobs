@@ -10,6 +10,7 @@ export class AreaEmpresaComponent implements OnInit {
 
   public isArea: boolean = false;
   public isVagas: boolean = false;
+  public isDados: boolean = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -18,10 +19,17 @@ export class AreaEmpresaComponent implements OnInit {
           case '/empresa/area':
             this.isArea = true;
             this.isVagas = false;
+            this.isDados = false;
             break;
           case '/empresa/vagas':
             this.isVagas = true;
             this.isArea = false;
+            this.isDados = false;
+            break;
+          case '/empresa/dados':
+            this.isArea = false;
+            this.isVagas = false;
+            this.isDados = true;
             break;
           default:
             this.isArea = true;
