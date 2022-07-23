@@ -111,13 +111,20 @@ public class VagaService {
 	
 	public void delete(Integer id) {
 		Vaga obj = this.findById(id);
+		if (!obj.getStatus().equals(VagaStatus.ATIVA)) {
+			return;
+		}
 		obj.setStatus(VagaStatus.CANCELADA);
 		repository.save(obj);	
-//		try {
-//			this.repository.deleteById(Integer.toUnsignedLong(id));
-//		} catch(org.springframework.dao.DataIntegrityViolationException e) {
-//			throw new DataIntegrityViolationException("Vaga não pode ser deletada! Possui candidaturas associadas");
-//		}
+	}
+	
+	public void reactivate(Integer id) {
+		Vaga obj = this.findById(id);
+		if (!obj.getStatus().equals(VagaStatus.CANCELADA)) {
+			return;
+		}
+		obj.setStatus(VagaStatus.ATIVA);
+		repository.save(obj);	
 	}
 	
 	@Transactional(readOnly = true)

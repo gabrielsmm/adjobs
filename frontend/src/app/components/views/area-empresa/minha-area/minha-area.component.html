@@ -21,12 +21,12 @@
             <p *ngIf="appService.isNullOrUndefined(qtdPostadas) && appService.isNullOrUndefined(qtdCandidatos)" class="card-text">Não há novidades sobre as vagas...</p>
             <div class="row">
               <div class="col-md-4">
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status" [routerLink]="['/empresa/vagas']">
                   Postadas <span class="badge badge-light">{{qtdPostadas}}</span>
                 </button>
               </div>
               <div class="col-md-4">
-                <button type="button" class="btn btn-blue btn-status">
+                <button type="button" class="btn btn-blue btn-status" [routerLink]="['/empresa/vagas']">
                   Candidatos <span class="badge badge-light">{{qtdCandidatos}}</span>
                 </button>
               </div>

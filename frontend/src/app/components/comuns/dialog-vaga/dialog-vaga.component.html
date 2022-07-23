@@ -1,10 +1,9 @@
-<h2 mat-dialog-title>Detalhes da vaga</h2>
-<hr>
+<h2 class="titulos" mat-dialog-title>Detalhes da vaga</h2>
 <mat-dialog-content class="mat-typography">
 
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-12">
-      <h2 style="font-weight: bold;">{{data.nome}}</h2>
+      <h2 class="titulos">{{data.nome}}</h2>
     </div>
   </div>
 
@@ -61,11 +60,11 @@
 
   <hr>
 
-  <h2>Dados da empresa</h2>
+  <h2 class="titulos">Dados da empresa</h2>
 
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-12">
-      <h3>{{data.empresa.nome}}</h3>
+      <h2 class="titulos">{{data.empresa.nome}}</h2>
     </div>
   </div>
 
@@ -75,8 +74,38 @@
     </div>
   </div>
 
+  <!-- Colocar endereço -->
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-6">
+      <p>Telefone: {{data.empresa.telefone | mask: '(00) 0000-0000'}}</p>
+    </div>
+    <div class="col-md-6">
+      <p>Celular: {{data.empresa.celular | mask: '(00) 00000-0000'}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span>Descrição: </span>
+      <p style="text-align: justify;">
+        {{(readMore) ? data.empresa.descricao : data.empresa.descricao | slice:0:50}} <span *ngIf="!readMore">... </span>
+        <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">Ler mais</a>
+        <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">Ler menos</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p style="text-align: justify;">
+        Seguimento: {{data.empresa.seguimento}}
+      </p>
+    </div>
+  </div>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button color="primary" mat-button mat-raised-button mat-dialog-close>Voltar</button>
-  <button *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="openCandidatar()" class="btn-blue" mat-button mat-raised-button cdkFocusInitial>Candidatar-se</button>
+  <button *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="candidatarClick(data)" class="btn-blue" mat-button mat-raised-button cdkFocusInitial>Candidatar-se</button>
 </mat-dialog-actions>

@@ -22,17 +22,17 @@
             class="card-text">Não há novidades sobre as candidaturas...</p>
             <div class="row">
               <div class="col-md-4">
-                <button class="btn btn-blue btn-status">
+                <button class="btn btn-blue btn-status" [routerLink]="['/candidato/candidaturas']">
                   Enviado <span class="badge badge-light">{{qtdEnviados}}</span>
                 </button>
               </div>
               <div class="col-md-4">
-                <button class="btn btn-blue btn-status">
+                <button class="btn btn-blue btn-status" [routerLink]="['/candidato/candidaturas']">
                   Em processo <span class="badge badge-light">{{qtdEmProcesso}}</span>
                 </button>
               </div>
               <div class="col-md-4">
-                <button class="btn btn-blue btn-status">
+                <button class="btn btn-blue btn-status" [routerLink]="['/candidato/candidaturas']">
                   Finalista <span class="badge badge-light">{{qtdFinalista}}</span>
                 </button>
               </div>

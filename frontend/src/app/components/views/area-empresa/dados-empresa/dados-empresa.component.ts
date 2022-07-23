@@ -47,7 +47,6 @@ export class DadosEmpresaComponent implements OnInit {
   salvarClick() {
     this.empresaService.update(this.empresa).subscribe({
       next: (data) => {
-        console.log(data);
         if (!this.appService.isNullOrUndefined(data)) {
           this.appService.mensagemSucesso("Dados salvos");
           this.isEditavel = false;

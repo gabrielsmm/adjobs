@@ -176,13 +176,40 @@ export class VagasComponent implements OnInit {
     this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
       disableClose: false
     });
-    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja excluir a vaga vaga ${vaga.id} - ${vaga.nome}?`
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja excluir a vaga ${vaga.nome}?`
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.vagaService.delete(vaga.id).subscribe({
           next: (data) => {
             this.appService.mensagemSucesso("Vaga deletada com sucesso!");
+            this.getNumeroVagas();
+            this.getVagas();
+          },
+          error: (error) => {
+            if (!this.appService.isNullOrUndefined(error.error.error)) {
+              this.appService.mensagemErro(error.error.error);
+            }
+          },
+          complete: () => {
+
+          }
+        })
+      }
+    });
+  }
+
+  reativarClick(vaga: Vaga) {
+    this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja reativar a vaga ${vaga.nome}?`
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.vagaService.reativar(vaga.id).subscribe({
+          next: (data) => {
+            this.appService.mensagemSucesso("Vaga reativada com sucesso!");
             this.getNumeroVagas();
             this.getVagas();
           },

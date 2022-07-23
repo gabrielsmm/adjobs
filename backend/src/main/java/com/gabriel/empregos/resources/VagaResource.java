@@ -104,6 +104,12 @@ public class VagaResource {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/reativar/{id}")
+	public ResponseEntity<Void> reactivate(@PathVariable Integer id){
+		this.service.reactivate(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/contador/{idEmpresa}")
 	public ResponseEntity<?> getContador(@PathVariable Integer idEmpresa) {
 		return ResponseEntity.ok().body(service.getContador(idEmpresa));

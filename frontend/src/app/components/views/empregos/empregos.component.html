@@ -48,11 +48,14 @@
               <!-- <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p> -->
             </div>
             <div class="col-md-3">
+              <!-- <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p> -->
+            </div>
+            <div class="col-md-3">
               <button (click)="openDetalhes(vaga.id)" class="btn btn-blue">Ver detalhes</button>
             </div>
-            <div *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  class="col-md-3">
+            <!-- <div *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  class="col-md-3">
               <button (click)="candidatarClick(vaga)" class="btn btn-green">Candidatar-se</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -13,4 +13,5 @@ export class Vaga{
   beneficios: string
   requisitos: string
   empresa: Empresa
+  status: number
 }

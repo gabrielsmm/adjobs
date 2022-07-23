@@ -23,8 +23,8 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 			nativeQuery = true)
 	Page<Vaga> findAll(Pageable pageable);
 	
-	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1 ORDER BY obj.data_cadastro DESC", 
-			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa AND obj.status <> 1",
+	@Query(value = "SELECT * FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa ORDER BY obj.data_cadastro DESC, obj.status", 
+			countQuery = "SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa",
 			nativeQuery = true)
 	Page<Vaga> findAllByEmpresa(@Param(value = "idEmpresa") Integer idEmpresa, Pageable pageable);
 	

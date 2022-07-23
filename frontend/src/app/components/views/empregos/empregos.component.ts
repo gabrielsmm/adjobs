@@ -98,7 +98,7 @@ export class EmpregosComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog fechado`);
+          //Action
         })
       },
       error: (msg) => {
@@ -114,7 +114,7 @@ export class EmpregosComponent implements OnInit {
     this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
       disableClose: false
     });
-    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja se candidatar para a vaga ${vaga.id} - ${vaga.nome}?`
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja se candidatar para a vaga ${vaga.nome}?`
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result) {

@@ -10,12 +10,13 @@
 
         <button (click)="cadastrarVagaClick()" class="btn btn-green"><i class="bi bi-plus-square"></i> Divulgar nova vaga</button>
 
-        <div *ngFor="let vaga of vagas" class="card">
-          <div class="card-header d-flex justify-content-between">
+        <div *ngFor="let vaga of vagas" [ngClass]="{'card-desativado': vaga.status === 1}" class="card">
+          <div [ngClass]="{'card-desativado': vaga.status === 1}" class="card-header d-flex justify-content-between">
             <p class="nome-vaga">{{vaga.nome}}</p>
             <div>
-              <span (click)="editarClick(vaga)" class="span-actions editar"><i class="bi bi-pencil"></i> Editar</span>
-              <span (click)="excluirClick(vaga)" class="span-actions excluir" style="margin-left: 10px;"><i class="bi bi-trash"></i> Excluir</span>
+              <span *ngIf="vaga.status !== 1" (click)="editarClick(vaga)" class="span-actions editar"><i class="bi bi-pencil"></i> Editar</span>
+              <span *ngIf="vaga.status !== 1" (click)="excluirClick(vaga)" class="span-actions excluir" style="margin-left: 10px;"><i class="bi bi-trash"></i> Excluir</span>
+              <span *ngIf="vaga.status === 1" (click)="reativarClick(vaga)" class="span-actions reativar" style="margin-left: 10px;"><i class="bi bi-arrow-counterclockwise"></i> Reativar</span>
             </div>
           </div>
           <div class="card-body">
@@ -65,7 +66,7 @@
               </div>
             </div>
             <hr>
-            <div class="row">
+            <div *ngIf="vaga.status !== 1" class="row">
               <div class="col-md-9"></div>
               <div class="col-md-3">
                 <button (click)="exibirCandidatosClick(vaga)" class="btn btn-blue" style="width: 100%;">Ver candidatos</button>

@@ -23,12 +23,12 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field style="display: block;">
-              <input [(ngModel)]="empresa.cnpj" matInput placeholder="CNPJ da Empresa" name="cnpj" mask="00.000.000/0000-00" required>
+              <input [(ngModel)]="empresa.cnpj" [readonly]="!isEditavel" matInput placeholder="CNPJ da Empresa" name="cnpj" mask="00.000.000/0000-00" required>
             </mat-form-field>
           </div>
           <div class="col-md-3">
             <mat-form-field style="display: block;">
-              <input [(ngModel)]="empresa.qtdFuncionarios" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
+              <input [(ngModel)]="empresa.qtdFuncionarios" [readonly]="!isEditavel" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
             </mat-form-field>
           </div>
           <div class="col-md-3">
@@ -49,12 +49,12 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field style="display: block;">
-              <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone fixo" name="telefone" mask="(00)0000-0000" required>
+              <input [(ngModel)]="empresa.telefone" [readonly]="!isEditavel" matInput placeholder="Telefone fixo" name="telefone" mask="(00)0000-0000" required>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field style="display: block;">
-              <input [(ngModel)]="empresa.celular" matInput placeholder="Celular" name="celular" mask="(00)00000-0000" required>
+              <input [(ngModel)]="empresa.celular" [readonly]="!isEditavel" matInput placeholder="Celular" name="celular" mask="(00)00000-0000" required>
             </mat-form-field>
         </div>
 
@@ -70,7 +70,7 @@
           <div class="col-md-12">
             <mat-form-field>
               <mat-label>Descrição</mat-label>
-              <textarea [(ngModel)]="empresa.descricao" matInput placeholder="Quem somos..."></textarea>
+              <textarea [(ngModel)]="empresa.descricao" [readonly]="!isEditavel" matInput placeholder="Quem somos..."></textarea>
             </mat-form-field>
           </div>
         </div>

@@ -76,6 +76,11 @@ export class VagaService {
     return this.http.delete<void>(url);
   }
 
+  reativar(id: number): Observable<void>{
+    const url = `${this.baseUrl}/vagas/reativar/${id}`;
+    return this.http.get<void>(url);
+  }
+
   getContador(idEmpresa: number): Observable<any> {
     const url = `${this.baseUrl}/vagas/contador/${idEmpresa}`;
     return this.http.get(url);
