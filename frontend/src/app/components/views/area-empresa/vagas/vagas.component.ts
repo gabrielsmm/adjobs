@@ -226,8 +226,28 @@ export class VagasComponent implements OnInit {
     });
   }
 
-  atualizarStatus(candidatura: Candidatura) {
+  atualizarStatus(status: number, candidatura: Candidatura) {
+    this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja atualizar o status da candidatura?`
 
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.candidaturaService.atualizarStatus(candidatura.id, status).subscribe({
+          next: (data) => {
+            this.appService.mensagemSucesso("Status da candidatura atualizado!");
+            this.exibirCandidatosClick(this.vaga);
+          },
+          error: (error) => {
+            console.error(error);
+          },
+          complete: () => {
+
+          }
+        })
+      }
+    });
   }
 
   irPaginaAnterior() {

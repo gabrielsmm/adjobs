@@ -4,6 +4,12 @@ export class Empresa {
   cnpj: string
   qtdFuncionarios: number
   cep: string
+  estado: string
+	cidade: string
+	bairro: string
+	rua: string
+	numero: string
+	complemento: string
   nomeResponsavel: string
   telefone: string
   celular: string

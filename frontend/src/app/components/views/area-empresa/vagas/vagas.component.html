@@ -8,7 +8,7 @@
       <div *ngSwitchCase="state.StateGrid">
         <p *ngIf="numeroVagas > 0" class="texto-vagas">Você cadastrou {{numeroVagas}} <span *ngIf="numeroVagas === 1">vaga</span><span *ngIf="numeroVagas > 1">vagas</span></p>
 
-        <button (click)="cadastrarVagaClick()" class="btn btn-green"><i class="bi bi-plus-square"></i> Divulgar nova vaga</button>
+        <button (click)="cadastrarVagaClick()" class="btn btn-green" style="margin-bottom: 10px;"><i class="bi bi-plus-square"></i> Divulgar nova vaga</button>
 
         <div *ngFor="let vaga of vagas" [ngClass]="{'card-desativado': vaga.status === 1}" class="card">
           <div [ngClass]="{'card-desativado': vaga.status === 1}" class="card-header d-flex justify-content-between">
@@ -192,16 +192,16 @@
           <div class="card-body">
             <!-- <p>Status</p> -->
             <div class="col-md-12 d-flex justify-content-start">
-              <button (click)="atualizarStatus(candidatura)" type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 1}">
+              <button (click)="atualizarStatus(1, candidatura)" type="button" class="btn btn-blue btn-status"
+              [ngClass]="{'btn-green': candidatura.status === 1}">
                 Revisado
               </button>
-              <button (click)="atualizarStatus(candidatura)" type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 2}">
+              <button (click)="atualizarStatus(2, candidatura)" type="button" class="btn btn-blue btn-status"
+              [ngClass]="{'btn-green': candidatura.status === 2}">
                 Pré-selecionado
               </button>
-              <button (click)="atualizarStatus(candidatura)" type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 3}">
+              <button (click)="atualizarStatus(3, candidatura)" type="button" class="btn btn-blue btn-status"
+              [ngClass]="{'btn-green': candidatura.status === 3}">
                 Finalista
               </button>
             </div>

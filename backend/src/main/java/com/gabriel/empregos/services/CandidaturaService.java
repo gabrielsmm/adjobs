@@ -31,8 +31,8 @@ public class CandidaturaService {
 	@Autowired
 	private VagaService vagaService;
 	
-	public Candidatura findById(Long id) {
-		Optional<Candidatura> obj = this.repository.findById(id);
+	public Candidatura findById(Integer id) {
+		Optional<Candidatura> obj = this.repository.findById(Integer.toUnsignedLong(id));
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Candidato.class.getName())); //caso nao encontre retorna null
 	}
 	
@@ -64,7 +64,7 @@ public class CandidaturaService {
 		}
 	}
 	
-	public Candidatura update(Long id, Candidatura obj) {
+	public Candidatura update(Integer id, Candidatura obj) {
 		Candidatura newObj = this.findById(id);
 		this.updateData(newObj, obj);
 		return repository.save(newObj);
@@ -80,6 +80,12 @@ public class CandidaturaService {
 	@Transactional(readOnly = true)
 	public Long buscaNumeroCandidaturas(Integer idCandidato) {
 		return repository.buscaNumeroCandidaturas(idCandidato);
+	}
+	
+	public void atualizarStatus(Integer id, Integer status) {
+		Candidatura obj = this.findById(id);
+		obj.setStatus(CandidaturaStatus.getById(status));
+		repository.save(obj);	
 	}
 	
 	@Transactional(readOnly = true)

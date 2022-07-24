@@ -4,20 +4,28 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CandidaturaStatus {
 	
-	RECEBIDO(1),
-	REVISADO(2),
-	PRESELECIONADO(3),
-	FINALISTA(4),
-	CANCELADO(5);
+	RECEBIDO(0),
+	REVISADO(1),
+	PRESELECIONADO(2),
+	FINALISTA(3),
+	CANCELADO(4),
+	DESCONHECIDO(5);
 	
-	private int id;
+	private Integer id;
 
-	CandidaturaStatus(int id) {
+	CandidaturaStatus(Integer id) {
         this.id = id;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public static CandidaturaStatus getById(Integer id) {
+        for(CandidaturaStatus e : values()) {
+            if(e.id.equals(id)) return e;
+        }
+        return DESCONHECIDO;
     }
     
     @JsonValue

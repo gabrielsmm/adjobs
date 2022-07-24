@@ -41,6 +41,12 @@ public class Empresa extends Usuario {
 	@NotEmpty(message = "Campo CEP é requerido")
 	@Size(min = 8, max = 8, message = "O campo CEP deve ter 8 caracteres")
 	private String cep;
+	private String estado;
+	private String cidade;
+	private String bairro;
+	private String rua;
+	private String numero;
+	private String complemento;
 	@NotEmpty(message = "Campo NOME DO RESPONSÁVEL é requerido")
 	@Size(min = 3, max = 100, message = "O campo NOME DO RESPONSÁVEL deve ter entre 3 e 100 caracteres")
 	private String nomeResponsavel;
@@ -64,7 +70,7 @@ public class Empresa extends Usuario {
 		
 	}
 
-	public Empresa(Long id, String nome, String cnpj, Integer qtdFuncionarios, String cep, String nomeResponsavel,
+	public Empresa(Long id, String nome, String cnpj, Integer qtdFuncionarios, String cep, String estado, String cidade, String bairro, String rua, String numero, String complemento, String nomeResponsavel,
 			String telefone, String celular, String descricao, String seguimento, String email, String senha, Date dataCadastro, TipoUsuario tipoUsuario) {
 		super(email, senha, dataCadastro, tipoUsuario);
 		this.id = id;
@@ -72,6 +78,12 @@ public class Empresa extends Usuario {
 		this.cnpj = cnpj;
 		this.qtdFuncionarios = qtdFuncionarios;
 		this.cep = cep;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
 		this.nomeResponsavel = nomeResponsavel;
 		this.telefone = telefone;
 		this.celular = celular;
@@ -117,6 +129,54 @@ public class Empresa extends Usuario {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getNomeResponsavel() {

@@ -49,6 +49,11 @@ export class CandidaturaService {
     return this.http.get(url);
   }
 
+  atualizarStatus(id: number, status: number) {
+    const url = `${this.baseUrl}/candidaturas/atualizar/${id}/${status}`;
+    return this.http.get(url);
+  }
+
   getContador(idCandidato: number): Observable<any> {
     const url = `${this.baseUrl}/candidaturas/contador/${idCandidato}`;
     return this.http.get(url);

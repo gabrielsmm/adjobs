@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +32,7 @@ public class CandidaturaResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Candidatura> findById(@PathVariable Integer id){
-		Candidatura obj = this.service.findById(Integer.toUnsignedLong(id));
+		Candidatura obj = this.service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -64,7 +65,7 @@ public class CandidaturaResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Candidatura> update(@PathVariable Long id, @Valid @RequestBody Candidatura obj){
+	public ResponseEntity<Candidatura> update(@PathVariable Integer id, @Valid @RequestBody Candidatura obj){
 		Candidatura newObj = this.service.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
@@ -77,6 +78,13 @@ public class CandidaturaResource {
 	@GetMapping(value = "/contador/{idCandidato}")
 	public ResponseEntity<?> getContador(@PathVariable Integer idCandidato) {
 		return ResponseEntity.ok().body(service.getContador(idCandidato));
+	}
+	
+	@GetMapping(value = "/atualizar/{id}/{status}")
+	public ResponseEntity<Void> atualizarStatus(@PathVariable Integer id,
+			@PathVariable Integer status) {
+		this.service.atualizarStatus(id, status);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 //	@PostMapping

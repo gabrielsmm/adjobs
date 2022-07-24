@@ -67,9 +67,9 @@ public class DBService {
 	
 	public void instanciaBaseDeDados() {
 		
-		Empresa e1 = new Empresa(null, "Gsmmimports", "12345678987", 10, "74885230", "Gabriel Mendes", "6239548540", "62996418943", "", "", "gsmm@gmail.com", Util.criptografar("123"), new Date(), TipoUsuario.EMPRESA);
-		Empresa e2 = new Empresa(null, "Naza", "94321895431", 20, "74885230", "Nazaré Mendes", "6239548540", "62996418943", "", "", "naza@gmail.com", Util.criptografar("321"), new Date(), TipoUsuario.EMPRESA);
-		Empresa e3 = new Empresa(null, "Amor a vida", "123131233", 200, "74885230", "Amarildo", "6239548540", "62996418943", "", "", "amoravida@gmail.com", Util.criptografar("amor123"), new Date(), TipoUsuario.EMPRESA);
+		Empresa e1 = new Empresa(null, "Gsmmimports", "12345678987", 10, "74885230", "GO", "Goiânia", "Jardim Ipê", "Rua 2", "S/N", "Ao lado da rua 1", "Gabriel Mendes", "6239548540", "62996418943", "", "", "gsmm@gmail.com", Util.criptografar("123"), new Date(), TipoUsuario.EMPRESA);
+		Empresa e2 = new Empresa(null, "Naza", "94321895431", 20, "74885230", "GO", "Goiânia", "Jardim Ipê", "Rua 2", "S/N", "Ao lado da rua 1", "Nazaré Mendes", "6239548540", "62996418943", "", "", "naza@gmail.com", Util.criptografar("321"), new Date(), TipoUsuario.EMPRESA);
+		Empresa e3 = new Empresa(null, "Amor a vida", "123131233", 200, "74885230", "GO", "Goiânia", "Jardim Ipê", "Rua 2", "S/N", "Ao lado da rua 1", "Amarildo", "6239548540", "62996418943", "", "", "amoravida@gmail.com", Util.criptografar("amor123"), new Date(), TipoUsuario.EMPRESA);
 		
 //		Cargo ca1 = new Cargo(null, "Auxiliar");
 //		Cargo ca2 = new Cargo(null, "Gerente");

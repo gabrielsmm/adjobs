@@ -21,7 +21,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-3">
             <mat-form-field style="display: block;">
               <input [(ngModel)]="empresa.cnpj" [readonly]="!isEditavel" matInput placeholder="CNPJ da Empresa" name="cnpj" mask="00.000.000/0000-00" required>
             </mat-form-field>
@@ -31,15 +31,7 @@
               <input [(ngModel)]="empresa.qtdFuncionarios" [readonly]="!isEditavel" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
             </mat-form-field>
           </div>
-          <div class="col-md-3">
-            <mat-form-field style="display: block;">
-              <input [(ngModel)]="empresa.cep" [readonly]="!isEditavel" matInput placeholder="CEP" name="cep" mask="00000-000" required>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <mat-form-field>
               <input [(ngModel)]="empresa.nomeResponsavel" [readonly]="!isEditavel" matInput placeholder="Nome do responsável" name="nomeResponsavel" required>
             </mat-form-field>
@@ -56,6 +48,45 @@
             <mat-form-field style="display: block;">
               <input [(ngModel)]="empresa.celular" [readonly]="!isEditavel" matInput placeholder="Celular" name="celular" mask="(00)00000-0000" required>
             </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field style="display: block;">
+              <input [(ngModel)]="empresa.cep" [readonly]="!isEditavel" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.estado" [readonly]="true" matInput placeholder="Estado" name="estado" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.cidade" [readonly]="true" matInput placeholder="Cidade" name="cidade" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.bairro" [readonly]="true" matInput placeholder="Bairro" name="bairro" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.rua" [readonly]="true" matInput placeholder="Rua" name="rua" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input [(ngModel)]="empresa.complemento" [readonly]="!isEditavel" matInput placeholder="Complemento" name="complemento" required>
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="row">

@@ -55,6 +55,12 @@ public class EmpresaService {
 		newObj.setCnpj(obj.getCnpj());
 		newObj.setQtdFuncionarios(obj.getQtdFuncionarios());
 		newObj.setCep(obj.getCep());
+		newObj.setEstado(obj.getEstado());
+		newObj.setCidade(obj.getCidade());
+		newObj.setBairro(obj.getBairro());
+		newObj.setRua(obj.getRua());
+		newObj.setNumero(obj.getNumero());
+		newObj.setComplemento(obj.getComplemento());
 		newObj.setNomeResponsavel(obj.getNomeResponsavel());
 		newObj.setTelefone(obj.getTelefone());
 		newObj.setCelular(obj.getCelular());
