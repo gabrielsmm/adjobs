@@ -23,6 +23,7 @@ export class CadastroComponent implements OnInit {
   public candidato: Candidato = new Candidato();
   public isCandidato: boolean = true;
   public isEmpresa: boolean = false;
+  public isValidCep: boolean;
   // public cep = new FormControl([
   //   Validators.required,
   //   Validators.maxLength(8)
@@ -132,11 +133,6 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    if (!this.validarCEP(empresa.cep)) {
-      this.appService.mensagemErro("CEP inválido");
-      return false;
-    }
-
     if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
       this.appService.mensagemErro("Preencha o nome do responsável da empresa");
       return false;
@@ -162,6 +158,11 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
+    if (!this.isValidCep) {
+      this.appService.mensagemErro("CEP inválido");
+      return false;
+    }
+
     return true;
   }
 
@@ -174,11 +175,6 @@ export class CadastroComponent implements OnInit {
 
     if (this.appService.isNullOrUndefined(candidato.cep)) {
       this.appService.mensagemErro("Preencha o CEP");
-      return false;
-    }
-
-    if (!this.validarCEP(candidato.cep)) {
-      this.appService.mensagemErro("CEP inválido");
       return false;
     }
 
@@ -197,6 +193,11 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
+    if (!this.isValidCep) {
+      this.appService.mensagemErro("CEP inválido");
+      return false;
+    }
+
     return true;
   }
 
@@ -204,19 +205,19 @@ export class CadastroComponent implements OnInit {
     this.tabGroup.selectedIndex = 1;
   }
 
-  validarCEP(cep: string): boolean {
+  validarCEP(cep: string) {
     if (this.appService.isNullOrUndefined(cep)) {
-      return false;
+      this.isValidCep = false;
     }
     if (cep.length === 8) {
       this.validaCepService.validarCep(cep).subscribe({
         next: (data) => {
           if (data.erro) {
             this.appService.mensagemErro("CEP inválido!");
-            // this.cep.setErrors({'incorrect': true});
-            return false;
+            this.isValidCep = false;
+          } else {
+            this.isValidCep = true;
           }
-          return true;
         },
         error: (err) => {
           console.error(err);
@@ -226,7 +227,6 @@ export class CadastroComponent implements OnInit {
         }
       })
     }
-    return false;
   }
 
 }

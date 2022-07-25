@@ -51,7 +51,7 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
 	@Query(value = "SELECT "
 			+ "(SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa) AS QTDPOSTADAS, "
-			+ "(SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj JOIN TB_VAGAS as v WHERE v.id = obj.vaga_id AND v.empresa_id = :idEmpresa) AS QTDCANDIDATOS", nativeQuery = true)
+			+ "(SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj JOIN TB_VAGAS as v ON v.id = obj.vaga_id AND v.empresa_id = :idEmpresa) AS QTDCANDIDATOS", nativeQuery = true)
 	ContadorAuxiliar getContador(@Param(value = "idEmpresa") Integer idEmpresa);
 	
 }
