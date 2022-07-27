@@ -44,7 +44,6 @@ public class CurriculoService {
 	}
 	
 	public Curriculo create(Curriculo obj) {
-		obj.setId(repository.getMaxId() + 1);
 		try {
 			Curriculo objSaved = repository.save(obj);
 			this.salvarFormacoes(objSaved, obj.getFormacoes());

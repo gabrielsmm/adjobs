@@ -33,7 +33,7 @@
           <div class="col-md-4">
             <mat-form-field appearance="fill">
               <mat-label>Data de nascimento</mat-label>
-              <input matInput [matDatepicker]="picker" [value]="curriculo.dataNascimento" [disabled]="!isEditavel">
+              <input matInput [matDatepicker]="picker" [(ngModel)]="curriculo.dataNascimento" [disabled]="!isEditavel">
               <mat-hint>DD/MM/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
