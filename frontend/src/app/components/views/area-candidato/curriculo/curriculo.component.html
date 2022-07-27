@@ -215,6 +215,10 @@
           <div *ngFor="let formacao of formacoes" class="card-infos d-flex justify-content-around align-items-center">
             <p>{{formacao.nomeInstituicao}} - {{formacao.curso}}</p>
             <p>{{formacao.mesInicio}}/{{formacao.anoInicio}} - {{formacao.mesConclusao}}/{{formacao.anoConclusao}}</p>
+            <div>
+              <span (click)="alterarFormacaoClick(formacao)" [hidden]="!isEditavel" class="editar" style="margin-right: 5px;"><i class="bi bi-pencil"></i> Alterar</span>
+              <span (click)="excluirFormacaoClick(formacao)" [hidden]="!isEditavel" class="excluir"><i class="bi bi-trash"></i> Excluir</span>
+            </div>
           </div>
         </div>
       </div>
@@ -310,6 +314,10 @@
           <div *ngFor="let experiencia of experiencias" class="card-infos d-flex justify-content-around align-items-center">
             <p>{{experiencia.nomeEmpresa}} - {{experiencia.cargo}}</p>
             <p>{{experiencia.mesInicio}}/{{experiencia.anoInicio}} - {{experiencia.mesConclusao}}/{{experiencia.anoConclusao}}</p>
+            <div>
+              <span (click)="alterarExperienciaClick(experiencia)" [hidden]="!isEditavel" class="editar" style="margin-right: 5px;"><i class="bi bi-pencil"></i> Alterar</span>
+              <span (click)="excluirExperienciaClick(experiencia)" [hidden]="!isEditavel" class="excluir"><i class="bi bi-trash"></i> Excluir</span>
+            </div>
           </div>
         </div>
       </div>

@@ -65,8 +65,6 @@ public class Curriculo implements Serializable {
 		
 	}
 
-	
-
 	public Curriculo(Long id, Candidato candidato, String nome, String resumo, String telefone, String telefoneCelular,
 			Date dataNascimento, EstadoCivil estadoCivil, Sexo sexo, String cep, String estado, String cidade,
 			String bairro, String rua, String numero, String complemento, Boolean pessoaComDeficiencia, String linkedin,

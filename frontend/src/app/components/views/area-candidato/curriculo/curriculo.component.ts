@@ -1,11 +1,12 @@
-import { Candidato } from './../../../../models/Candidato.model';
-import { CandidatoService } from './../../../../services/candidato.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppService } from './../../../../app.service';
+import { Candidato } from './../../../../models/Candidato.model';
 import { Curriculo } from './../../../../models/Curriculo.model';
 import { CurriculoExperiencia } from './../../../../models/CurriculoExperiencia.model';
 import { CurriculoFormacao } from './../../../../models/CurriculoFormacao.model';
+import { CandidatoService } from './../../../../services/candidato.service';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { LoginService } from './../../../../services/login.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
@@ -26,6 +27,8 @@ export class CurriculoComponent implements OnInit {
   public expandirFormacoes: boolean = false;
   public expandirExperiencias: boolean = false;
   public isEditavel: boolean = false;
+  public isAlterandoFormacao: boolean = false;
+  public isAlterandoExperiencia: boolean = false;
 
   estadosCivis = [
     {value: 0, viewValue: 'Casado(a)'},
@@ -60,7 +63,8 @@ export class CurriculoComponent implements OnInit {
     public loginService: LoginService,
     private validaCepService: ValidaCepService,
     private candidatoService: CandidatoService,
-    public appService: AppService) {
+    public appService: AppService,
+    private router: Router) {
    }
 
   ngOnInit(): void {
@@ -93,15 +97,19 @@ export class CurriculoComponent implements OnInit {
   }
 
   abriuFormacoes() {
-    this.formacao = new CurriculoFormacao;
+    if (!this.isAlterandoFormacao) {
+      this.formacao = new CurriculoFormacao;
+    }
   }
 
   salvarFormacao() {
-    this.formacoes.push(this.formacao);
-    this.curriculo.formacoes = this.formacoes;
+    if (!this.isAlterandoFormacao) {
+      this.formacoes.push(this.formacao);
+      this.curriculo.formacoes = this.formacoes;
+    }
     this.formacao = new CurriculoFormacao;
     this.expandirFormacoes = false;
-    console.log(this.formacoes);
+    this.isAlterandoFormacao = false;
   }
 
   cancelarFormacao() {
@@ -109,16 +117,30 @@ export class CurriculoComponent implements OnInit {
     this.expandirFormacoes = false;
   }
 
+  excluirFormacaoClick(formacao: CurriculoFormacao) {
+    let index: any = this.curriculo.formacoes?.indexOf(formacao);
+    this.curriculo.formacoes?.splice(index, 1);
+  }
+
+  alterarFormacaoClick(formacao: CurriculoFormacao) {
+    this.isAlterandoFormacao = true;
+    this.formacao = formacao;
+    this.expandirFormacoes = true;
+  }
+
   abriuExperiencias() {
-    this.experiencia = new CurriculoExperiencia;
+    if (!this.isAlterandoExperiencia) {
+      this.experiencia = new CurriculoExperiencia;
+    }
   }
 
   salvarExperiencia() {
-    this.experiencias.push(this.experiencia);
-    this.curriculo.experiencias = this.experiencias;
+    if (!this.isAlterandoExperiencia) {
+      this.experiencias.push(this.experiencia);
+      this.curriculo.experiencias = this.experiencias;
+    }
     this.experiencia = new CurriculoExperiencia;
     this.expandirExperiencias = false;
-    console.log(this.experiencias);
   }
 
   cancelarExperiencia() {
@@ -126,12 +148,24 @@ export class CurriculoComponent implements OnInit {
     this.expandirExperiencias = false;
   }
 
+  excluirExperienciaClick(experiencia: CurriculoExperiencia) {
+    let index: any = this.curriculo.experiencias?.indexOf(experiencia);
+    this.curriculo.experiencias?.splice(index, 1);
+  }
+
+  alterarExperienciaClick(experiencia: CurriculoExperiencia) {
+    this.isAlterandoExperiencia = true;
+    this.experiencia = experiencia;
+    this.expandirExperiencias = true;
+  }
+
   salvarCurriculo() {
     this.curriculoService.save(this.curriculo).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
-          this.appService.mensagem("Currículo salvo");
+          this.appService.mensagemSucesso("Currículo salvo");
           this.isEditavel = false;
+          this.router.navigate(['candidato/area']);
         }
       },
       error: (error) => {

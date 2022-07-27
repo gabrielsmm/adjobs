@@ -47,8 +47,8 @@ public class CurriculoService {
 		obj.setId(repository.getMaxId() + 1);
 		try {
 			Curriculo objSaved = repository.save(obj);
-			this.salvarFormacoes(obj, obj.getFormacoes());
-			this.salvarExperiencias(obj, obj.getExperiencias());
+			this.salvarFormacoes(objSaved, obj.getFormacoes());
+			this.salvarExperiencias(objSaved, obj.getExperiencias());
 			return objSaved;
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException("Erro ao inserir curriculo " + e.getMessage());
