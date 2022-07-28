@@ -61,3 +61,77 @@ mat-form-field {
 .reativar {
   color: #2b8b3b;
 }
+
+/* Ajustes */
+
+@media (max-width: 320.98px) {
+  .btn-salvar {
+    font-size: 12px;
+    width: 50%;
+  }
+  .editar {
+    font-size: 12px;
+  }
+  .excluir {
+    font-size: 12px;
+  }
+  .btn-status {
+    font-size: 8px;
+  }
+  .btn-exibir-curriculo {
+    font-size: 8px;
+  }
+  .btn-voltar {
+    font-size: 10px;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (min-width: 321px) and (max-width: 575.98px) {
+  .btn-salvar {
+    font-size: 15px;
+    width: 40%;
+  }
+  .editar {
+    font-size: 15px;
+  }
+  .excluir {
+    font-size: 15px;
+  }
+  .btn-status {
+    font-size: 11px;
+  }
+  .btn-exibir-curriculo {
+    font-size: 11px;
+  }
+  .btn-voltar {
+    font-size: 12px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .btn-salvar {
+    font-size: 18px;
+    width: 30%;
+  }
+  .editar {
+    font-size: 18px;
+  }
+  .excluir {
+    font-size: 18px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
