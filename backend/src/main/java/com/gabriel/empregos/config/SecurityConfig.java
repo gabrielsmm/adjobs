@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .antMatchers(HttpMethod.POST, "/candidatos/**").permitAll()
                         .antMatchers(HttpMethod.POST, "/empresas/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/vagas/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/email/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtTokenAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)

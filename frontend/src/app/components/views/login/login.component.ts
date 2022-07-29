@@ -20,10 +20,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  irParaCadastro() {
-    this.router.navigate(['/cadastro']);
-  }
-
   realizarLogin() {
     if (!this.validarDados(this.usuarioLogin)) {
       return;

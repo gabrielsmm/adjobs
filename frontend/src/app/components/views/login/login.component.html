@@ -15,8 +15,9 @@
         <mat-form-field style="display: block;">
           <input [(ngModel)]="usuarioLogin.senha" matInput type="password" placeholder="Senha" name="senha" required>
         </mat-form-field>
+        <span [routerLink]="['/recuperacao-senha']" class="text-primary" style="display:block; cursor: pointer;">Esqueceu sua senha?</span>
         <button (click)="realizarLogin()" mat-raised-button class="btn-blue">Entrar</button>
-        <span (click)="irParaCadastro()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se cadastrar</span>
+        <span [routerLink]="['/cadastro']" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se cadastrar</span>
       </form>
     </div>
   </div>

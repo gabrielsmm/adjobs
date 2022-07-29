@@ -23,6 +23,7 @@ import { EstagiosComponent } from './estagios/estagios.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DadosEmpresaComponent } from './area-empresa/dados-empresa/dados-empresa.component';
+import { RecuperacaoSenhaComponent } from './recuperacao-senha/recuperacao-senha.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DadosEmpresaComponent } from './area-empresa/dados-empresa/dados-empres
     CurriculoComponent,
     AreaEmpresaComponent,
     VagasComponent,
-    DadosEmpresaComponent
+    DadosEmpresaComponent,
+    RecuperacaoSenhaComponent
   ],
   imports: [
     CommonModule,

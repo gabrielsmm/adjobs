@@ -22,7 +22,7 @@ public class CustomUsuarioRepositoryImpl implements CustomUsuarioRepository {
 		try {
 			return jdbcTemplate.queryForObject("SELECT id, email, senha, data_Cadastro, tipo_Usuario FROM TB_USUARIOS WHERE EMAIL = ?", BeanPropertyRowMapper.newInstance(Usuario.class), email);
 		} catch(EmptyResultDataAccessException e) {
-	        throw new ObjectNotFoundException("Email informado não existe");
+	        throw new ObjectNotFoundException("E-mail informado não está cadastrado.");
 	    }
 	}
 	

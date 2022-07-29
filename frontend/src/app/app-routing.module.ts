@@ -6,6 +6,7 @@ const routes: Routes = [
   {path: 'inicio', loadChildren: () => import('./components/views/home/home-routing.module').then(m => m.HomeRoutingModule)},
   {path: 'cadastro', loadChildren: () => import('./components/views/cadastro/cadastro-routing.module').then(m => m.CadastroRoutingModule)},
   {path: 'login', loadChildren: () => import('./components/views/login/login-routing.module').then(m => m.LoginRoutingModule)},
+  {path: 'recuperacao-senha', loadChildren: () => import('./components/views/recuperacao-senha/recuperacao-senha-routing.module').then(m => m.RecuperacaoSenhaRoutingModule)},
   {path: 'empregos', loadChildren: () => import('./components/views/empregos/empregos-routing.module').then(m => m.EmpregosRoutingModule)},
   {path: 'empregos/:palavraChave/:localizacao', loadChildren: () => import('./components/views/empregos/empregos-routing.module').then(m => m.EmpregosRoutingModule)},
   {path: 'candidato', loadChildren: () => import('./components/views/area-candidato/area-candidato-routing.module').then(m => m.AreaCandidatoRoutingModule), canActivate: [AuthGuard]},
