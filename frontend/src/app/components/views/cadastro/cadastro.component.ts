@@ -123,30 +123,30 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    if (this.appService.isNullOrUndefined(empresa.qtdFuncionarios)) {
-      this.appService.mensagemErro("Preencha a quantidade de funcionários que a empresa possui");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(empresa.qtdFuncionarios)) {
+    //   this.appService.mensagemErro("Preencha a quantidade de funcionários que a empresa possui");
+    //   return false;
+    // }
 
-    if (this.appService.isNullOrUndefined(empresa.cep)) {
-      this.appService.mensagemErro("Preencha o CEP da empresa");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(empresa.cep)) {
+    //   this.appService.mensagemErro("Preencha o CEP da empresa");
+    //   return false;
+    // }
 
-    if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
-      this.appService.mensagemErro("Preencha o nome do responsável da empresa");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
+    //   this.appService.mensagemErro("Preencha o nome do responsável da empresa");
+    //   return false;
+    // }
 
     if (this.appService.isNullOrUndefined(empresa.telefone)) {
       this.appService.mensagemErro("Preencha o telefone de contato da empresa");
       return false;
     }
 
-    if (this.appService.isNullOrUndefined(empresa.celular)) {
-      this.appService.mensagemErro("Preencha o celular de contato da empresa");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(empresa.celular)) {
+    //   this.appService.mensagemErro("Preencha o celular de contato da empresa");
+    //   return false;
+    // }
 
     if (this.appService.isNullOrUndefined(empresa.email)) {
       this.appService.mensagemErro("Preencha o email");
@@ -158,10 +158,10 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    if (!this.isValidCep) {
-      this.appService.mensagemErro("CEP inválido");
-      return false;
-    }
+    // if (!this.isValidCep) {
+    //   this.appService.mensagemErro("CEP inválido");
+    //   return false;
+    // }
 
     return true;
   }
@@ -173,15 +173,15 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    if (this.appService.isNullOrUndefined(candidato.cep)) {
-      this.appService.mensagemErro("Preencha o CEP");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(candidato.cep)) {
+    //   this.appService.mensagemErro("Preencha o CEP");
+    //   return false;
+    // }
 
-    if (this.appService.isNullOrUndefined(candidato.cargo)) {
-      this.appService.mensagemErro("Selecione um cargo");
-      return false;
-    }
+    // if (this.appService.isNullOrUndefined(candidato.cargo)) {
+    //   this.appService.mensagemErro("Selecione um cargo");
+    //   return false;
+    // }
 
     if (this.appService.isNullOrUndefined(candidato.email)) {
       this.appService.mensagemErro("Preencha o email");
@@ -193,10 +193,10 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    if (!this.isValidCep) {
-      this.appService.mensagemErro("CEP inválido");
-      return false;
-    }
+    // if (!this.isValidCep) {
+    //   this.appService.mensagemErro("CEP inválido");
+    //   return false;
+    // }
 
     return true;
   }

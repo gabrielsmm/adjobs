@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.gabriel.empregos.enums.TipoUsuario;
@@ -33,12 +32,10 @@ public class Empresa extends Usuario {
 	@NotEmpty(message = "Campo NOME é requerido")
 	@Size(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
-//	@NotEmpty(message = "Campo CNPJ é requerido")
+	@NotEmpty(message = "Campo CNPJ é requerido")
 //	@Size(min = 14, max = 14, message = "O campo CNPJ deve ter 14 caracteres")
 	private String cnpj;
-	@NotNull(message = "Campo QUANTIDADE DE FUNCIONÁRIOS é requerido")
 	private Integer qtdFuncionarios;
-	@NotEmpty(message = "Campo CEP é requerido")
 	@Size(min = 8, max = 8, message = "O campo CEP deve ter 8 caracteres")
 	private String cep;
 	private String estado;
@@ -47,13 +44,11 @@ public class Empresa extends Usuario {
 	private String rua;
 	private String numero;
 	private String complemento;
-	@NotEmpty(message = "Campo NOME DO RESPONSÁVEL é requerido")
 	@Size(min = 3, max = 100, message = "O campo NOME DO RESPONSÁVEL deve ter entre 3 e 100 caracteres")
 	private String nomeResponsavel;
 	@NotEmpty(message = "Campo TELEFONE é requerido")
 	@Size(max = 11, message = "O campo TELEFONE deve ter no máximo 11 caracteres")
 	private String telefone;
-	@NotEmpty(message = "Campo CELULAR é requerido")
 	@Size(max = 11, message = "O campo CELULAR deve ter no máximo 11 caracteres")
 	private String celular;
 	@Column(columnDefinition = "TEXT")

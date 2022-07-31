@@ -27,23 +27,23 @@
               </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="candidato.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
                 </mat-form-field>
               </div>
-              <!-- <div class="col-md-6">
+              <div class="col-md-6">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="candidato.cargo.id" matInput type="number" placeholder="Cargo desejado" name="cargoDesejado" required>
                 </mat-form-field>
-              </div> -->
-              <!-- <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.cep" matInput placeholder="CEP" name="cep" required>
                 </mat-form-field>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
 
             <div class="row">
               <div class="col-md-6">
@@ -76,12 +76,17 @@
             </div>
 
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.cnpj" matInput placeholder="CNPJ da Empresa" name="cnpj" required>
+                  <input [(ngModel)]="empresa.cnpj" matInput placeholder="CNPJ da Empresa" name="cnpj" mask="00.000.000/0000-00" required>
                 </mat-form-field>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
+                <mat-form-field style="display: block;">
+                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
+                </mat-form-field>
+              </div>
+              <!-- <div class="col-md-4">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.qtdFuncionarios" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
                 </mat-form-field>
@@ -90,10 +95,10 @@
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cep" mask="00000-000" required>
                 </mat-form-field>
-              </div>
+              </div> -->
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.nomeResponsavel" matInput placeholder="Nome completo" name="nomePessoa" required>
@@ -101,7 +106,7 @@
               </div>
               <div class="col-md-4">
                 <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone fixo" name="telefone" required>
+                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone" name="telefone" required>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
@@ -109,7 +114,7 @@
                   <input [(ngModel)]="empresa.celular" matInput placeholder="Celular" name="celular" required>
                 </mat-form-field>
               </div>
-            </div>
+            </div> -->
 
             <div class="row">
               <div class="col-md-6">
