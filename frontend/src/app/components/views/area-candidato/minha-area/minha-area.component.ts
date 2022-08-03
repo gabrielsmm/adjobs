@@ -17,6 +17,7 @@ export class MinhaAreaCandidatoComponent implements OnInit {
   public qtdEnviados: number = 0;
   public qtdEmProcesso: number = 0;
   public qtdFinalista: number = 0;
+  public porcentagem: number = 0;
 
   constructor(public loginService: LoginService,
   public candidatoService: CandidatoService,
@@ -50,6 +51,7 @@ export class MinhaAreaCandidatoComponent implements OnInit {
         this.qtdEnviados = data.qtdEnviados;
         this.qtdEmProcesso = data.qtdEmProcesso;
         this.qtdFinalista = data.qtdFinalista;
+        this.porcentagem = data.porcentagem;
       },
       error: (err) => {
         console.log(err);

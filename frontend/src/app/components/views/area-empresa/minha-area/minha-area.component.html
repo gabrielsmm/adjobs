@@ -8,7 +8,8 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">{{empresa.nome}}</h2>
-          <p class="card-text">Divulgue suas vagas e obtenha o sucesso almejado!</p>
+          <p class="card-text">Dados {{porcentagem}}% completos.</p>
+          <p *ngIf="porcentagem < 100" class="card-text">Atualize seu cadastro e divulgue suas vagas!</p>
           <button class="btn btn-blue" [routerLink]="['/empresa/vagas']">Divulgar vagas</button>
         </div>
       </div>

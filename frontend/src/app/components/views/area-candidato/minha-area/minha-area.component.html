@@ -8,7 +8,8 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">{{candidato.nome}}</h2>
-          <p class="card-text">Atualize seu currículo para aumentar suas chances!</p>
+          <p class="card-text">Currículo {{porcentagem}}% completo.</p>
+          <p *ngIf="porcentagem < 100" class="card-text">Atualize seu currículo para aumentar suas chances!</p>
           <button class="btn btn-blue" [routerLink]="['/candidato/curriculo']">Editar currículo</button>
         </div>
       </div>

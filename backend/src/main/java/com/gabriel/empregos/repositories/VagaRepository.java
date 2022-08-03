@@ -51,7 +51,16 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 	
 	@Query(value = "SELECT "
 			+ "(SELECT COUNT(*) FROM TB_VAGAS AS obj WHERE obj.empresa_id = :idEmpresa) AS QTDPOSTADAS, "
-			+ "(SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj JOIN TB_VAGAS as v ON v.id = obj.vaga_id AND v.empresa_id = :idEmpresa) AS QTDCANDIDATOS", nativeQuery = true)
+			+ "(SELECT COUNT(*) FROM TB_CANDIDATURAS AS obj JOIN TB_VAGAS as v ON v.id = obj.vaga_id AND v.empresa_id = :idEmpresa) AS QTDCANDIDATOS,"
+			+ "(SELECT"
+			+ "     CAST(((CASE WHEN (CEP IS NOT NULL AND CEP <> '') THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (COMPLEMENTO IS NOT NULL AND COMPLEMENTO <> '') THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (DESCRICAO IS NOT NULL AND DESCRICAO <> '') THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (NOME_RESPONSAVEL IS NOT NULL AND NOME_RESPONSAVEL <> '') THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (QTD_FUNCIONARIOS IS NOT NULL) THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (SEGUIMENTO IS NOT NULL AND SEGUIMENTO <> '') THEN 1 ELSE 0 END)"
+			+ "      + (CASE WHEN (TELEFONE IS NOT NULL AND TELEFONE <> '') THEN 1 ELSE 0 END)) AS DECIMAL(5,2)) / 7 * 100 "
+			+ "FROM TB_EMPRESAS obj WHERE obj.id_usuario = :idEmpresa) AS PORCENTAGEM", nativeQuery = true)
 	ContadorAuxiliar getContador(@Param(value = "idEmpresa") Integer idEmpresa);
 	
 }

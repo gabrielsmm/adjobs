@@ -16,6 +16,7 @@ export class MinhaAreaEmpresaComponent implements OnInit {
   empresa: Empresa = new Empresa;
   public qtdPostadas: number = 0;
   public qtdCandidatos: number = 0;
+  public porcentagem: number = 0;
 
   constructor(private empresaService: EmpresaService,
   private loginService: LoginService,
@@ -47,6 +48,7 @@ export class MinhaAreaEmpresaComponent implements OnInit {
       next: (data) => {
         this.qtdPostadas = data.qtdPostadas;
         this.qtdCandidatos = data.qtdCandidatos;
+        this.porcentagem = data.porcentagem;
       },
       error: (err) => {
         console.log(err);

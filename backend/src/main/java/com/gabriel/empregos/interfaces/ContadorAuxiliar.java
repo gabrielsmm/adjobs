@@ -11,4 +11,6 @@ public interface ContadorAuxiliar {
 	Integer getQtdPostadas();
 	Integer getQtdCandidatos();
 	
+	Integer getPorcentagem();
+	
 }
