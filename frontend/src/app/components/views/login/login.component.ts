@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   usuarioLogin: Usuario = new Usuario();
+  showPassword: boolean = false;
 
   constructor(private router: Router,
     private appService: AppService,
@@ -44,6 +45,10 @@ export class LoginComponent implements OnInit {
         this.appService.mensagemErro("Houve um erro de conexão, por favor tente novamente.");
       }
     });
+  }
+
+  password() {
+    this.showPassword = !this.showPassword;
   }
 
   private validarDados(entidadeLogin: Usuario): boolean {

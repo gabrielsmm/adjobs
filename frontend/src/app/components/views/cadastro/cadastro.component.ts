@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 
@@ -24,10 +23,7 @@ export class CadastroComponent implements OnInit {
   public isCandidato: boolean = true;
   public isEmpresa: boolean = false;
   public isValidCep: boolean;
-  // public cep = new FormControl([
-  //   Validators.required,
-  //   Validators.maxLength(8)
-  // ]);
+  public showPassword: boolean = false;
 
   constructor(private empresaService: EmpresaService,
     private candidatoService: CandidatoService,
@@ -60,10 +56,6 @@ export class CadastroComponent implements OnInit {
       next: (data) => {
         this.appService.mensagemSucesso("Registro realizado com sucesso!");
         setTimeout(() => {this.irParaLogin();}, 1500);
-        // let usuario: Usuario = new Usuario();
-        // usuario = Object.assign(usuario, data);
-        // _this.loginService.usuarioAutenticado = true;
-        // _this.loginService.objUsuarioAutenticado = usuario;
       },
       error: (err) => {
         console.log(err);
@@ -89,11 +81,6 @@ export class CadastroComponent implements OnInit {
       next: (data) => {
         this.appService.mensagemSucesso("Registro realizado com sucesso!");
         setTimeout(() => {this.irParaLogin();}, 1500);
-        // let usuario: Usuario = new Usuario();
-        // usuario = Object.assign(usuario, data);
-        // _this.loginService.usuarioAutenticado = true;
-        // _this.loginService.objUsuarioAutenticado = usuario;
-        // _this.router.navigate(['empregos']);
       },
       error: (err) => {
         console.log(err);
@@ -111,6 +98,10 @@ export class CadastroComponent implements OnInit {
     });
   }
 
+  password() {
+    this.showPassword = !this.showPassword;
+  }
+
   private validarRegistroEmpresa(empresa: Empresa): boolean {
 
     if (this.appService.isNullOrUndefined(empresa.nome)) {
@@ -123,30 +114,10 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    // if (this.appService.isNullOrUndefined(empresa.qtdFuncionarios)) {
-    //   this.appService.mensagemErro("Preencha a quantidade de funcionários que a empresa possui");
-    //   return false;
-    // }
-
-    // if (this.appService.isNullOrUndefined(empresa.cep)) {
-    //   this.appService.mensagemErro("Preencha o CEP da empresa");
-    //   return false;
-    // }
-
-    // if (this.appService.isNullOrUndefined(empresa.nomeResponsavel)) {
-    //   this.appService.mensagemErro("Preencha o nome do responsável da empresa");
-    //   return false;
-    // }
-
     if (this.appService.isNullOrUndefined(empresa.telefone)) {
       this.appService.mensagemErro("Preencha o telefone de contato da empresa");
       return false;
     }
-
-    // if (this.appService.isNullOrUndefined(empresa.celular)) {
-    //   this.appService.mensagemErro("Preencha o celular de contato da empresa");
-    //   return false;
-    // }
 
     if (this.appService.isNullOrUndefined(empresa.email)) {
       this.appService.mensagemErro("Preencha o email");
@@ -158,11 +129,6 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    // if (!this.isValidCep) {
-    //   this.appService.mensagemErro("CEP inválido");
-    //   return false;
-    // }
-
     return true;
   }
 
@@ -173,16 +139,6 @@ export class CadastroComponent implements OnInit {
       return false;
     }
 
-    // if (this.appService.isNullOrUndefined(candidato.cep)) {
-    //   this.appService.mensagemErro("Preencha o CEP");
-    //   return false;
-    // }
-
-    // if (this.appService.isNullOrUndefined(candidato.cargo)) {
-    //   this.appService.mensagemErro("Selecione um cargo");
-    //   return false;
-    // }
-
     if (this.appService.isNullOrUndefined(candidato.email)) {
       this.appService.mensagemErro("Preencha o email");
       return false;
@@ -192,11 +148,6 @@ export class CadastroComponent implements OnInit {
       this.appService.mensagemErro("Preencha o campo senha");
       return false;
     }
-
-    // if (!this.isValidCep) {
-    //   this.appService.mensagemErro("CEP inválido");
-    //   return false;
-    // }
 
     return true;
   }
