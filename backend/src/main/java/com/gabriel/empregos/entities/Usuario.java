@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabriel.empregos.enums.TipoUsuario;
 
 //@MappedSuperclass
@@ -38,8 +39,8 @@ public class Usuario implements Serializable {
 	private String email;
 	@NotEmpty(message = "Campo SENHA é requerido")
 	@Size(min = 3, max = 100, message = "O campo EMAIL deve ter entre 3 e 100 caracteres")
-//	@JsonIgnore
 	private String senha;
+	@JsonIgnore
 	private String token;
 	private Date dataCadastro;
 	

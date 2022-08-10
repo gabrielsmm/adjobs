@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Proxy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.VagaStatus;
 
@@ -56,6 +57,7 @@ public class Vaga {
 	
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
+	@JsonIgnoreProperties({"email","senha","tipoUsuario","cnpj","cep"})
 	private Empresa empresa;
 	
 	public Vaga() {
