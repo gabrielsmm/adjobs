@@ -5,7 +5,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 order-2 order-sm-2 order-md-1">
       <!-- <mat-paginator [length]="length"
               [pageSize]="pageSize"
               [pageSizeOptions]="pageSizeOptions"
@@ -75,24 +75,26 @@
       </nav>
     </div>
 
-    <div class="col-md-3">
-      <p style="margin-top: 48px;">Procure uma oportunidade</p>
+    <div class="col-md-3 order-1 order-sm-1 order-md-2 mb-3">
+      <p style="margin-top: 30px;">Procure uma oportunidade</p>
       <div class="input-group">
         <input (keyup)="buscar()" [(ngModel)]="filtro.pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
         <span class="input-group-btn">
-          <button (click)="buscar()" class="btn btn-blue btn-lg" type="button">
+          <button (click)="buscar()" class="btn btn-blue btn-lg btn-pesquisa" type="button">
             <i class="bi bi-search"></i>
           </button>
         </span>
       </div>
 
-      <p style="margin-top: 10px;">Tipos de contratações</p>
-      <mat-button-toggle-group vertical style="width: 100%;">
-        <mat-button-toggle (click)="buscarTipo()" class="button" value="bold">Todos</mat-button-toggle>
-        <ng-container *ngFor="let tipo of appService.tiposContratacao">
-          <mat-button-toggle (click)="buscarTipo(tipo.value)" class="button" value="bold">{{tipo.viewValue}}</mat-button-toggle>
-        </ng-container>
-      </mat-button-toggle-group>
+      <div class="tipos-contratacoes">
+        <p style="margin-top: 10px;">Tipos de contratações</p>
+        <mat-button-toggle-group vertical style="width: 100%;">
+          <mat-button-toggle (click)="buscarTipo()" class="button" value="bold">Todos</mat-button-toggle>
+          <ng-container *ngFor="let tipo of appService.tiposContratacao">
+            <mat-button-toggle (click)="buscarTipo(tipo.value)" class="button" value="bold">{{tipo.viewValue}}</mat-button-toggle>
+          </ng-container>
+        </mat-button-toggle-group>
+      </div>
     </div>
   </div>
 

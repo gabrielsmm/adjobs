@@ -5,7 +5,7 @@ import { AppService } from './../../../../app.service';
 import { Candidatura } from './../../../../models/Candidatura.model';
 import { CandidaturaService } from './../../../../services/candidatura.service';
 import { LoaderService } from './../../../../services/loader.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from './../../../../services/usuario.service';
 import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 
 @Component({
@@ -28,7 +28,7 @@ export class CandidaturasComponent implements OnInit {
   public totalElements = 0;
 
   constructor(public candidaturaService: CandidaturaService,
-    public loginService: LoginService,
+    public usuarioService: UsuarioService,
     public appService: AppService,
     public dialog: MatDialog,
     public loaderService: LoaderService) {
@@ -41,7 +41,7 @@ export class CandidaturasComponent implements OnInit {
   }
 
   getCandidaturas() {
-    this.candidaturaService.findAllByCandidato(this.page, this.size, this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.candidaturaService.findAllByCandidato(this.page, this.size, this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.candidaturas = data['content'];
         this.first = data['first'];
@@ -59,7 +59,7 @@ export class CandidaturasComponent implements OnInit {
 
   getNumeroCandidaturas() {
     const _this = this;
-    this.candidaturaService.getNumeroCandidaturas(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.candidaturaService.getNumeroCandidaturas(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next(data) {
         _this.numeroCandidaturas = data;
       },

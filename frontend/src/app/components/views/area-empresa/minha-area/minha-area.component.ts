@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { AppService } from './../../../../app.service';
 import { Empresa } from './../../../../models/Empresa.model';
 import { EmpresaService } from './../../../../services/empresa.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from './../../../../services/usuario.service';
 import { VagaService } from './../../../../services/vaga.service';
+import { DialogAlteraSenhaComponent } from './../../../comuns/dialog-altera-senha/dialog-altera-senha.component';
 
 @Component({
   selector: 'app-minha-area-empresa',
@@ -13,15 +15,18 @@ import { VagaService } from './../../../../services/vaga.service';
 })
 export class MinhaAreaEmpresaComponent implements OnInit {
 
+  public dialogAlteraSenhaRef: MatDialogRef<DialogAlteraSenhaComponent>;
+
   empresa: Empresa = new Empresa;
   public qtdPostadas: number = 0;
   public qtdCandidatos: number = 0;
   public porcentagem: number = 0;
 
   constructor(private empresaService: EmpresaService,
-  private loginService: LoginService,
+  private usuarioService: UsuarioService,
   private vagaService: VagaService,
-  public appService: AppService) {
+  public appService: AppService,
+  public dialog: MatDialog) {
     this.getEmpresa();
   }
 
@@ -29,7 +34,7 @@ export class MinhaAreaEmpresaComponent implements OnInit {
   }
 
   getEmpresa() {
-    this.empresaService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.empresaService.findById(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.empresa = data;
         this.getContador();
@@ -57,6 +62,21 @@ export class MinhaAreaEmpresaComponent implements OnInit {
 
       }
     })
+  }
+
+  alterarSenhaClick() {
+    this.dialogAlteraSenhaRef = this.dialog.open(DialogAlteraSenhaComponent, {
+      disableClose: false,
+      data: this.empresa.id,
+      height: '280px',
+      width: '500px'
+    });
+
+    this.dialogAlteraSenhaRef.afterClosed().subscribe(result => {
+      if(result) {
+        //Ação
+      }
+    });
   }
 
 }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../app.service';
 import { Empresa } from './../../../../models/Empresa.model';
 import { EmpresaService } from './../../../../services/empresa.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from '../../../../services/usuario.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class DadosEmpresaComponent implements OnInit {
   public isEditavel: boolean = false;
 
   constructor(private empresaService: EmpresaService,
-    private loginService: LoginService,
+    private usuarioService: UsuarioService,
     public appService: AppService,
     private validaCepService: ValidaCepService) { }
 
@@ -26,7 +26,7 @@ export class DadosEmpresaComponent implements OnInit {
   }
 
   getDadosEmpresa() {
-    this.empresaService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.empresaService.findById(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.empresa = data;
       },

@@ -1,9 +1,11 @@
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { MaterialModule } from './../../material.module';
+import { DialogAlteraSenhaComponent } from './dialog-altera-senha/dialog-altera-senha.component';
 import { DialogConfirmacaoComponent } from './dialog-confirmacao/dialog-confirmacao.component';
 import { DialogCurriculoComponent } from './dialog-curriculo/dialog-curriculo.component';
 import { DialogVagaComponent } from './dialog-vaga/dialog-vaga.component';
@@ -15,12 +17,14 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent,
     FooterComponent,
     DialogVagaComponent,
-    DialogCurriculoComponent
+    DialogCurriculoComponent,
+    DialogAlteraSenhaComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
+    FormsModule,
     NgxMaskModule.forRoot()
   ],
   exports: [
@@ -28,6 +32,8 @@ import { HeaderComponent } from './header/header.component';
     FooterComponent
   ],
   providers: [],
-  entryComponents: [DialogConfirmacaoComponent]
+  entryComponents: [
+    DialogConfirmacaoComponent
+  ]
 })
 export class ComunsModule { }

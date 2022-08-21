@@ -20,22 +20,22 @@
         <!-- <li class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isConcursos}" [routerLink]="['/concursos']">Concursos</a>
         </li> -->
-        <li *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2" class="nav-item">
+        <li *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2" class="nav-item">
           <a class="nav-link laranja-link" [ngClass]="{'link-ativo': isAreaCandidato}" [routerLink]="['/candidato/area']">ÁREA DO CANDIDATO</a>
         </li>
-        <li *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 1" class="nav-item">
+        <li *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 1" class="nav-item">
           <a class="nav-link laranja-link" [ngClass]="{'link-ativo': isAreaEmpresa}" [routerLink]="['/empresa/area']">ÁREA DA EMPRESA</a>
         </li>
-        <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
+        <li *ngIf="!usuarioService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isLogin}" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-arrow-bar-right"></i> ENTRAR</a>
         </li>
-        <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
+        <li *ngIf="!usuarioService.usuarioAutenticado" class="nav-item">
           <a class="nav-link laranja-link" [routerLink]="['/login']" style="font-weight: bold;"><i class="bi bi-check2"></i> ANUNCIAR</a>
         </li>
         <!-- <li *ngIf="!loginService.usuarioAutenticado" class="nav-item">
           <a class="nav-link" [ngClass]="{'link-ativo': isCadastro}" [routerLink]="['/cadastro']" style="font-weight: bold;">CADASTRAR</a>
         </li> -->
-        <li *ngIf="loginService.usuarioAutenticado" class="nav-item">
+        <li *ngIf="usuarioService.usuarioAutenticado" class="nav-item">
           <button class="btn" [matMenuTriggerFor]="menu"><i class="bi bi-person"></i><i class="bi bi-caret-down-fill"></i></button>
           <mat-menu #menu="matMenu">
             <!-- <button *ngIf="loginService.objUsuarioAutenticado.tipoUsuario == 2" mat-menu-item>Candidaturas</button>

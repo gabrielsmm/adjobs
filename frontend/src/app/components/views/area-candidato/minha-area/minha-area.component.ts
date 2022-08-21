@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { AppService } from './../../../../app.service';
 import { Candidato } from './../../../../models/Candidato.model';
 import { CandidatoService } from './../../../../services/candidato.service';
 import { CandidaturaService } from './../../../../services/candidatura.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from './../../../../services/usuario.service';
+import { DialogAlteraSenhaComponent } from './../../../comuns/dialog-altera-senha/dialog-altera-senha.component';
 
 @Component({
   selector: 'app-minha-area-candidato',
@@ -13,16 +15,19 @@ import { LoginService } from './../../../../services/login.service';
 })
 export class MinhaAreaCandidatoComponent implements OnInit {
 
+  public dialogAlteraSenhaRef: MatDialogRef<DialogAlteraSenhaComponent>;
+
   candidato: Candidato = new Candidato;
   public qtdEnviados: number = 0;
   public qtdEmProcesso: number = 0;
   public qtdFinalista: number = 0;
   public porcentagem: number = 0;
 
-  constructor(public loginService: LoginService,
+  constructor(public usuarioService: UsuarioService,
   public candidatoService: CandidatoService,
   public candidaturaService: CandidaturaService,
-  public appService: AppService) {
+  public appService: AppService,
+  public dialog: MatDialog) {
     this.getCandidato();
   }
 
@@ -31,7 +36,7 @@ export class MinhaAreaCandidatoComponent implements OnInit {
   }
 
   getCandidato() {
-    this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.candidatoService.findById(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.candidato = data;
         this.getContador();
@@ -60,6 +65,21 @@ export class MinhaAreaCandidatoComponent implements OnInit {
 
       }
     })
+  }
+
+  alterarSenhaClick() {
+    this.dialogAlteraSenhaRef = this.dialog.open(DialogAlteraSenhaComponent, {
+      disableClose: false,
+      data: this.candidato.id,
+      height: '280px',
+      width: '500px'
+    });
+
+    this.dialogAlteraSenhaRef.afterClosed().subscribe(result => {
+      if(result) {
+        //Ação
+      }
+    });
   }
 
 }

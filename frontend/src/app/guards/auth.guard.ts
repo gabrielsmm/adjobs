@@ -13,21 +13,21 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { LoginService } from './../services/login.service';
+import { UsuarioService } from '../services/usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
 
-  constructor(private loginService: LoginService, private router: Router){
+  constructor(private usuarioService: UsuarioService, private router: Router){
 
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.loginService.usuarioAutenticado){
+    if(this.usuarioService.usuarioAutenticado){
       return true;
     }
     this.router.navigate(['login']);

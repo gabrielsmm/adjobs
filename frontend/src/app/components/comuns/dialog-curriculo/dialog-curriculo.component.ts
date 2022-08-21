@@ -2,7 +2,7 @@ import { Curriculo } from './../../../models/Curriculo.model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { LoginService } from './../../../services/login.service';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-dialog-curriculo',
@@ -12,7 +12,7 @@ import { LoginService } from './../../../services/login.service';
 export class DialogCurriculoComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Curriculo,
-    public loginService: LoginService) { }
+    public usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
   }

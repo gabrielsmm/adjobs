@@ -15,7 +15,7 @@ public class Util {
 		return new BCryptPasswordEncoder().matches(senha, senhaCriptografada);
 	}
 	
-	//Utilizando a BCryp com criptografia personalizada
+	//Utilizando a BCrypt com criptografia personalizada
 	public static String criptografar(String senha) {
 		return new CustomPasswordEncoder().encode(senha);
 	}

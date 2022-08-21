@@ -1,0 +1,24 @@
+<h2 class="titulos" mat-dialog-title>Alteração de senha</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <h3>Informe sua nova senha:</h3>
+      <mat-form-field style="display: block;">
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="password" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Nova senha" name="senha" required>
+          <div class="input-group-append">
+            <span class="password" (mousedown)="toggleShowPassword()" (mouseup)="toggleShowPassword()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
+          </div>
+        </div>
+      </mat-form-field>
+      <span *ngIf="erroPassword" class="text-danger">Informe uma senha válida!</span>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-blue" (click)="confirmarClick()">Confirmar</button>
+  <button class="btn btn-red" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
+

@@ -1,6 +1,6 @@
-import { LoginService } from './../../../services/login.service';
+import { UsuarioService } from './../../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public isAreaEmpresa: boolean = false;
 
   constructor(private router: Router,
-    public loginService: LoginService) { }
+    public usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     switch (this.router.url) {
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   deslogar() {
-    this.loginService.deslogar();
+    this.usuarioService.deslogar();
   }
 
 }

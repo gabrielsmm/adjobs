@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../../../services/login.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { AppService } from './../../../app.service';
 import { Vaga } from './../../../models/Vagas.model';
 import { CandidaturaService } from './../../../services/candidatura.service';
@@ -20,7 +20,7 @@ export class DialogVagaComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private selfDialogRef: MatDialogRef<DialogVagaComponent>,
-    public loginService: LoginService,
+    public usuarioService: UsuarioService,
     public appService: AppService,
     public dialog: MatDialog,
     private candidaturaService: CandidaturaService,
@@ -37,8 +37,8 @@ export class DialogVagaComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
-          this.candidaturaService.create(this.loginService.objUsuarioAutenticado.id, vaga.id).subscribe({
+        if (this.usuarioService.objUsuarioAutenticado.tipoUsuario === 2) {
+          this.candidaturaService.create(this.usuarioService.objUsuarioAutenticado.id, vaga.id).subscribe({
             next: (data) => {
               if (!this.appService.isNullOrUndefined(data)) {
                 this.appService.mensagemSucesso("Candidatura realizada com sucesso!");

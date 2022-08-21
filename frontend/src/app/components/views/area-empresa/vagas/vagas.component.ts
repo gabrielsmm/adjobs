@@ -9,7 +9,7 @@ import { CandidaturaService } from './../../../../services/candidatura.service';
 import { CurriculoService } from './../../../../services/curriculo.service';
 import { EmpresaService } from './../../../../services/empresa.service';
 import { LoaderService } from './../../../../services/loader.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from '../../../../services/usuario.service';
 import { VagaService } from './../../../../services/vaga.service';
 import { DialogConfirmacaoComponent } from './../../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogCurriculoComponent } from './../../../comuns/dialog-curriculo/dialog-curriculo.component';
@@ -46,7 +46,7 @@ export class VagasComponent implements OnInit {
   public totalElements = 0;
 
   constructor(private vagaService: VagaService,
-  private loginService: LoginService,
+  private usuarioService: UsuarioService,
   public appService: AppService,
   private empresaService: EmpresaService,
   private candidaturaService: CandidaturaService,
@@ -61,7 +61,7 @@ export class VagasComponent implements OnInit {
   }
 
   getVagas() {
-    this.vagaService.findAllByEmpresa(this.page, this.size, this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.vagaService.findAllByEmpresa(this.page, this.size, this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.vagas = data['content'];
         this.first = data['first'];
@@ -78,7 +78,7 @@ export class VagasComponent implements OnInit {
   }
 
   getNumeroVagas() {
-    this.vagaService.getNumeroVagasPorEmpresa(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.vagaService.getNumeroVagasPorEmpresa(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.numeroVagas = data;
       },
@@ -113,7 +113,7 @@ export class VagasComponent implements OnInit {
 
   cadastrarVagaClick() {
     this.vaga = new Vaga;
-    this.empresaService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.empresaService.findById(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         this.vaga.empresa = data;
       }

@@ -6,7 +6,7 @@ import { Vaga } from '../../../models/Vagas.model';
 import { AppService } from './../../../app.service';
 import { CandidaturaService } from './../../../services/candidatura.service';
 import { LoaderService } from './../../../services/loader.service';
-import { LoginService } from './../../../services/login.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { Filtro, VagaService } from './../../../services/vaga.service';
 import { DialogConfirmacaoComponent } from './../../comuns/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogVagaComponent } from './../../comuns/dialog-vaga/dialog-vaga.component';
@@ -35,7 +35,7 @@ export class EmpregosComponent implements OnInit {
 
   constructor(private vagaService: VagaService,
     private candidaturaService: CandidaturaService,
-    public loginService: LoginService,
+    public usuarioService: UsuarioService,
     public appService: AppService,
     public dialog: MatDialog,
     private router: Router,
@@ -118,8 +118,8 @@ export class EmpregosComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        if (this.loginService.objUsuarioAutenticado.tipoUsuario === 2) {
-          this.candidaturaService.create(this.loginService.objUsuarioAutenticado.id, vaga.id).subscribe({
+        if (this.usuarioService.objUsuarioAutenticado.tipoUsuario === 2) {
+          this.candidaturaService.create(this.usuarioService.objUsuarioAutenticado.id, vaga.id).subscribe({
             next: (data) => {
               if (!this.appService.isNullOrUndefined(data)) {
                 this.appService.mensagemSucesso("Candidatura realizada com sucesso!");

@@ -1,4 +1,4 @@
-import { LoginService } from './../../../services/login.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from './../../../models/Usuario.model';
 import { AppService } from './../../../app.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     private appService: AppService,
-    private loginService: LoginService) { }
+    private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
   }
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
     if (!this.validarDados(this.usuarioLogin)) {
       return;
     }
-    this.loginService.login(this.usuarioLogin).subscribe((resposta) => {
-      this.loginService.usuarioAutenticado = true;
-      this.loginService.objUsuarioAutenticado = resposta;
-      localStorage.setItem("token", this.loginService.objUsuarioAutenticado.token);
-      if (this.loginService.objUsuarioAutenticado.tipoUsuario == 1) { //EMPRESA
+    this.usuarioService.login(this.usuarioLogin).subscribe((resposta) => {
+      this.usuarioService.usuarioAutenticado = true;
+      this.usuarioService.objUsuarioAutenticado = resposta;
+      localStorage.setItem("token", this.usuarioService.objUsuarioAutenticado.token);
+      if (this.usuarioService.objUsuarioAutenticado.tipoUsuario == 1) { //EMPRESA
         this.router.navigate(['empresa/area']);
-      } else if (this.loginService.objUsuarioAutenticado.tipoUsuario == 2) { //CANDIDATO
+      } else if (this.usuarioService.objUsuarioAutenticado.tipoUsuario == 2) { //CANDIDATO
         this.router.navigate(['candidato/area']);
       }
     }, err => {

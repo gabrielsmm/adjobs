@@ -8,7 +8,7 @@ import { CurriculoExperiencia } from './../../../../models/CurriculoExperiencia.
 import { CurriculoFormacao } from './../../../../models/CurriculoFormacao.model';
 import { CandidatoService } from './../../../../services/candidato.service';
 import { CurriculoService } from './../../../../services/curriculo.service';
-import { LoginService } from './../../../../services/login.service';
+import { UsuarioService } from '../../../../services/usuario.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
 
 @Component({
@@ -60,7 +60,7 @@ export class CurriculoComponent implements OnInit {
   ];
 
   constructor(public curriculoService: CurriculoService,
-    public loginService: LoginService,
+    public usuarioService: UsuarioService,
     private validaCepService: ValidaCepService,
     private candidatoService: CandidatoService,
     public appService: AppService,
@@ -72,14 +72,14 @@ export class CurriculoComponent implements OnInit {
   }
 
   getDadosCurriculo() {
-    this.curriculoService.findByCandidato(this.loginService.objUsuarioAutenticado.id).subscribe({
+    this.curriculoService.findByCandidato(this.usuarioService.objUsuarioAutenticado.id).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
           this.curriculo = data;
           this.formacoes = data.formacoes;
           this.experiencias = data.experiencias;
         } else {
-          this.candidatoService.findById(this.loginService.objUsuarioAutenticado.id).subscribe({
+          this.candidatoService.findById(this.usuarioService.objUsuarioAutenticado.id).subscribe({
             next: (data) => {
               this.curriculo.nome = data.nome;
               this.curriculo.candidato = data;
