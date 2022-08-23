@@ -46,13 +46,15 @@
 @media (max-width: 320.98px) {
   .btn-status {
     font-size: 8px;
+    padding: 5px;
   }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (min-width: 321px) and (max-width: 575.98px) {
   .btn-status {
-    font-size: 11px;
+    font-size: 10px;
+    padding: 5px;
   }
 }
 

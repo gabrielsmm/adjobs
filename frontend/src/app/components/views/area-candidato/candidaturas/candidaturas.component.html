@@ -47,22 +47,22 @@
             </div> -->
             <div class="col-md-12 d-flex justify-content-end">
               <button type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 0}"
+              [ngClass]="{'btn-green': candidatura.status === 0}"
               [disabled]="candidatura.status !== 0">
                 Recebido
               </button>
               <button type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 1}"
+              [ngClass]="{'btn-green': candidatura.status === 1}"
               [disabled]="candidatura.status !== 1">
                 Revisado
               </button>
               <button type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 2}"
+              [ngClass]="{'btn-green': candidatura.status === 2}"
               [disabled]="candidatura.status !== 2">
                 Pré-selecionado
               </button>
               <button type="button" class="btn btn-blue btn-status"
-              [ngClass]="{'btn-verde': candidatura.status === 3}"
+              [ngClass]="{'btn-green': candidatura.status === 3}"
               [disabled]="candidatura.status !== 3">
                 Finalista
               </button>
