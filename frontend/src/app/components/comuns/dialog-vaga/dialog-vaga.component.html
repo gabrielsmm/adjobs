@@ -130,6 +130,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button color="primary" mat-button mat-raised-button mat-dialog-close>Voltar</button>
-  <button *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="candidatarClick(data)" class="btn-blue" mat-button mat-raised-button cdkFocusInitial>Candidatar-se</button>
+  <button class="btn btn-red" mat-dialog-close>Voltar</button>
+  <button *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="candidatarClick(data)" class="btn btn-blue" cdkFocusInitial>Candidatar-se</button>
 </mat-dialog-actions>

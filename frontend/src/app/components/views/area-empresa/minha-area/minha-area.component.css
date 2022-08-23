@@ -29,6 +29,10 @@
   color: white;
 }
 
+.btn-alterar-senha {
+  margin: 0px 0px 5px 5px;
+}
+
 /* Ajustes */
 
 @media (max-width: 320.98px) {
@@ -72,11 +76,16 @@
   .btn-blue {
     font-size: 13px;
   }
+  .btn-alterar-senha {
+    font-size: 13px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-
+  .btn-alterar-senha {
+    font-size: 14px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

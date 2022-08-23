@@ -6,3 +6,9 @@
   font-weight: bold;
   font-size: 30px;
 }
+
+.input-group-text {
+  background-image: linear-gradient(to right, #0e76a8 0%, #155979 51%, #0e76a8  100%);
+  color: #ffffff;
+  border-color: #0e76a8;
+}

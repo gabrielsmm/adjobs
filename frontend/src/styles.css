@@ -24,31 +24,38 @@ body::-webkit-scrollbar-thumb {
 .btn {
   border-radius: 8px;
   box-shadow: 0px 0px 8px -4px #000000;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+}
+
+.btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
 
 .btn-blue {
-  background-color: #0e76a8;
-  color: white;
+  background-image: linear-gradient(to right, #0e76a8 0%, #155979 51%, #0e76a8  100%);
 }
 
 .btn-orange {
-  background-color: #bc511b;
-  color: white;
-}
-
-.btn-yellow {
-  background-color: #B8B126;
-  color: white;
+  background-image: linear-gradient(to right, #bc511b 0%, #F09819  51%, #bc511b  100%);
 }
 
 .btn-green {
-  background-color: #2b8b3b;
-  color: white;
+  background-image: linear-gradient(to right, #2b8b3b 0%, #205726  51%, #2b8b3b  100%);
 }
 
 .btn-red {
-  background-color: rgb(153, 50, 50);
-  color: white;
+  background-image: linear-gradient(to right, rgb(153, 50, 50) 0%, #602321  51%, rgb(153, 50, 50)  100%);
+}
+
+.btn-yellow {
+  background-image: linear-gradient(to right, #FFB75E 0%, #ED8F03  51%, #FFB75E  100%);
 }
 
 .snack-background-red {
@@ -62,8 +69,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card {
-  border-radius: 8px;
+  border-radius: 8px 8px 40px 8px;
   box-shadow: 0px 0px 8px -4px #000000;
+  border-left: 3px solid #0e76a8;
 }
 
 .card-header {

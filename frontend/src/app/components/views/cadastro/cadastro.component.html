@@ -11,8 +11,8 @@
           <a class="navbar-brand" [routerLink]="['/inicio']"><img class="img-fluid" style="margin: 0 auto;" src="assets/img/logo_alternativa.png" alt="Logo" width="100"></a>
           <p class="paragrafo">Como deseja realizar seu cadastro?</p>
           <div>
-            <button (click)="candidatoClick()" mat-raised-button class="btn candidato">Candidato</button>
-            <button (click)="empresaClick()" mat-raised-button class="btn empresa">Empresa</button>
+            <button (click)="candidatoClick()" mat-raised-button class="btn btn-candidato">Candidato</button>
+            <button (click)="empresaClick()" mat-raised-button class="btn btn-empresa">Empresa</button>
           </div>
         </div>
         <div class="col-md-8">
@@ -43,7 +43,7 @@
               </div>
             </div> -->
 
-            <div class="row">
+            <div class="row align-items-end">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="candidato.email" matInput placeholder="E-mail" name="emailCandidato" required>
@@ -61,7 +61,7 @@
               </div>
             </div>
 
-            <button (click)="registrarCandidato()" mat-raised-button class="btn-blue">Registrar e Candidatar-se a vagas grátis</button>
+            <button (click)="registrarCandidato()" class="btn btn-blue">Registrar e Candidatar-se a vagas grátis</button>
           </form>
 
           <form *ngIf="isEmpresa" style="overflow-x: hidden;">
@@ -119,7 +119,7 @@
               </div>
             </div> -->
 
-            <div class="row">
+            <div class="row align-items-end">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.email" matInput placeholder="E-mail" name="email" required>
@@ -137,7 +137,7 @@
               </div>
             </div>
 
-            <button (click)="registrarEmpresa()" mat-raised-button class="btn-blue">Registrar e Anunciar vagas grátis</button>
+            <button (click)="registrarEmpresa()" class="btn btn-blue">Registrar e Anunciar vagas grátis</button>
           </form>
           <span (click)="irParaLogin()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ir para a página de login</span>
         </div>
