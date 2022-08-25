@@ -47,12 +47,6 @@ private static final String AUTHORITIES_KEY = "roles";
         String email = usuario.getEmail();
         Claims claims = Jwts.claims().setSubject(email);
         
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-       
-//        if (!authorities.isEmpty()) {
-//            claims.put(AUTHORITIES_KEY, authorities.stream().map(GrantedAuthority::getAuthority).collect(joining(",")));
-//        }
-        
         Date now = new Date();
         Date validity = new Date(now.getTime() + this.validityInMs);
         
@@ -83,12 +77,11 @@ private static final String AUTHORITIES_KEY = "roles";
             Jws<Claims> claims = Jwts
                     .parserBuilder().setSigningKey(this.secretKey).build()
                     .parseClaimsJws(token);
-            //  parseClaimsJws will check expiration date. No need do here.
-//            log.info("expiration date: {}", claims.getBody().getExpiration());
+            //parseClaimsJws will check expiration date. No need do here.
             System.out.println("expiration date: " + claims.getBody().getExpiration());
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-//            log.error("Invalid JWT token: {}", e.getMessage());
+        	System.out.println("Invalid JWT token: " + e.getMessage());
         }
         return false;
     }

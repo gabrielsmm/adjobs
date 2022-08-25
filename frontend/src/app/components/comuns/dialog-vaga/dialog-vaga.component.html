@@ -130,6 +130,7 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <p *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2 && !usuarioService.objUsuarioAutenticado.podeCandidatar" class="text-danger" style="margin-right: 10px;"><b>Complete</b> seu currículo para se candidatar às vagas!</p>
   <button class="btn btn-red" mat-dialog-close>Voltar</button>
-  <button *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2"  (click)="candidatarClick(data)" class="btn btn-blue" cdkFocusInitial>Candidatar-se</button>
+  <button *ngIf="usuarioService.usuarioAutenticado && usuarioService.objUsuarioAutenticado.tipoUsuario == 2 && usuarioService.objUsuarioAutenticado.podeCandidatar"  (click)="candidatarClick(data)" class="btn btn-blue" cdkFocusInitial>Candidatar-se</button>
 </mat-dialog-actions>

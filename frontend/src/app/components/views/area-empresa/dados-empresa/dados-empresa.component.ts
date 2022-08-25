@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { UsuarioService } from '../../../../services/usuario.service';
 import { AppService } from './../../../../app.service';
 import { Empresa } from './../../../../models/Empresa.model';
 import { EmpresaService } from './../../../../services/empresa.service';
-import { UsuarioService } from '../../../../services/usuario.service';
 import { ValidaCepService } from './../../../../services/validaCep.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class DadosEmpresaComponent implements OnInit {
   constructor(private empresaService: EmpresaService,
     private usuarioService: UsuarioService,
     public appService: AppService,
-    private validaCepService: ValidaCepService) { }
+    private validaCepService: ValidaCepService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getDadosEmpresa();
@@ -50,8 +52,9 @@ export class DadosEmpresaComponent implements OnInit {
     this.empresaService.update(this.empresa).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
-          this.appService.mensagemSucesso("Dados salvos");
+          this.appService.mensagemSucesso("Dados salvos com sucesso!");
           this.isEditavel = false;
+          this.router.navigate(['empresa/area']);
         }
       },
       error: (error) => {

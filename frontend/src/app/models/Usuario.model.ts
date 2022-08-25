@@ -6,4 +6,7 @@ export class Usuario {
   tipo: string
   dataCadastro?: Date
   tipoUsuario: number
+
+  podeCandidatar: boolean;
+  podeDivulgar: boolean;
 }

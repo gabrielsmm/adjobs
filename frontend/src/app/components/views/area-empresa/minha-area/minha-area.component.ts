@@ -23,7 +23,7 @@ export class MinhaAreaEmpresaComponent implements OnInit {
   public porcentagem: number = 0;
 
   constructor(private empresaService: EmpresaService,
-  private usuarioService: UsuarioService,
+  public usuarioService: UsuarioService,
   private vagaService: VagaService,
   public appService: AppService,
   public dialog: MatDialog) {
@@ -54,6 +54,11 @@ export class MinhaAreaEmpresaComponent implements OnInit {
         this.qtdPostadas = data.qtdPostadas;
         this.qtdCandidatos = data.qtdCandidatos;
         this.porcentagem = data.porcentagem;
+        if (this.porcentagem >= 100) {
+          this.usuarioService.objUsuarioAutenticado.podeDivulgar = true;
+        } else {
+          this.usuarioService.objUsuarioAutenticado.podeDivulgar = false;
+        }
       },
       error: (err) => {
         console.log(err);

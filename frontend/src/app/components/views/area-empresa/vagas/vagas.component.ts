@@ -46,18 +46,19 @@ export class VagasComponent implements OnInit {
   public totalElements = 0;
 
   constructor(private vagaService: VagaService,
-  private usuarioService: UsuarioService,
+  public usuarioService: UsuarioService,
   public appService: AppService,
   private empresaService: EmpresaService,
   private candidaturaService: CandidaturaService,
   private curriculoService: CurriculoService,
   private dialog: MatDialog,
   public loaderService: LoaderService) {
-    this.getNumeroVagas();
-    this.getVagas();
+
   }
 
   ngOnInit(): void {
+    this.getNumeroVagas();
+    this.getVagas();
   }
 
   getVagas() {

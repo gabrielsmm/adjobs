@@ -28,11 +28,11 @@ export class MinhaAreaCandidatoComponent implements OnInit {
   public candidaturaService: CandidaturaService,
   public appService: AppService,
   public dialog: MatDialog) {
-    this.getCandidato();
+
   }
 
   ngOnInit(): void {
-
+    this.getCandidato();
   }
 
   getCandidato() {
@@ -57,6 +57,11 @@ export class MinhaAreaCandidatoComponent implements OnInit {
         this.qtdEmProcesso = data.qtdEmProcesso;
         this.qtdFinalista = data.qtdFinalista;
         this.porcentagem = data.porcentagem;
+        if (this.porcentagem >= 100) {
+          this.usuarioService.objUsuarioAutenticado.podeCandidatar = true;
+        } else {
+          this.usuarioService.objUsuarioAutenticado.podeCandidatar = false;
+        }
       },
       error: (err) => {
         console.log(err);

@@ -62,6 +62,11 @@ mat-form-field {
   color: #2b8b3b;
 }
 
+.badge-light {
+  background-color: white;
+  color: black;
+}
+
 /* Ajustes */
 
 @media (max-width: 320.98px) {

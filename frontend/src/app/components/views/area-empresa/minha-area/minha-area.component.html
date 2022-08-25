@@ -10,7 +10,7 @@
         <div class="card-body">
           <h2 class="card-title">{{empresa.nome}}</h2>
           <p class="card-text">Dados {{porcentagem}}% completos.</p>
-          <p *ngIf="porcentagem < 100" class="card-text">Atualize seu cadastro e divulgue suas vagas!</p>
+          <p *ngIf="!usuarioService.objUsuarioAutenticado.podeDivulgar" class="card-text text-danger"><b>Complete</b> seu cadastro para divulgar suas vagas!</p>
           <button class="btn btn-blue" [routerLink]="['/empresa/vagas']">Divulgar vagas</button>
         </div>
       </div>

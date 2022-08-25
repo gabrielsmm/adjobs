@@ -76,7 +76,7 @@ export class CandidaturasComponent implements OnInit {
     this.dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
       disableClose: false
     });
-    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja excluir a candidatura para a vaga ${candidatura.vaga.id} - ${candidatura.vaga.nome}?`
+    this.dialogRef.componentInstance.confirmMessage = `Realmente deseja excluir a candidatura para a vaga ${candidatura.vaga.nome}?`
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result) {

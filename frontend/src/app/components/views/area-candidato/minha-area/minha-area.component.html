@@ -10,7 +10,7 @@
         <div class="card-body">
           <h2 class="card-title">{{candidato.nome}}</h2>
           <p class="card-text">Currículo {{porcentagem}}% completo.</p>
-          <p *ngIf="porcentagem < 100" class="card-text">Atualize seu currículo para aumentar suas chances!</p>
+          <p *ngIf="!usuarioService.objUsuarioAutenticado.podeCandidatar" class="card-text text-danger"><b>Complete</b> seu currículo para se candidatar às vagas!</p>
           <button class="btn btn-blue" [routerLink]="['/candidato/curriculo']">Editar currículo</button>
         </div>
       </div>

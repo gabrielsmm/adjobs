@@ -49,11 +49,7 @@ export class EmpregosComponent implements OnInit {
   }
 
   getVagas() {
-    if (this.estagios) {
-      this.getSomenteEstagios();
-    } else {
-      this.getListaPaginada();
-    }
+    this.getListaPaginada();
   }
 
   getListaPaginada() {
@@ -71,20 +67,6 @@ export class EmpregosComponent implements OnInit {
 
       }
     });
-  }
-
-  getSomenteEstagios() {
-    this.vagaService.getSomenteEstagios().subscribe({
-      next: (data) => {
-        this.vagas = data;
-      },
-      error: (msg) => {
-        console.log('Error', msg);
-      },
-      complete: () => {
-
-      }
-    })
   }
 
   openDetalhes(idVaga: any) {

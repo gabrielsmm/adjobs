@@ -163,7 +163,7 @@ export class CurriculoComponent implements OnInit {
     this.curriculoService.save(this.curriculo).subscribe({
       next: (data) => {
         if (!this.appService.isNullOrUndefined(data)) {
-          this.appService.mensagemSucesso("Currículo salvo");
+          this.appService.mensagemSucesso("Currículo salvo com sucesso!");
           this.isEditavel = false;
           this.router.navigate(['candidato/area']);
         }
