@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.gabriel.empregos.dtos.VagaDTO;
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.services.VagaService;
 
@@ -54,11 +55,11 @@ public class VagaResource {
 	}
 	
 	@GetMapping(value="/empresa/{idEmpresa}")
-	public ResponseEntity<Page<Vaga>> findAllByEmpresa(@PathVariable("idEmpresa") Integer idEmpresa,
+	public ResponseEntity<Page<VagaDTO>> findAllByEmpresa(@PathVariable("idEmpresa") Integer idEmpresa,
 			@RequestParam(defaultValue = "0") int page,
 	        @RequestParam(defaultValue = "5") int size) {
 		Pageable paging = PageRequest.of(page, size);
-		Page<Vaga> list = service.findAllByEmpresa(idEmpresa, paging);
+		Page<VagaDTO> list = service.findAllByEmpresa(idEmpresa, paging).map(VagaDTO::new);
 		return ResponseEntity.ok(list);
 	}
 	

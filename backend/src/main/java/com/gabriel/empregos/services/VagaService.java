@@ -132,4 +132,8 @@ public class VagaService {
 		return repository.getContador(idCandidato);
 	}
 	
+	public Integer getQtdCandidatos(Integer idVaga) {
+		return repository.getQtdCandidatos(idVaga).getQtdCandidatos();
+	}
+	
 }

@@ -71,7 +71,7 @@
             <div *ngIf="vaga.status !== 1" class="row">
               <div class="col-md-9"></div>
               <div class="col-md-3">
-                <button (click)="exibirCandidatosClick(vaga)" class="btn btn-blue" style="width: 100%;">Ver candidatos</button>
+                <button (click)="exibirCandidatosClick(vaga)" class="btn btn-blue" style="width: 100%;">Ver candidatos <span class="badge badge-light">{{vaga.qtdCandidatos}}</span></button>
               </div>
             </div>
           </div>

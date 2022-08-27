@@ -63,4 +63,7 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 			+ "FROM TB_EMPRESAS obj WHERE obj.id_usuario = :idEmpresa) AS PORCENTAGEM", nativeQuery = true)
 	ContadorAuxiliar getContador(@Param(value = "idEmpresa") Integer idEmpresa);
 	
+	@Query(value = "SELECT COUNT(*) AS QTDCANDIDATOS FROM TB_CANDIDATURAS WHERE VAGA_ID = :idVaga", nativeQuery = true)
+	ContadorAuxiliar getQtdCandidatos(@Param(value = "idVaga") Integer idVaga);
+	
 }

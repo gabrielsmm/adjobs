@@ -14,7 +14,7 @@
       </mat-paginator> -->
 
       <p *ngIf="totalElements > 0" class="texto-oportunidades">Últimas oportunidades</p>
-      <p *ngIf="totalElements <= 0" class="texto-oportunidades">Não há vagas para serem exibidas</p>
+      <p *ngIf="totalElements <= 0" class="texto-oportunidades">Ops! Nenhuma vaga foi encontrada com os filtros selecionados.</p>
 
       <div *ngFor="let vaga of vagas" class="card">
         <div class="card-header">
@@ -78,7 +78,7 @@
     <div class="col-md-3 order-1 order-sm-1 order-md-2 mb-3">
       <p style="margin-top: 30px;">Procure uma oportunidade</p>
       <div class="input-group">
-        <input (keyup)="buscar()" [(ngModel)]="filtro.pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
+        <input [(ngModel)]="filtro.pesquisa" type="text" class="form-control input-lg" placeholder="Buscar"/>
         <span class="input-group-btn">
           <button (click)="buscar()" class="btn btn-blue btn-lg btn-pesquisa" type="button">
             <i class="bi bi-search"></i>

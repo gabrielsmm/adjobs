@@ -14,4 +14,5 @@ export class Vaga{
   requisitos: string
   empresa: Empresa
   status: number
+  qtdCandidatos: number;
 }
