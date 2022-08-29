@@ -3,15 +3,12 @@ package com.gabriel.empregos.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
 import com.gabriel.empregos.entities.Vaga;
 import com.gabriel.empregos.enums.TipoContratacao;
 import com.gabriel.empregos.enums.VagaStatus;
 import com.gabriel.empregos.services.VagaService;
 import com.gabriel.empregos.util.SpringBeanLocator;
 
-@Component
 public class VagaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -45,6 +45,13 @@ export class VagasComponent implements OnInit {
   public last: boolean;
   public totalElements = 0;
 
+  // paginação candidatos
+  public pageCandidato = 0;
+  public sizeCandidato = 10;
+  public firstCandidato: boolean;
+  public lastCandidato: boolean;
+  public totalElementsCandidato = 0;
+
   constructor(private vagaService: VagaService,
   public usuarioService: UsuarioService,
   public appService: AppService,
@@ -132,9 +139,12 @@ export class VagasComponent implements OnInit {
   }
 
   exibirCandidatosClick(vaga: Vaga) {
-    this.candidaturaService.findAllByVaga(vaga.id).subscribe({
+    this.candidaturaService.findAllByVaga(this.pageCandidato, this.sizeCandidato, vaga.id).subscribe({
       next: (data) => {
-        this.candidaturas = data;
+        this.candidaturas = data['content'];
+        this.firstCandidato = data['first'];
+        this.lastCandidato = data['last'];
+        this.totalElementsCandidato = data['totalElements'];
         if (this.candidaturas.length <= 0) {
           this.appService.mensagemErro("Vaga selecionada ainda não possui candidaturas.");
         } else {
@@ -161,7 +171,7 @@ export class VagasComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog fechado`);
+          // Ação
         })
       },
       error: (error) => {
@@ -260,6 +270,18 @@ export class VagasComponent implements OnInit {
   irPaginaPosterior() {
     this.page = ++this.page;
     this.getVagas();
+    this.appService.scrollToTop();
+  }
+
+  irPaginaAnteriorCandidato() {
+    this.pageCandidato = --this.pageCandidato;
+    this.exibirCandidatosClick(this.vaga);
+    this.appService.scrollToTop();
+  }
+
+  irPaginaPosteriorCandidato() {
+    this.pageCandidato = ++this.pageCandidato;
+    this.exibirCandidatosClick(this.vaga);
     this.appService.scrollToTop();
   }
 

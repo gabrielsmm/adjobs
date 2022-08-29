@@ -82,8 +82,14 @@ public class DBService {
 		Candidato c1 = new Candidato(null, "Gabriel", "74885230", "gabriel@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
 		Candidato c2 = new Candidato(null, "Jorge", "74885239", "jorge@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
 		Candidato c3 = new Candidato(null, "Lucas", "74885240", "lucas@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c4 = new Candidato(null, "teste1", "74885240", "teste1@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c5 = new Candidato(null, "teste2", "74885240", "teste2@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c6 = new Candidato(null, "teste3", "74885240", "teste3@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c7 = new Candidato(null, "teste4", "74885240", "teste4@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c8 = new Candidato(null, "teste5", "74885240", "teste5@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
+		Candidato c9 = new Candidato(null, "teste6", "74885240", "teste6@estudante.com.br", Util.criptografar("blablabla"), new Date(), TipoUsuario.CANDIDATO);
 		
-		this.candidatoRepository.saveAll(Arrays.asList(c1, c2, c3));
+		this.candidatoRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8, c9));
 		
 		this.empresaRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
@@ -128,8 +134,14 @@ public class DBService {
 		Candidatura can1 = new Candidatura(null, c1, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
 		Candidatura can2 = new Candidatura(null, c2, vaga2, new Date(), CandidaturaStatus.REVISADO);
 		Candidatura can3 = new Candidatura(null, c1, vaga2, new Date(), CandidaturaStatus.PRESELECIONADO);
+		Candidatura can4 = new Candidatura(null, c4, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can5 = new Candidatura(null, c5, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can6 = new Candidatura(null, c6, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can7 = new Candidatura(null, c7, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can8 = new Candidatura(null, c8, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
+		Candidatura can9 = new Candidatura(null, c9, vaga1, new Date(), CandidaturaStatus.RECEBIDO);
 		
-		this.candidaturaRepository.saveAll(Arrays.asList(can1, can2, can3));
+		this.candidaturaRepository.saveAll(Arrays.asList(can1, can2, can3, can4, can5, can6, can7, can8, can9));
 		
 		Curriculo crr1 = new Curriculo(null, c1, "Gabriel", "Sou estudante bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.SOLTEIRO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Seila", "Rua das maringueiras", "0", "Quadra 230 Lote 98", false, "https://www.linkedin.com.br", "", "https://www.instagram.com.br", "gmportfolios.com");
 		Curriculo crr2 = new Curriculo(null, c2, "Jorge", "Sou estudante dois bla bla bla", "6232223333", "62996777777", new Date(), EstadoCivil.CASADO, Sexo.MASCULINO, "74444444", "GO", "Goiânia", "Jardim Porai", "Rua das maringueiras", "0", "Quadra 231 Lote 99", false, "https://www.linkedin.com.br", "", "https://www.instagram.com.br", "jorgeportfolios.com");

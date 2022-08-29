@@ -46,8 +46,9 @@ public class CandidaturaService {
 		return result;
 	}
 	
-	public List<Candidatura> findAllByVaga(Integer idVaga) {
-		return repository.findAllByVaga(idVaga);
+	public Page<Candidatura> findAllByVaga(Integer idVaga, Pageable pageable) {
+		Page<Candidatura> result = repository.findAllByVaga(idVaga, pageable);
+		return result;
 	}
 	
 	public Candidatura create(Integer idCandidato, Integer idVaga) {

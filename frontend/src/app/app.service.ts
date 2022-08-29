@@ -17,6 +17,23 @@ export class AppService {
     {value: 6, viewValue: 'Intermitente'},
   ];
 
+  formacaoStatus = [
+    {value: 0, viewValue: 'Concluído'},
+    {value: 1, viewValue: 'Cursando'},
+    {value: 2, viewValue: 'Trancado'}
+  ]
+
+  formacaoNivel = [
+    {value: 0, viewValue: 'Fundamental'},
+    {value: 1, viewValue: 'Médio'},
+    {value: 2, viewValue: 'Extra Curricular'},
+    {value: 3, viewValue: 'Técnico'},
+    {value: 4, viewValue: 'Superior'},
+    {value: 5, viewValue: 'Especialização'},
+    {value: 6, viewValue: 'Mestrado'},
+    {value: 7, viewValue: 'Doutorado'}
+  ]
+
   constructor(private _snack: MatSnackBar, private location: Location) { }
 
   mensagem(str: string){
