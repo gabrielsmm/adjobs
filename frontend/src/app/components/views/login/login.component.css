@@ -25,4 +25,5 @@
 .password {
   font-size: 18px;
   color: #0e76a8;
+  cursor: pointer;
 }

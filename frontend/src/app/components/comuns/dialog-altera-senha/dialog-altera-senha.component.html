@@ -8,7 +8,7 @@
         <div class="input-group">
           <input class="form-control" [(ngModel)]="password" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Nova senha" name="senha" required>
           <div class="input-group-append">
-            <span class="password" (mousedown)="toggleShowPassword()" (mouseup)="toggleShowPassword()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
+            <span class="password" (click)="toggleShowPassword()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
           </div>
         </div>
       </mat-form-field>

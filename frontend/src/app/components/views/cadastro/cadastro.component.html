@@ -25,24 +25,6 @@
               </div>
             </div>
 
-            <!-- <div class="row">
-              <div class="col-md-6">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="candidato.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cepCandidato" mask="00000-000" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="candidato.cargo.id" matInput type="number" placeholder="Cargo desejado" name="cargoDesejado" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.cep" matInput placeholder="CEP" name="cep" required>
-                </mat-form-field>
-              </div>
-            </div> -->
-
             <div class="row align-items-end">
               <div class="col-md-6">
                 <mat-form-field style="display: block;">
@@ -54,7 +36,7 @@
                   <div class="input-group">
                     <input class="form-control" [(ngModel)]="candidato.senha" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Senha" name="senhaCandidato" required>
                     <div class="input-group-append">
-                      <span class="password" (mousedown)="password()" (mouseup)="password()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
+                      <span class="password" (click)="password()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
                     </div>
                   </div>
                 </mat-form-field>
@@ -66,11 +48,6 @@
 
           <form *ngIf="isEmpresa" style="overflow-x: hidden;">
             <div class="row" style="margin-top:5px;">
-              <!-- <div class="col-md-6">
-                <mat-form-field style="display: block;">
-                  <input matInput placeholder="Cargo da vaga" name="cargo" required>
-                </mat-form-field>
-              </div> -->
               <div class="col-md-12">
                 <mat-form-field style="display: block;">
                   <input [(ngModel)]="empresa.nome" matInput placeholder="Nome da empresa" name="nomeEmpresa" required>
@@ -89,35 +66,7 @@
                   <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone" name="telefone" mask="(00)0000-0000" required>
                 </mat-form-field>
               </div>
-              <!-- <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.qtdFuncionarios" matInput placeholder="N° de funcionários" name="numeroFuncionarios" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.cep" (ngModelChange)="validarCEP($event)" matInput placeholder="CEP" name="cep" mask="00000-000" required>
-                </mat-form-field>
-              </div> -->
             </div>
-
-            <!-- <div class="row">
-              <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.nomeResponsavel" matInput placeholder="Nome completo" name="nomePessoa" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.telefone" matInput placeholder="Telefone" name="telefone" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field style="display: block;">
-                  <input [(ngModel)]="empresa.celular" matInput placeholder="Celular" name="celular" required>
-                </mat-form-field>
-              </div>
-            </div> -->
 
             <div class="row align-items-end">
               <div class="col-md-6">
@@ -130,7 +79,7 @@
                   <div class="input-group">
                     <input class="form-control" [(ngModel)]="empresa.senha" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Senha" name="senhaEmpresa" required>
                     <div class="input-group-append">
-                      <span class="password" (mousedown)="password()" (mouseup)="password()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
+                      <span class="password" (click)="password()"><i *ngIf="!showPassword" class="bi bi-eye"></i><i *ngIf="showPassword" class="bi bi-eye-slash"></i></span>
                     </div>
                   </div>
                 </mat-form-field>
@@ -142,30 +91,6 @@
           <span (click)="irParaLogin()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ir para a página de login</span>
         </div>
       </div>
-
-        <!-- <mat-tab-group #tabs>
-          <!-- <mat-tab label="Login">
-            <form>
-              <mat-form-field style="display: block; margin-top:5px;">
-                <input matInput placeholder="Seu email cadastrado" name="email" required>
-              </mat-form-field>
-              <mat-form-field style="display: block;">
-                <input matInput type="password" placeholder="Sua senha cadastrada" name="senha" required>
-              </mat-form-field>
-              <button mat-raised-button class="btn-blue">Entrar</button>
-              <span (click)="irParaTabRegistrar()" class="text-primary" style="display:block; margin-top: 15px; cursor: pointer;">Ainda não possui cadastro? clique aqui para se registrar</span>
-            </form>
-          </mat-tab>
-
-          <mat-tab label="Registrar-se como Candidato">
-
-          </mat-tab>
-
-          <mat-tab label="Registrar-se como Empresa">
-
-          </mat-tab>
-
-        </mat-tab-group> -->
     </div>
   </div>
 </div>

@@ -8,13 +8,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoContratacao {
 	
+	TEMPO_INDETERMINADO(0),
 	TEMPORARIO(1),
 	PARCIAL(2),
 	ESTAGIO(3),
 	JOVEM_APRENDIZ(4),
-	TERCEIRIZADO(5),
-	HOME_OFFICE(6),
-	INTERMITENTE(7);
+	TRAINEE(5),
+	TERCEIRIZADO(6),
+	HOME_OFFICE(7),
+	INTERMITENTE(8);
 	
 	private int id;
 	private static final Map<Integer,TipoContratacao> ENUM_MAP;

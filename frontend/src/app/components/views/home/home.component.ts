@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
     private router: Router) { }
 
   public numeroVagas: number;
-  public palavraChave: string;
-  public localizacao: string;
+  public palavraChave: string = '';
+  public localizacao: string = '';
 
   ngOnInit(): void {
     this.getNumeroVagas();

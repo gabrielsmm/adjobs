@@ -1,11 +1,11 @@
 <app-header></app-header>
 
 <div class="container">
-  <div class="jumbotron" style="margin-top: 40px;">
+  <div class="jumbotron">
     <h1 class="display-4">Atualmente temos <span style="font-weight: bold;">{{numeroVagas}}</span> vagas esperando por você!</h1>
     <hr class="my-4">
     <p class="lead">Pesquise por vagas de seu interesse</p>
-    <div class="row">
+    <div class="row pesquisa">
       <div class="col-md-5">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -30,14 +30,15 @@
     </div>
   </div>
 
-  <div class="row" style="margin-top: 30px;">
+  <div class="row" style="margin-top: 10px;">
     <div class="col-md-6 mb-3">
       <div class="align-self-center">
         <h1 class="display-3">Quer um emprego? sua vaga está aqui!</h1>
         <p style="font-size: 17px;">Venha fazer parte dessa história, temos certeza que aqui você
           irá conquistar aquela vaga tão sonhada de emprego!
         </p>
-        <a class="btn btn-green" role="button" [routerLink]="['/cadastro']">Cadastre-se</a>
+        <img class="img-fluid" src="assets/img/ilustracao_candidato.png" width="320" alt="Ilustração Candidato">
+        <!-- <a class="btn btn-green" role="button" [routerLink]="['/cadastro']">Cadastre-se</a> -->
       </div>
     </div>
     <div class="col-md-6">
@@ -46,9 +47,13 @@
         <p style="font-size: 17px;">Venha fazer parte dessa história, temos certeza que aqui você
           irá contratar os melhores profissionais para sua empresa!
         </p>
-        <a class="btn btn-green" role="button" [routerLink]="['/cadastro']">Cadastre-se</a>
+        <img class="img-fluid" src="assets/img/ilustracao_empresa.png" width="320" alt="Ilustração Empresa">
       </div>
     </div>
+  </div>
+
+  <div class="text-center">
+    <a class="btn btn-lg btn-green btn-cadastro" role="button" [routerLink]="['/cadastro']">Cadastre-se</a>
   </div>
 
   <hr>

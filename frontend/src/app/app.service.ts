@@ -8,13 +8,15 @@ import { Location } from '@angular/common';
 export class AppService {
 
   tiposContratacao = [
-    {value: 0, viewValue: 'Temporário'},
-    {value: 1, viewValue: 'Parcial'},
-    {value: 2, viewValue: 'Estágio'},
-    {value: 3, viewValue: 'Jovem Aprendiz'},
-    {value: 4, viewValue: 'Terceirizado'},
-    {value: 5, viewValue: 'Home Office'},
-    {value: 6, viewValue: 'Intermitente'},
+    {value: 0, viewValue: 'Tempo indeterminado'},
+    {value: 1, viewValue: 'Temporário'},
+    {value: 2, viewValue: 'Parcial'},
+    {value: 3, viewValue: 'Estágio'},
+    {value: 4, viewValue: 'Jovem Aprendiz'},
+    {value: 5, viewValue: 'Trainee'},
+    {value: 6, viewValue: 'Terceirizado'},
+    {value: 7, viewValue: 'Home Office'},
+    {value: 8, viewValue: 'Intermitente'},
   ];
 
   formacaoStatus = [

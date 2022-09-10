@@ -85,10 +85,10 @@ export class CadastroComponent implements OnInit {
       error: (err) => {
         console.log(err);
         if (!this.appService.isNullOrUndefined(err.error.error)) {
-          this.appService.mensagem(err.error.error);
+          this.appService.mensagemErro(err.error.error);
         } else {
           for(let i = 0; i < err.error.errors.length; i++){
-            this.appService.mensagem(err.error.errors[i].message);
+            this.appService.mensagemErro(err.error.errors[i].message);
           }
         }
       },
