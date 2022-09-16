@@ -64,6 +64,7 @@ export class VagasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
     this.getNumeroVagas();
     this.getVagas();
   }
@@ -150,6 +151,7 @@ export class VagasComponent implements OnInit {
         } else {
           this.vaga = vaga;
           this.stateChange = State.StateCandidatos;
+          setTimeout(() => this.appService.scrollToTop(), 100);
         }
       },
       error: (error) => {

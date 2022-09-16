@@ -32,6 +32,7 @@ export class MinhaAreaCandidatoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
     this.getCandidato();
   }
 

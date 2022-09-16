@@ -68,6 +68,7 @@ export class CurriculoComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
     this.getDadosCurriculo();
   }
 

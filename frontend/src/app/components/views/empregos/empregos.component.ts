@@ -43,6 +43,7 @@ export class EmpregosComponent implements OnInit {
     public loaderService: LoaderService) { }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
     this.filtro.palavraChave = this.route.snapshot.paramMap.get('palavraChave')!;
     this.filtro.localizacao = this.route.snapshot.paramMap.get('localizacao')!;
     this.getVagas();

@@ -32,12 +32,13 @@ export class CandidaturasComponent implements OnInit {
     public appService: AppService,
     public dialog: MatDialog,
     public loaderService: LoaderService) {
-      this.getNumeroCandidaturas();
-      this.getCandidaturas();
+
     }
 
   ngOnInit(): void {
-
+    setTimeout(() => this.appService.scrollToTop(), 100);
+    this.getNumeroCandidaturas();
+    this.getCandidaturas();
   }
 
   getCandidaturas() {

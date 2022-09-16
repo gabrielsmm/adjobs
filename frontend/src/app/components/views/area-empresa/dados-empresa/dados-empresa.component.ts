@@ -24,6 +24,7 @@ export class DadosEmpresaComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
     this.getDadosEmpresa();
   }
 

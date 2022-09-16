@@ -27,10 +27,12 @@ export class MinhaAreaEmpresaComponent implements OnInit {
   private vagaService: VagaService,
   public appService: AppService,
   public dialog: MatDialog) {
-    this.getEmpresa();
+
   }
 
   ngOnInit(): void {
+    setTimeout(() => this.appService.scrollToTop(), 100);
+    this.getEmpresa();
   }
 
   getEmpresa() {
