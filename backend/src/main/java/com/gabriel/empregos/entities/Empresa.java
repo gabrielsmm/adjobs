@@ -33,7 +33,6 @@ public class Empresa extends Usuario {
 	@Size(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
 	@NotEmpty(message = "Campo CNPJ é requerido")
-//	@Size(min = 14, max = 14, message = "O campo CNPJ deve ter 14 caracteres")
 	private String cnpj;
 	private Integer qtdFuncionarios;
 	@Size(min = 8, max = 8, message = "O campo CEP deve ter 8 caracteres")

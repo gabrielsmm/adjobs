@@ -30,10 +30,6 @@ public class Candidato extends Usuario {
 	private String nome;
 	private String cep;
 	
-//	@OneToOne
-//	@JoinColumn(name = "cargo_id")
-//	private Cargo cargo;
-	
 	@JsonIgnore
 	@OneToOne(mappedBy="candidato")
 	@JoinColumn(name = "curriculo_id", unique=true)

@@ -6,12 +6,6 @@
 
   <div class="row">
     <div class="col-md-9 order-2 order-sm-2 order-md-1">
-      <!-- <mat-paginator [length]="length"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="pageEvent = $event"
-              aria-label="Select page">
-      </mat-paginator> -->
 
       <p *ngIf="totalElements > 0" class="texto-oportunidades">Últimas oportunidades</p>
       <p *ngIf="totalElements <= 0" class="texto-oportunidades">Ops! Nenhuma vaga foi encontrada com os filtros selecionados.</p>
@@ -42,20 +36,14 @@
           <hr>
           <div class="row">
             <div class="col-md-3">
-              <!-- <p class="card-text">Localização: <i class="bi bi-geo-alt"></i>{{vaga.localizacao}}</p> -->
             </div>
             <div class="col-md-3">
-              <!-- <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p> -->
             </div>
             <div class="col-md-3">
-              <!-- <p><i class="bi bi-calendar"></i> Expira em: {{vaga.expiracao | date: 'dd/MM/yyyy'}}</p> -->
             </div>
             <div class="col-md-3">
               <button (click)="openDetalhes(vaga.id)" class="btn btn-blue">Ver detalhes</button>
             </div>
-            <!-- <div *ngIf="loginService.usuarioAutenticado && loginService.objUsuarioAutenticado.tipoUsuario == 2"  class="col-md-3">
-              <button (click)="candidatarClick(vaga)" class="btn btn-green">Candidatar-se</button>
-            </div> -->
           </div>
         </div>
       </div>
