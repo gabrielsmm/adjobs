@@ -183,7 +183,7 @@ export class CurriculoComponent implements OnInit {
       this.validaCepService.validarCep(cep).subscribe({
         next: (data) => {
           if (data.erro) {
-            this.appService.mensagem("CEP inválido!");
+            this.appService.mensagemErro("CEP inválido!");
           } else {
             this.curriculo.estado = data.uf;
             this.curriculo.cidade = data.localidade;

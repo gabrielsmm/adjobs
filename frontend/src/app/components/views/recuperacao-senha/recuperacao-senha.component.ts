@@ -32,7 +32,11 @@ export class RecuperacaoSenhaComponent implements OnInit {
       error: (err) => {
         console.error(err);
         if (!this.appService.isNullOrUndefined(err.error.error)) {
-          this.appService.mensagemErro(err.error.error);
+          if (!this.appService.isNullOrUndefined(err.error.message)) {
+            this.appService.mensagemErro(err.error.message);
+          } else if (!this.appService.isNullOrUndefined(err.error.error)) {
+            this.appService.mensagemErro(err.error.error);
+          }
         }
       },
       complete: () => {

@@ -14,6 +14,7 @@ import com.gabriel.empregos.enums.TipoUsuario;
 import com.gabriel.empregos.repositories.CandidatoRepository;
 import com.gabriel.empregos.repositories.EmpresaRepository;
 import com.gabriel.empregos.repositories.UsuarioRepository;
+import com.gabriel.empregos.services.exceptions.EmailSenderException;
 import com.gabriel.empregos.util.Util;
 
 @Service
@@ -33,24 +34,11 @@ public class EmailService {
 	
 	public boolean sendMail(String email) {
 		Usuario usuario = this.usuarioRepository.findByEmail(email);
-		String nome = "";
 		String senhaAleatoria = Util.gerarSenhaAleatoria(10);
-		if (usuario.getTipoUsuario() == TipoUsuario.EMPRESA) {
-			Empresa empresa = this.empresaRepository.getById(usuario.getId());
-			empresa.setSenha(Util.criptografar(senhaAleatoria));
-			this.empresaRepository.save(empresa);
-			nome = empresa.getNome();
-		} else if (usuario.getTipoUsuario() == TipoUsuario.CANDIDATO) {
-			Candidato candidato = this.candidatoRepository.getById(usuario.getId());
-			candidato.setSenha(Util.criptografar(senhaAleatoria));
-			this.candidatoRepository.save(candidato);
-			nome = candidato.getNome();
-		}
 		try {
             MimeMessage mail = mailSender.createMimeMessage();
             
             StringBuilder mailText = new StringBuilder()
-            		.append("<h3>Olá " + nome + ",</h3>")
             		.append("<p>Houve uma solicitação para recuperar seus dados de acesso!</p>")
             		.append("<hr>")
             		.append("<p>Login: " + usuario.getEmail() + "</p>")
@@ -58,16 +46,26 @@ public class EmailService {
             		.append("<hr>");
 
             MimeMessageHelper helper = new MimeMessageHelper(mail);
-            helper.setFrom("remetente");
+            helper.setFrom("AdJobs");
             helper.setTo(email);
             helper.setSubject( "AdJobs - Dados de acesso" );
             helper.setText(mailText.toString(), true);
             mailSender.send(mail);
             
+            if (usuario.getTipoUsuario() == TipoUsuario.EMPRESA) {
+    			Empresa empresa = this.empresaRepository.getById(usuario.getId());
+    			empresa.setSenha(Util.criptografar(senhaAleatoria));
+    			this.empresaRepository.save(empresa);
+    		} else if (usuario.getTipoUsuario() == TipoUsuario.CANDIDATO) {
+    			Candidato candidato = this.candidatoRepository.getById(usuario.getId());
+    			candidato.setSenha(Util.criptografar(senhaAleatoria));
+    			this.candidatoRepository.save(candidato);
+    		}
+            
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        	e.printStackTrace();
+            throw new EmailSenderException("Não foi possível enviar os dados, tente novamente mais tarde.");
         }
 	}
 	

@@ -72,7 +72,7 @@ export class DadosEmpresaComponent implements OnInit {
       this.validaCepService.validarCep(cep).subscribe({
         next: (data) => {
           if (data.erro) {
-            this.appService.mensagem("CEP inválido!");
+            this.appService.mensagemErro("CEP inválido!");
           } else {
             this.empresa.estado = data.uf;
             this.empresa.cidade = data.localidade;
