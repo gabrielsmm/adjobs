@@ -6,6 +6,7 @@
     <div [ngSwitch]="stateChange" class="col-md-12">
 
       <div *ngSwitchCase="state.StateGrid">
+        <p *ngIf="numeroVagas <= 0" class="texto-superior">Ops! Nenhuma vaga cadastrada até o momento.</p>
         <p *ngIf="numeroVagas > 0" class="texto-vagas">Você cadastrou {{numeroVagas}} <span *ngIf="numeroVagas === 1">vaga</span><span *ngIf="numeroVagas > 1">vagas</span></p>
 
         <button (click)="cadastrarVagaClick()" [disabled]="!usuarioService.objUsuarioAutenticado.podeDivulgar" class="btn btn-green" style="margin-bottom: 10px;"><i class="bi bi-plus-square"></i> Divulgar nova vaga</button>

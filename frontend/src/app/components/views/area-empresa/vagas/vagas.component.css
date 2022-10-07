@@ -67,6 +67,11 @@ mat-form-field {
   color: black;
 }
 
+.texto-superior {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 /* Ajustes */
 
 @media (max-width: 320.98px) {

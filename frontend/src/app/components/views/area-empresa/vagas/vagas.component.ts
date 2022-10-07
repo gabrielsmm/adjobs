@@ -65,7 +65,6 @@ export class VagasComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => this.appService.scrollToTop(), 100);
-    this.getNumeroVagas();
     this.getVagas();
   }
 
@@ -76,6 +75,7 @@ export class VagasComponent implements OnInit {
         this.first = data['first'];
         this.last = data['last'];
         this.totalElements = data['totalElements'];
+        this.getNumeroVagas();
       },
       error: (msg) => {
         console.log('Error', msg);
