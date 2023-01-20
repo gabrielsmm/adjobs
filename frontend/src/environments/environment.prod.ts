@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://adjobs.herokuapp.com'
+  baseUrl: 'https://adjobs-production.up.railway.app'
 };
